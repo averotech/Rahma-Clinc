@@ -1,0 +1,22 @@
+@media (max-width: 767px) {
+    .bg-shape {
+      background-size: cover !important;
+      background-position: right !important;
+    }
+  }
+  
+  @media (max-width: 991px) {
+      .main-section-bg {
+          background-size: cover;
+        }
+  }
+  
+  @media (max-width: 550px) {
+    .after-gray-color::after, .after-left::after {
+      display: none;
+    }
+    
+  }
+  
+  
+  
