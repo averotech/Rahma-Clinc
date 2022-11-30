@@ -1,0 +1,24 @@
+
+.button-style > span, .button-style {transition: all .5s ease-in-out;}
+.button-style:hover > span {right: 63%;}
+.about-section .button-style:hover > span {right: 62%;}
+
+.bolid-before::before {
+    content: '';
+    display: block;
+    height: 10px;
+    width: 10px;
+    position: absolute;
+    right: 0;
+    top: 6px;
+    background-color: #000;
+    border-radius: 50%;
+}
+
+.main-slider .owl-stage-outer,
+.main-slider .owl-stage-outer .owl-stage,
+.main-slider .owl-stage-outer .owl-stage .owl-item,
+.main-slider .owl-stage-outer .owl-stage .owl-item div
+{height: 100%;}
+
+.nav-list.open {right: 0 !important;}
