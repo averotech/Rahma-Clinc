@@ -336,7 +336,7 @@
                     <h2 class="capitalize text-[27px] md:text-[30px] lg:text-[35px] max-w-[550px] ">ماذا يقول عملائنا عنا </h2>
                 </div>
                 <div class="grid grid-cols-1 gap-20 sm:grid-cols-2 md:grid-cols-2">
-                    <div class="mt-24 ">
+                    <div class="mt-24 " data-aos="fade-down" data-aos-duration="2000" data-aos-delay="300">
                         <div class="relative mb-16">
                             <img class="w-full max-h-[434px]" src="{{asset('assets/images/testimonial/t-1.png')}}" alt="image">
                             <span class="w-[116px] h-[116px] flex justify-center items-center rounded-full bg-[#005340] absolute left-[20px] bottom-[-58px]">
@@ -356,8 +356,8 @@
                         <h3 class="sitka-font text-[22px] mb-2">اسم الزبون</h3>
                         <p class="poppins-font text-[#727475] text-[15px]"> كان لوريم إيبسوم ولايزال المعيار للنص الشكلي منذ القرن الخامس عشر عندما قامت مطبعة مجهولة برص مجموعةكان لوريم إيبسوم ولايزال المعيار للنص الشكلي منذ القرن الخامس عشر عندما قامت مطبعة مجهولة برص مجموعةكان لوريم إيبسوم ولايزال المعيار للنص الشكلي منذ القرن الخامس عشر عندما قامت مطبعة مجهولة برص مجموعة</p>
                     </div>
-                    <div>
-                        <div class="relative mb-16">
+                    <div data-aos="fade-down" data-aos-duration="2000" data-aos-delay="300">
+                        <div class="relative mb-16" >
                             <img class="w-full max-h-[434px]" src="{{asset('assets/images/testimonial/t-1.png')}}" alt="image">
                             <span class="w-[116px] h-[116px] flex justify-center items-center rounded-full bg-[#005340] absolute left-[20px] bottom-[-58px]">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44" fill="none">
