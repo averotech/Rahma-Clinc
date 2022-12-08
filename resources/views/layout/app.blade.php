@@ -59,7 +59,7 @@
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center">
                     <div>
-                        <a href="#">
+                        <a href="/">
                             <img class="max-w-[130px]" src="{{asset('assets/images/logo.png')}}" alt="logo">
                         </a>
                     </div>
@@ -93,11 +93,11 @@
                 <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-20">
                     <div class="col-span-1 lg:pb-20">
                         <div class="border-b border-[#959797] pb-24">
-                            <h1 class="text-[30px] lg:text-[38px] xl:text-[42px] leading-tight capitalize">
-                                استرجعي جمال وجهك وحيويتك مع أفضل خدمة لدينا
+                            <h1 class="lg:min-w-[450px] text-[30px] lg:text-[38px] xl:text-[42px] leading-tight capitalize">
+                                تألقي بثقة و جمال مع رحمة كلينك أفضل أجهزة إزالة الشعر بدون ألم  و نتائج مضمونة .
                             </h1>
                             <p class="text-[#727475] text-[15px] poppins-font mt-5 font-[500]">
-                                كان لوريم إيبسوم ولايزال المعيار للنص الشكلي منذ القرن الخامس عشر عندما قامت مطبعة مجهولة برص.
+                                لأننا نهتم بأن  تكوني بأجمل طلة مع رحمة كلينك نوفر أفضل جهاز لازالة الشعر soprano titanium بدون ألم.
                             </p>
                             <a class="mt-10 inline-block" href="http://media.w3.org/2010/05/sintel/trailer.mp4" data-fancybox>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
@@ -113,7 +113,7 @@
                             </a>
                         </div>
                         <p class="text-[#727475] text-[15px] poppins-font pl-5 mt-10 relative font-[500]">
-                            كان لوريم إيبسوم ولايزال المعيار للنص الشكلي منذ القرن الخامس عشر عندما قامت مطبعة مجهولة برص.
+                            تائج مضمونة  بلمسات سحرية من المختصة رحمه محاميد عودة إضافة إلى العديد من الخدمات التجميلية بطاقم احترافي و أجهزة عالمية.
                         </p>
                     </div>
                     <div class="col-span-1 relative hidden lg:flex">
@@ -172,7 +172,9 @@
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="text-center sitka-font">
                     <p class="text-[18px]">من نحن</p>
-                    <h2 class="capitalize text-[27px] md:text-[30px] lg:text-[35px] m-auto max-w-[550px] ">توهج وجهك وحيويتك مع أفضل خدمة لدينا</h2>
+                    <h2 class="capitalize text-[20px] sm:text-[25px] md:text-[30px] lg:text-[35px] m-auto max-w-[90%] ">
+                        رحمة كلينك هي عيادة فلسطينية بالناصرة بنقدم خدمة إزالة الشعر بالليزر باستخدام أفضل جهاز عالمية هو Soprano Titanium لرجال والنساء  بإدارة الممرضة رحمة عودة لتحصلي على ملمس حريري و لمعان من أول جلسة و نتائج مبهرة .
+                    </h2>
                 </div>
                 <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-20">
                     <div class="col-span-1 text-center " data-aos="fade-up" data-aos-duration="1000">
@@ -208,7 +210,13 @@
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="text-center sitka-font">
                     <p class="text-[18px]">خدماتنا</p>
-                    <h2 class="capitalize text-[27px] md:text-[30px] lg:text-[35px] m-auto max-w-[550px] ">توهج وجهك وحيويتك مع أفضل خدمة لدينا</h2>
+                    <h2 class="capitalize text-[20px] sm:text-[25px] md:text-[30px] lg:text-[35px] m-auto max-w-[90%] ">
+                        قولي وداعا لشفرات الحلاقة
+                        نقدم في رحمة كلينك خدمة إزالة الشعر بالليزر مع أفضل جهاز عالمي Soprano Titanium
+                        و خدمات تجميلية مثل العناية بالبشرة و علاج الحروق لرجال و النساء
+                        على أيدي مختصين محترفين بإدارة الممرضة المختصة رحمة محاميد عودة
+                        الناصرة
+                    </h2>
                 </div>
                 <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 mt-16">
                     <div class="col-span-1">
@@ -274,7 +282,11 @@
                                 <div class="border-b border-[#727475] my-5"></div>
                                 <span class="text-[#005340] text-[50px] block">555 ₪</span>
                                 <p class="text-[#727475] text-[15px] poppins-font mt-4 font-[500]">
-                                    كان لوريم إيبسوم ولايزال المعيار للنص الشكلي منذ القرن الخامس عشر عندما قامت مطبعة مجهولة برص مجموعةكان لوريم إيبسوم ولايزال المعيار للنص الشكلي منذ القرن الخامس عشر عندما قامت مطبعة مجهولة برص مجموعةكان لوريم إيبسوم ولايزال المعيار للنص الشكلي منذ القرن الخامس عشر عندما قامت مطبعة مجهولة برص مجموعة
+                                    جهاز Soprano Titanium ، من ألما ليزر
+                                    أفضل جهاز في السوق بدون منافس
+                                    سريع و آمن بدون  حروق بارد على البشرة
+                                    ملائم للأطفال من 7 سنين
+                                    نتائج  مذهلة من اول جلسة
                                 </p>
                             </div>
 
@@ -293,10 +305,10 @@
                                 <div class="border-b border-[#727475] my-5"></div>
                                 <span class="text-[#005340] text-[64px] block">555 ₪</span>
                                 <p class="text-[#727475] text-[15px] poppins-font mt-5 font-[500]">
-                                    كان لوريم إيبسوم ولايزال المعيار للنص الشكلي منذ القرن الخامس عشر عندما قامت مطبعة مجهولة برص مجموعةكان لوريم إيبسوم ولايزال المعيار للنص الشكلي منذ القرن الخامس عشر عندما قامت مطبعة مجهولة برص مجموعةكان لوريم إيبسوم ولايزال المعيار للنص الشكلي منذ القرن الخامس عشر عندما قامت مطبعة مجهولة برص مجموعة
+                                    لدينا طاقم متخصص بأعلى معايير الجودة والاحترافية
+                                    حاصلين على شهادة معتمدة من  الما العالمية
                                 </p>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -353,8 +365,13 @@
                                 </svg>
                             </span>
                         </div>
-                        <h3 class="sitka-font text-[22px] mb-2">اسم الزبون</h3>
-                        <p class="poppins-font text-[#727475] text-[15px]"> كان لوريم إيبسوم ولايزال المعيار للنص الشكلي منذ القرن الخامس عشر عندما قامت مطبعة مجهولة برص مجموعةكان لوريم إيبسوم ولايزال المعيار للنص الشكلي منذ القرن الخامس عشر عندما قامت مطبعة مجهولة برص مجموعةكان لوريم إيبسوم ولايزال المعيار للنص الشكلي منذ القرن الخامس عشر عندما قامت مطبعة مجهولة برص مجموعة</p>
+                        <h3 class="sitka-font text-[22px] mb-2">نسرين </h3>
+                        <p class="poppins-font text-[#727475] text-[15px]">
+                            أول مرة بعمل ليزر جسم
+                            من أول لقاء الملمس بجنن و لا احمرار ولا و جع و لا حكة
+                            قسما بالله شغل من قلب و تعبك و مافي زي السعر
+                            الله يباركلك و يرزقك .
+                        </p>
                     </div>
                     <div data-aos="fade-down" data-aos-duration="2000" data-aos-delay="300">
                         <div class="relative mb-16" >
@@ -374,7 +391,9 @@
                             </span>
                         </div>
                         <h3 class="sitka-font text-[22px] mb-2">اسم الزبون</h3>
-                        <p class="poppins-font text-[#727475] text-[15px]"> كان لوريم إيبسوم ولايزال المعيار للنص الشكلي منذ القرن الخامس عشر عندما قامت مطبعة مجهولة برص مجموعةكان لوريم إيبسوم ولايزال المعيار للنص الشكلي منذ القرن الخامس عشر عندما قامت مطبعة مجهولة برص مجموعةكان لوريم إيبسوم ولايزال المعيار للنص الشكلي منذ القرن الخامس عشر عندما قامت مطبعة مجهولة برص مجموعة</p>
+                        <p class="poppins-font text-[#727475] text-[15px]">
+                            بعدني بأول لقاء و جسمي اتغير كثير عن قبل  معاملة و أسعار خيالية و الجهاز و لا غلطة و لا في زيه.
+                        </p>
                     </div>
                 </div>
             </div>
