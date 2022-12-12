@@ -22,3 +22,4 @@
 {height: 100%;}
 
 .nav-list.open {right: 0 !important;}
+.play-vid-overlay {background-color: rgba(0, 0, 0, .5);}

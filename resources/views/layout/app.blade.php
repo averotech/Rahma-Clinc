@@ -171,10 +171,11 @@
         <section class="py-10 about-section" id="about-us">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="text-center sitka-font">
-                    <p class="text-[18px]">من نحن</p>
-                    <h2 class="capitalize text-[20px] sm:text-[25px] md:text-[30px] lg:text-[35px] m-auto max-w-[90%] ">
-                        رحمة كلينك هي عيادة فلسطينية بالناصرة بنقدم خدمة إزالة الشعر بالليزر باستخدام أفضل جهاز عالمية هو Soprano Titanium لرجال والنساء  بإدارة الممرضة رحمة عودة لتحصلي على ملمس حريري و لمعان من أول جلسة و نتائج مبهرة .
+                    <p class="md:text-[18px] text-[#005340]">من نحن</p>
+                    <h2 class="capitalize text-[20px] sm:text-[25px] md:text-[30px] lg:text-[35px] mx-auto my-4 max-w-[90%] ">
+                        رحمة كلينك هي عيادة فلسطينية بالناصرة
                     </h2>
+                    <p class="md:text-[18px] text-[#727475] md:max-w-[90%] mx-auto">بنقدم خدمة إزالة الشعر بالليزر باستخدام أفضل جهاز عالمية هو Soprano Titanium لرجال والنساء بإدارة الممرضة رحمة عودة لتحصلي على ملمس حريري و لمعان من أول جلسة و نتائج مبهرة .</p>
                 </div>
                 <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-20">
                     <div class="col-span-1 text-center " data-aos="fade-up" data-aos-duration="1000">
@@ -209,24 +210,28 @@
         <section class="mt-32" id="services">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="text-center sitka-font">
-                    <p class="text-[18px]">خدماتنا</p>
-                    <h2 class="capitalize text-[20px] sm:text-[25px] md:text-[30px] lg:text-[35px] m-auto max-w-[90%] ">
+                    <p class="md:text-[18px] text-[#005340]">خدماتنا</p>
+                    <h2 class="capitalize text-[20px] sm:text-[25px] md:text-[30px] lg:text-[35px] mx-auto my-4 max-w-[90%] ">
                         قولي وداعا لشفرات الحلاقة
+                    </h2>
+                    <p class="md:text-[18px] text-[#727475] md:max-w-[90%] mx-auto">
                         نقدم في رحمة كلينك خدمة إزالة الشعر بالليزر مع أفضل جهاز عالمي Soprano Titanium
                         و خدمات تجميلية مثل العناية بالبشرة و علاج الحروق لرجال و النساء
                         على أيدي مختصين محترفين بإدارة الممرضة المختصة رحمة محاميد عودة
                         الناصرة
-                    </h2>
+                    </p>
                 </div>
                 <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 mt-16">
                     <div class="col-span-1">
                         <div class="border border-[#CBD7E7] text-center px-4 py-10 h-full" data-aos="zoom-in" data-aos-duration="1000">
                             <div class="rounded-full mx-auto bg-[#F1F1F1] flex items-center justify-center h-[77px] w-[77px] ">
-                                <img src="{{asset('assets/images/service-icons/skincare.svg')}}" alt="service icon">
+                                <img src="{{asset('assets/images/service-icons/epilator.svg')}}" alt="service icon">
                             </div>
-                            <h3 class="sitka-font text-[22px] mb-4 mt-6 capitalize">عناية بالبشرة</h3>
-                            <p class="text-[15px] poppins-font text-[#727475] capitalize">كان لوريم إيبسوم ولايزال المعيار للنص الشكلي منذ القرن الخامس عشر عندما قامت مطبعة مجهولة برص مجموعة</p>
-                            <button class="mt-20 sitka-font text-[22px] text-[#005340]">تواصل معنا</button>
+                            <h3 class="sitka-font text-[22px] mb-4 mt-6 capitalize">إزالة الشعر بالليزر لسيدات</h3>
+                            <p class="text-[15px] poppins-font text-[#727475] capitalize">مع الممرضة المختصة رحمة عودة<br>
+                                إزالة الشعر بدون ألم و أفضل نتائج<br>
+                                مع تقديم نصائح واستشارات</p>
+                            <button class="mt-20 sitka-font text-[22px] text-[#005340] contact-btn" data-scroll="contact">تواصل معنا</button>
                         </div>
                     </div>
                     <div class="col-span-1">
@@ -234,9 +239,12 @@
                             <div class="rounded-full mx-auto bg-[#F1F1F1] flex items-center justify-center h-[77px] w-[77px] ">
                                 <img src="{{asset('assets/images/service-icons/epilator.svg')}}" alt="service icon">
                             </div>
-                            <h3 class="sitka-font text-[22px] mb-4 mt-6 capitalize">أزالة الشعر الزائد</h3>
-                            <p class="text-[15px] poppins-font text-[#727475] capitalize">كان لوريم إيبسوم ولايزال المعيار للنص الشكلي منذ القرن الخامس عشر عندما قامت مطبعة مجهولة برص مجموعة</p>
-                            <button class="mt-20 sitka-font text-[22px] text-[#005340]">تواصل معنا</button>
+                            <h3 class="sitka-font text-[22px] mb-4 mt-6 capitalize">إزالة الشعر بالليزر للرجال</h3>
+                            <p class="text-[15px] poppins-font text-[#727475] capitalize">
+                                مختصي لازالة الشعر للشباب <br>
+                                نتائج تظهر من ثالث جلسه .
+                            </p>
+                            <button class="mt-20 sitka-font text-[22px] text-[#005340] contact-btn" data-scroll="contact">تواصل معنا</button>
                         </div>
                     </div>
                     <div class="col-span-1">
@@ -244,20 +252,20 @@
                             <div class="rounded-full mx-auto bg-[#F1F1F1] flex items-center justify-center h-[77px] w-[77px] ">
                                 <img src="{{asset('assets/images/service-icons/makeup.svg')}}" alt="service icon">
                             </div>
-                            <h3 class="sitka-font text-[22px] mb-4 mt-6 capitalize">ماكياج دائم
+                            <h3 class="sitka-font text-[22px] mb-4 mt-6 capitalize">خدمات تجميلية
                             </h3>
-                            <p class="text-[15px] poppins-font text-[#727475] capitalize">كان لوريم إيبسوم ولايزال المعيار للنص الشكلي منذ القرن الخامس عشر عندما قامت مطبعة مجهولة برص مجموعة</p>
-                            <button class="mt-20 sitka-font text-[22px] text-[#005340]">تواصل معنا</button>
+                            <p class="text-[15px] poppins-font text-[#727475] capitalize">تعاون مع افضل اطباء التجميل لتقديم خدمات تجميلية احترافية</p>
+                            <button class="mt-20 sitka-font text-[22px] text-[#005340] contact-btn" data-scroll="contact">تواصل معنا</button>
                         </div>
                     </div>
                     <div class="col-span-1">
                         <div class="border border-[#CBD7E7] text-center px-4 py-10 h-full" data-aos="zoom-in" data-aos-duration="1000">
                             <div class="rounded-full mx-auto bg-[#F1F1F1] flex items-center justify-center h-[77px] w-[77px] ">
-                                <img src="{{asset('assets/images/service-icons/slim-body.svg')}}" alt="service icon">
+                                <img src="{{asset('assets/images/service-icons/makeup.svg')}}" alt="service icon">
                             </div>
-                            <h3 class="sitka-font text-[22px] mb-4 mt-6 capitalize">التخسيس</h3>
+                            <h3 class="sitka-font text-[22px] mb-4 mt-6 capitalize">عناية بالبشرة</h3>
                             <p class="text-[15px] poppins-font text-[#727475] capitalize">كان لوريم إيبسوم ولايزال المعيار للنص الشكلي منذ القرن الخامس عشر عندما قامت مطبعة مجهولة برص مجموعة</p>
-                            <button class="mt-20 sitka-font text-[22px] text-[#005340]">تواصل معنا</button>
+                            <button class="mt-20 sitka-font text-[22px] text-[#005340] contact-btn" data-scroll="contact">تواصل معنا</button>
                         </div>
                     </div>
                 </div>
@@ -270,7 +278,21 @@
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="owl-carousel offers-slider">
                     <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-                        <div class="col-span-2">
+                        <div class="col-span-2 relative">
+                            <div class="absolute w-full h-full inset-0 play-vid-overlay flex items-center justify-center">
+                                <a class="mt-10 inline-block" href="http://media.w3.org/2010/05/sintel/trailer.mp4" data-fancybox="">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 48 48" fill="none">
+                                        <g clip-path="url(#clip0_45_558)">
+                                        <path d="M24 0C10.7656 0 0 10.7666 0 24C0 37.2334 10.7656 48 24 48C37.2344 48 48 37.2334 48 24C48 10.7666 37.2344 0 24 0ZM33.541 24.8408L19.5411 33.8408C19.377 33.9473 19.1875 34 19 34C18.836 34 18.6699 33.959 18.5215 33.878C18.1992 33.7022 18 33.3662 18 33V15C18 14.6338 18.1992 14.2978 18.5215 14.122C18.8379 13.9482 19.2344 13.9589 19.5411 14.1592L33.541 23.1592C33.8262 23.3427 34 23.6602 34 24C34 24.3398 33.8262 24.6572 33.541 24.8408Z" fill="#fff"></path>
+                                        </g>
+                                        <defs>
+                                        <clipPath id="clip0_45_558">
+                                        <rect width="48" height="48" fill="white"></rect>
+                                        </clipPath>
+                                        </defs>
+                                    </svg>
+                                </a>
+                            </div>
                             <img class="max-w-full min-h-auto md:min-h-[500px] lg:min-h-[600px] object-cover" src="{{asset('assets/images/offer-img.png')}}" alt="">
                         </div>
                         <div class="col-span-3 flex items-center pb-20">
@@ -316,7 +338,7 @@
                     <div class="col-span-2"></div>
                     <div class="col-span-3">
                         <div class="flex items-center justify-between lg:-mt-20 z-20 relative mt-20">
-                            <button class="button-style sitka-font text-[18px] font-[600] relative px-[40px]" type="submit">
+                            <button class="button-style sitka-font text-[18px] font-[600] relative px-[40px] contact-btn" data-scroll="contact">
                                 <span class="right-0 top-[-20px] flex items-center justify-center h-[64px] w-[64px] border border-[#CBD7E7] rounded-full absolute">
                                     <span class="bg-[#000] h-[9px] w-[9px] rounded-full"></span>
                                 </span>
@@ -340,6 +362,38 @@
             </div>
         </section>
         <!-- End offers section -->
+        <!-- Start Contact us section -->
+        <section class="mb-20" id="contact">
+            <div class="max-w-[480px] mx-auto">
+                <div class="text-center sitka-font">
+                    <p class="md:text-[18px] text-[#005340]">تواصل معنا</p>
+                    <h2 class="capitalize text-[20px] sm:text-[25px] md:text-[30px] lg:text-[35px] xl:text-[40px] mx-auto my-4 max-w-[90%] ">
+                        سارع بالتواصل معنا
+                    </h2>
+                </div>
+                <form action="">
+                    <div class="mb-5">
+                        <label for="full-name" class="block text-sm font-medium text-gray-700 sitka-font">الاسم الكامل</label>
+                        <input type="text" name="first-name" id="full-name" autocomplete="given-name" class="mt-1 px-2 py-2 block w-full bg-transparent rounded-md border border-[#D1D5DB] focus:outline-[#CBD7E7] focus:ring-[#CBD7E7] sm:text-sm">
+                    </div>
+                    <div class="mb-5">
+                        <label for="phone" class="block text-sm font-medium text-gray-700 sitka-font">رقم الهاتف </label>
+                        <input type="text" name="phone" id="phone" autocomplete="given-name" class="mt-1 px-2 py-2 block w-full bg-transparent rounded-md border border-[#D1D5DB] focus:outline-[#CBD7E7] focus:ring-[#CBD7E7] sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="ch-1" class="block text-sm font-medium text-gray-700 sitka-font">اختيار المنطقة</label>
+                        <input type="text" name="area" id="ch-1" autocomplete="given-name" class="mt-1 px-2 py-2 block w-full bg-transparent rounded-md border border-[#D1D5DB] focus:outline-[#CBD7E7] focus:ring-[#CBD7E7] sm:text-sm">
+                    </div>
+                    <button class="button-style sitka-font text-[18px] font-[600] relative mt-8 px-[40px]" type="submit">
+                        <span class="right-0 top-[-20px] flex items-center justify-center h-[64px] w-[64px] border border-[#CBD7E7] rounded-full absolute">
+                            <span class="bg-[#000] h-[9px] w-[9px] rounded-full"></span>
+                        </span>
+                        تواصل معنا
+                    </button>
+                </form>
+            </div>
+        </section>
+        <!-- End Contact us section -->
         <!-- Start testimonial section-->
         <section>
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
