@@ -46,7 +46,7 @@ $(document).ready(function () {
     })
 
     //Start scroll go to element
-    $('.nav-list ul li a, .to-menu').click(function(e) {
+    $('.nav-list ul li a, .contact-btn').click(function(e) {
         e.preventDefault();
         $('html, body').animate({
             scrollTop: $('#' + $(this).data('scroll')).offset().top
