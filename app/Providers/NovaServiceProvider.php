@@ -22,6 +22,7 @@ use Whitecube\NovaFlexibleContent\Flexible;
 
 
 use Laravel\Nova\Fields\Number;
+use Laravel\Nova\Fields\Select;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -66,7 +67,13 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     Flexible::make('navbar','navbar')
                     ->addLayout('Simple content section', 'wysiwyg', [
                         Text::make(__('name')),
-                        Text::make(__('link')),
+                        Select::make('name','select_name')->options([
+                            'about-us' => 'about-us',
+                            'features' => 'features',
+                            'services' => 'services',
+                            'contact' => 'contact',
+
+                        ])->rules('required'),
                     ]),
                 ]),
                 Tab::make(__('Top Banner'), [
@@ -84,15 +91,15 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     // photos
                 ]),
                 Tab::make(__('About Us'), [
-                    Text::make(__('Title'), 'title_ About-Us'),
-                    Text::make(__('sub Title'), 'subtitle_About-Us'),
-                    Text::make(__('Button Text'), 'bottom_text_About-Us'),
-                    Text::make(__('Button Link'), 'bottom_link_About-Us'),
+                    Text::make(__('Title'), 'title_About_Us'),
+                    Text::make(__('sub Title'), 'subtitle_About_Us'),
+                    Text::make(__('Button Text'), 'bottom_text_About_Us'),
+                    Text::make(__('Button Link'), 'bottom_link_About_Us'),
                     // photos
                 ]),
                 Tab::make(__('our Services'), [
-                    Text::make(__('Title'), 'title_ About-Us'),
-                    Text::make(__('sub Title'), 'subtitle_About-Us'),
+                    Text::make(__('Title'), 'title_Our_Services'),
+                    Text::make(__('sub Title'), 'subtitle_Our_Services'),
                     // photos
                 ]),
                 Tab::make(__('offers'), [
