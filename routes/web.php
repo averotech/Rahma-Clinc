@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::redirect('/', '/ar');//ok
 Route::get('/', function () {
-    return view('Layout/app');
+    return view('Pages/HomePage');
 });
