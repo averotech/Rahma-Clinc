@@ -6,7 +6,9 @@
         "build-FlexibleAz": "cd nova-components/FlexibleAz && npm run dev",
         "build-FlexibleAz-prod": "cd nova-components/FlexibleAz && npm run prod",
         "build-color-picker": "cd nova-components/ColorPicker && npm run dev",
-        "build-color-picker-prod": "cd nova-components/ColorPicker && npm run prod"
+        "build-color-picker-prod": "cd nova-components/ColorPicker && npm run prod",
+        "build-image-collection": "cd nova-components/ImageCollection && npm run dev",
+        "build-image-collection-prod": "cd nova-components/ImageCollection && npm run prod"
     },
     "devDependencies": {
         "autoprefixer": "^10.4.12",

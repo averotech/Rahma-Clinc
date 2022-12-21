@@ -4,15 +4,15 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f2fc60b0c2a771d51457ba92d9d96c1e",
+    "content-hash": "720f923bbe33a7f7deef16794d5e4044",
     "packages": [
         {
             "name": "acme/color-picker",
-            "version": "dev-Zeyad_Rahma_BE",
+            "version": "dev-Ameed_F1-BE",
             "dist": {
                 "type": "path",
                 "url": "./nova-components/ColorPicker",
-                "reference": "937902fda0edff37f764e994f23b32e48d214215"
+                "reference": "9f75d31499339dc7e4ef116fb04f08071dab6c8f"
             },
             "require": {
                 "php": "^7.3|^8.0"
@@ -28,6 +28,42 @@
             "autoload": {
                 "psr-4": {
                     "Acme\\ColorPicker\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "acme/image-collection",
+            "version": "dev-Ameed_F1-BE",
+            "dist": {
+                "type": "path",
+                "url": "./nova-components/ImageCollection",
+                "reference": "7796826c314b775945a11c4fa9f97a369e1b0b58"
+            },
+            "require": {
+                "php": "^7.3|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Acme\\ImageCollection\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Acme\\ImageCollection\\": "src/"
                 }
             },
             "license": [
@@ -9341,5 +9377,5 @@
         "php": "^8.0.2"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }

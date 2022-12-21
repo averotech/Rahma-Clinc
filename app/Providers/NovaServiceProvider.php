@@ -2,7 +2,8 @@
 
 namespace App\Providers;
 
-
+use Acme\ColorPicker\ColorPicker;
+use Acme\ImageCollection\ImageCollection;
 use App\Nova\User;
 use Illuminate\Http\Request;
 use Laravel\Nova\Dashboards\Main;
@@ -90,6 +91,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     Text::make(__('Button Link'), 'bottom_link_Top-Banner'),
 
                     // photos
+                    // ColorPicker::make('Color'),
+                    ImageCollection::make('image'),
                     // ArrayImages::make('Images', 'images')
 
                 ]),
