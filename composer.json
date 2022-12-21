@@ -20,7 +20,8 @@
         "mcamara/laravel-localization": "^1.7",
         "outl1ne/nova-settings": "^5.0",
         "whitecube/nova-flexible-content": "^1.0",
-        "acme/color-picker": "*"
+        "acme/color-picker": "*",
+        "acme/image-collection": "*"
     },
     "repositories": [
         {
@@ -30,6 +31,10 @@
         {
             "type": "path",
             "url": "./nova-components/ColorPicker"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/ImageCollection"
         }
     ],
     "require-dev": {

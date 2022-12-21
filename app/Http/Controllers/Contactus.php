@@ -16,7 +16,8 @@ class Contactus extends Controller
     public function ContactUsForm(Request $request)
     {
         //
-        $validated = $request->validate([
+        $validator = Validator::make(
+            $request->all(),
             [
                 'name' => 'required|string|min:3|max:50|unique',
                 'email' => 'required|email|unique',
@@ -33,7 +34,7 @@ class Contactus extends Controller
                 'email.required' => 'الرجاء ادخال البريد الالكتروني. ',
                 'email.unique' => 'لقد قمت بادخال البريد الالكتروني مسبقا',
             ]
-        ]);
+        );
         AppModelsContactUs::create([
             'name' => $request['name'],
             'email' => $request['email'],
