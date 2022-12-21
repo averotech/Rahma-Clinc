@@ -92,7 +92,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
 
                     // photos
                     // ColorPicker::make('Color'),
-                    ImageCollection::make('image'),
+                    ImageCollection::make('image', 'image'),
                     // ArrayImages::make('Images', 'images')
 
                 ]),
