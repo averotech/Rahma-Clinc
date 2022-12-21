@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Gate;
 use Eminiarts\Tabs\Tabs;
 use Eminiarts\Tabs\Tab;
 use Gwd\FlexibleContent\FlexibleContent;
+use Halimtuhu\ArrayImages\ArrayImages;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Image;
 use Whitecube\NovaFlexibleContent\Flexible;
@@ -64,17 +65,17 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 ]),
                 Tab::make(__('Header'), [
                     Image::make(__('Logo'), 'logo')->disk('public'),
-                    Flexible::make('navbar','navbar')
-                    ->addLayout('Simple content section', 'wysiwyg', [
-                        Text::make(__('name')),
-                        Select::make('name','select_name')->options([
-                            'about-us' => 'about-us',
-                            'features' => 'features',
-                            'services' => 'services',
-                            'contact' => 'contact',
+                    Flexible::make('navbar', 'navbar')
+                        ->addLayout('Simple content section', 'wysiwyg', [
+                            Text::make(__('name')),
+                            Select::make('name', 'select_name')->options([
+                                'about-us' => 'about-us',
+                                'features' => 'features',
+                                'services' => 'services',
+                                'contact' => 'contact',
 
-                        ])->rules('required'),
-                    ]),
+                            ])->rules('required'),
+                        ]),
                 ]),
                 Tab::make(__('Top Banner'), [
                     Text::make(__('Title'), 'title_Top-Banner'),
@@ -89,6 +90,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     Text::make(__('Button Link'), 'bottom_link_Top-Banner'),
 
                     // photos
+                    // ArrayImages::make('Images', 'images')
+
                 ]),
                 Tab::make(__('About Us'), [
                     Text::make(__('Title'), 'title_About_Us'),

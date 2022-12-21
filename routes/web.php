@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Contactus;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::redirect('/', '/ar');//ok
+Route::redirect('contactus',[Contactus::class, 'ContactUsForm'])->name('ContactUsForm');
 Route::get('/', function () {
     return view('Pages/HomePage');
 });
