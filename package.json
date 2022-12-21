@@ -2,7 +2,11 @@
     "private": true,
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "build-FlexibleAz": "cd nova-components/FlexibleAz && npm run dev",
+        "build-FlexibleAz-prod": "cd nova-components/FlexibleAz && npm run prod",
+        "build-color-picker": "cd nova-components/ColorPicker && npm run dev",
+        "build-color-picker-prod": "cd nova-components/ColorPicker && npm run prod"
     },
     "devDependencies": {
         "autoprefixer": "^10.4.12",

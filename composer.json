@@ -2,7 +2,10 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
@@ -16,12 +19,17 @@
         "laravel/tinker": "^2.7",
         "mcamara/laravel-localization": "^1.7",
         "outl1ne/nova-settings": "^5.0",
-        "whitecube/nova-flexible-content": "^1.0"
+        "whitecube/nova-flexible-content": "^1.0",
+        "acme/color-picker": "*"
     },
     "repositories": [
         {
             "type": "composer",
             "url": "https://nova.laravel.com"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/ColorPicker"
         }
     ],
     "require-dev": {
