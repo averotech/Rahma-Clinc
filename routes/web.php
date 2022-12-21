@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Contactus;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,3 +19,6 @@ Route::redirect('contactus',[Contactus::class, 'ContactUsForm'])->name('ContactU
 Route::get('/', function () {
     return view('Pages/HomePage');
 });
+
+Route::post("getImeageSlider", [HomeController::class, "getImeageSlider"])->name('getImeageSlider');
+Route::post("setImeageSlider", [HomeController::class, "setImeageSlider"])->name('setImeageSlider');

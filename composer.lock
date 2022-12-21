@@ -8,11 +8,11 @@
     "packages": [
         {
             "name": "acme/color-picker",
-            "version": "dev-Ameed_F1-BE",
+            "version": "dev-Zeyad_Rahma_BE",
             "dist": {
                 "type": "path",
                 "url": "./nova-components/ColorPicker",
-                "reference": "9f75d31499339dc7e4ef116fb04f08071dab6c8f"
+                "reference": "937902fda0edff37f764e994f23b32e48d214215"
             },
             "require": {
                 "php": "^7.3|^8.0"
@@ -44,11 +44,11 @@
         },
         {
             "name": "acme/image-collection",
-            "version": "dev-Ameed_F1-BE",
+            "version": "dev-Zeyad_Rahma_BE",
             "dist": {
                 "type": "path",
                 "url": "./nova-components/ImageCollection",
-                "reference": "7796826c314b775945a11c4fa9f97a369e1b0b58"
+                "reference": "ff7a6ded45a20ddd92f6d4a38518ae1e7cae3a17"
             },
             "require": {
                 "php": "^7.3|^8.0"
@@ -9377,5 +9377,5 @@
         "php": "^8.0.2"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.2.0"
 }
