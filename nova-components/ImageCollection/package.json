@@ -13,12 +13,16 @@
   "devDependencies": {
     "@vue/compiler-sfc": "^3.2.22",
     "form-backend-validation": "^2.3.3",
+    "install": "^0.13.0",
     "laravel-mix": "^6.0.41",
     "lodash": "^4.17.21",
+    "npm": "^9.2.0",
     "postcss": "^8.3.11",
-    "vue-loader": "^16.8.3"
+    "vue": "^3.2.36",
+    "vue-loader": "^17.0.1"
   },
   "dependencies": {
-    "vue-axios": "^3.5.2"
+    "vue-axios": "^3.5.2",
+    "vue-uuid": "^3.0.0"
   }
 }
