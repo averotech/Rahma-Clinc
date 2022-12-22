@@ -38,22 +38,25 @@
   </DefaultField>
 </template>
 <script>
-import { FormField, HandlesValidationErrors } from 'laravel-nova';
+import { FormField, HandlesValidationErrors } from "laravel-nova";
+import axios from "axios";
+
 import { v4 as uuid } from 'uuid'
 
 export default {
   mixins: [FormField, HandlesValidationErrors],
 
-  props: ['resourceName', 'resourceId', 'field'],
-
-  data() {
+  props: ["resourceName", "resourceId", "field"],
+ data() {
     return {
+           ImeageSlider: [],
       inputs: [{
         id: uuid(),
         value: 'Ameed Qasem Saeed Asmah',
       }],
     }
   },
+
 
   methods: {
     add() {
@@ -76,9 +79,27 @@ export default {
     fill(formData) {
       formData.append(this.field.attribute, this.value || '')
     },
+     getImeageSlider() {
+      console.log("ssss");
+      axios.post("/getImeageSlider").then((response) => {
+        this.ImeageSlider = response.data;
+        console.log(this.ImeageSlider);
+      });
+    },
+      setImeageSlider() {
+      axios.post("/setImeageSlider", {
+        ImeageSlider: this.ImeageSlider,
+
+      });
+    },
   },
-}
+
+
+  beforeMount() {
+    this.getImeageSlider();
+  },
+  components: {},
+};
 </script>
 
-<style scoped>
-</style>
+
