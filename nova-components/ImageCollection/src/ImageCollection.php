@@ -12,4 +12,11 @@ class ImageCollection extends Field
      * @var string
      */
     public $component = 'image-collection';
+
+    public function imageType($value)
+    {
+        return $this->withMeta([
+            'type' => $value,
+        ]);
+    }
 }

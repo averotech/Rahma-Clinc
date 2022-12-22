@@ -22,6 +22,7 @@
     "vue-loader": "^17.0.1"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "vue-axios": "^3.5.2",
     "vue-uuid": "^3.0.0"
   }
