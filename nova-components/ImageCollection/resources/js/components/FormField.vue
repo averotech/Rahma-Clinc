@@ -1,3 +1,4 @@
+
 <template >
   <DefaultField :field="field" :errors="errors" :show-help-text="showHelpText" :full-width-content="fullWidthContent">
     <template #field>
@@ -5,7 +6,7 @@
         <div class="flex flex-row items-center justify-start my-2">
           <input type="file" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2"
             placeholder="الرجاء اختيار الصورة" />
-          <div v-on:click="remove(input.id)">
+          <div class="removeIcon" v-if="inputs.length > 1" v-on:click="remove(input.id)">
             <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg"
               xmlns:xlink="http://www.w3.org/1999/xlink">
               <rect width="23" height="23" fill="url(#pattern01)" />
@@ -78,3 +79,6 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+</style>
