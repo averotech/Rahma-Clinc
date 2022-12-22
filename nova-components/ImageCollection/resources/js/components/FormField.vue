@@ -4,7 +4,7 @@
     <template #field>
       <div class="form-group flex flex-col  py-1.5 gap-y-2 w-full" v-for="(input, key) in inputs" :key="input.id">
         <div class="flex flex-row items-center justify-start my-2">
-          <input type="file" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2"
+          <input type="file" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2 " ref="myFiles" @change="previewFiles($event,key)" 
             placeholder="الرجاء اختيار الصورة" />
           <div class="removeIcon" v-if="inputs.length > 1" v-on:click="remove(input.id)">
             <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -34,6 +34,18 @@
           </svg>
         </button>
       </div>
+      <div class="
+        shadow
+        bg-gray-500
+        hover:bg-black
+        focus:shadow-outline focus:outline-none
+        text-white
+        font-bold
+        px-16
+        py-4
+        rounded" type="submit" @click="setImeageSlider()">
+        save
+      </div>
     </template>
   </DefaultField>
 </template>
@@ -47,22 +59,23 @@ export default {
   mixins: [FormField, HandlesValidationErrors],
 
   props: ["resourceName", "resourceId", "field"],
- data() {
+  data() {
     return {
-           ImeageSlider: [],
+      ImeageSlider: [],
       inputs: [{
         id: uuid(),
-        value: 'Ameed Qasem Saeed Asmah',
+        value: '',
       }],
     }
   },
-
 
   methods: {
     add() {
       this.inputs.push({ id: uuid(), value: "" })
     },
-
+    previewFiles(event,key){
+      this.inputs[key].value = event.target.value
+    },
     remove(index) {
       this.inputs = this.inputs?.filter((item) => item?.id !== index);
     },
@@ -79,17 +92,16 @@ export default {
     fill(formData) {
       formData.append(this.field.attribute, this.value || '')
     },
-     getImeageSlider() {
-      console.log("ssss");
+    getImeageSlider() {
       axios.post("/getImeageSlider").then((response) => {
         this.ImeageSlider = response.data;
         console.log(this.ImeageSlider);
       });
     },
-      setImeageSlider() {
+    setImeageSlider() {
       axios.post("/setImeageSlider", {
         ImeageSlider: this.ImeageSlider,
-
+        inputs: this.inputs,
       });
     },
   },
