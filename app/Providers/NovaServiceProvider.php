@@ -114,12 +114,16 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 ]),
                 Tab::make(__('offers'), [
                     Number::make('Balance', 'balance'),
+                    ImageCollection::make('image', 'image')->imageType(3),
+
                 ]),
                 Tab::make(__('contact Us'), [
                     Number::make('Balance', 'balance'),
                 ]),
                 Tab::make(__('customer recommendation'), [
                     Number::make('Balance', 'balance'),
+                    ImageCollection::make('image', 'image')->imageType(4),
+
                 ]),
                 Tab::make(__('Footer'), [
                     Number::make('Balance', 'balance'),
