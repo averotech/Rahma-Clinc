@@ -92,8 +92,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
 
                     // photos
                     // ColorPicker::make('Color'),
-                    ImageCollection::make('image', 'image'),
-                    // ArrayImages::make('Images', 'images')
+                    ImageCollection::make('image', 'image')->imageType(1),
+
 
                 ]),
                 Tab::make(__('About Us'), [
@@ -102,20 +102,28 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     Text::make(__('Button Text'), 'bottom_text_About_Us'),
                     Text::make(__('Button Link'), 'bottom_link_About_Us'),
                     // photos
+                    ImageCollection::make('image', 'image')->imageType(1),
+
                 ]),
                 Tab::make(__('our Services'), [
                     Text::make(__('Title'), 'title_Our_Services'),
                     Text::make(__('sub Title'), 'subtitle_Our_Services'),
                     // photos
+                    ImageCollection::make('image', 'image')->imageType(2),
+
                 ]),
                 Tab::make(__('offers'), [
                     Number::make('Balance', 'balance'),
+                    ImageCollection::make('image', 'image')->imageType(3),
+
                 ]),
                 Tab::make(__('contact Us'), [
                     Number::make('Balance', 'balance'),
                 ]),
                 Tab::make(__('customer recommendation'), [
                     Number::make('Balance', 'balance'),
+                    ImageCollection::make('image', 'image')->imageType(4),
+
                 ]),
                 Tab::make(__('Footer'), [
                     Number::make('Balance', 'balance'),
