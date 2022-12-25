@@ -1,4 +1,3 @@
-
 <template >
   <DefaultField :field="field" :errors="errors" :show-help-text="showHelpText" :full-width-content="fullWidthContent">
     <template #field>
@@ -6,8 +5,8 @@
         <div class="form-group flex flex-col bg-[#b93939] my-3 py-1.5 gap-y-2 w-full " v-for="(input, key) in inputs"
           :key="input.id">
           <div class="flex flex-row items-center justify-start my-2">
-            <input type="file" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2 " ref="myFiles"
-              @change="previewFiles($event, key)" placeholder="الرجاء اختيار الصورة" />
+            <input type="file" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2 " ref="myFiles" @change="upload"
+            placeholder="الرجاء اختيار الصورة" />
             <div class="removeIcon" v-if="inputs.length > 1" v-on:click="remove(input.id)">
               <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg"
                 xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -159,9 +158,9 @@
             <div class="flex flex-col items-start justify-start my-2 gap-y-2">
               <input type="file" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2 " ref="myFiles"
                 @change="previewFiles($event, key)" placeholder="الرجاء اختيار الصورة" />
-                <input type="text" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2 " 
+                <input type="text" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2 "
                 @change="servicesTitle($event, key)" placeholder="الرجاء كتابة اسم الشخص" />
-              <input type="text" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2 " 
+              <input type="text" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2 "
                 @change="servicesSubTitle($event, key)" placeholder="الرجاء كتابة الوصف" />
             </div>
             <div class="removeIcon" v-if="inputs.length > 1" v-on:click="remove(input.id)">
@@ -206,12 +205,9 @@
 <script>
 import { FormField, HandlesValidationErrors } from "laravel-nova";
 import axios from "axios";
-
 import { v4 as uuid } from 'uuid'
-
 export default {
   mixins: [FormField, HandlesValidationErrors],
-
   props: ["resourceName", "resourceId", "field"],
   data() {
     return {
@@ -227,7 +223,6 @@ export default {
           subtitle: '',
           button: '',
           buttonLink: ''
-
         }],
     }
   },
@@ -236,6 +231,23 @@ export default {
   // );
   // },
   methods: {
+      upload(event) {
+        console.log('name',event.target.files[0].name);
+        console.log('ref',event.target.files[0]);
+         console.log("reff",event.ref);
+              let formData = new FormData();
+
+                    formData.append("file", event.target.files[0]);
+                          formData.append("ref", '123');
+
+                    console.log(formData.file);
+                       axios.post("/setImeageSlider", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+        },
     add() {
       this.inputs.push({ id: uuid(), value: "" })
     },
@@ -251,7 +263,6 @@ export default {
     setInitialValue() {
       this.value = this.field.value || ''
     },
-
     /**
      * Fill the given FormData object with the field's internal value.
      */
@@ -271,13 +282,9 @@ export default {
       });
     },
   },
-
-
   beforeMount() {
     this.getImeageSlider();
   },
   components: {},
 };
 </script>
-
-
