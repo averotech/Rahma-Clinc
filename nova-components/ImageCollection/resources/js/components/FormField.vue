@@ -5,8 +5,8 @@
         <div class="form-group flex flex-col bg-[#b93939] my-3 py-1.5 gap-y-2 w-full " v-for="(input, key) in inputs"
           :key="input.id">
           <div class="flex flex-row items-center justify-start my-2">
-            <input type="file" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2 " ref="myFiles" @change="upload"
-            placeholder="الرجاء اختيار الصورة" />
+            <input type="file" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2 " ref="myFiles" @change="upload($event,input.id)"
+              placeholder="الرجاء اختيار الصورة" />
             <div class="removeIcon" v-if="inputs.length > 1" v-on:click="remove(input.id)">
               <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg"
                 xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -24,17 +24,6 @@
           <button class="w-8 h-8" v-if="key == inputs.length - 1" @click="add">
             <img src="https://image.shutterstock.com/image-vector/add-icon-260nw-571594759.jpg"
               class="w-[24px] h-[24px]" alt="ssss">
-            <!-- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink">
-              <rect width="24" height="24" fill="url(#pattern0)" />
-              <defs>
-                <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-                  <use xlink:href="#image0_1_2" transform="scale(0.0416667)" />
-                </pattern>
-                <image id="image0_1_2" width="24" height="24"
-                  xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAW0lEQVR4nO2VQQrAIAwE53n+/wnxIdtLC0WQqKGkhwzkZMzAEhSKTRrQAR2W3TOmWGC4XpIpT9Mp8u6nCxQ8LwHbEWmx/isYqS0iPSKPfIF9/Vy3oMS8D6dg5ALzIZ+a+RX41gAAAABJRU5ErkJggg==" />
-              </defs>
-            </svg> -->
           </button>
         </div>
         <div
@@ -102,11 +91,11 @@
             <div class="flex flex-col items-start justify-start my-2 gap-y-2">
               <input type="file" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2 " ref="myFiles"
                 @change="previewFiles($event, key)" placeholder="الرجاء اختيار صورة الفيديو" />
-                <input type="text" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2 " ref="title"
+              <input type="text" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2 " ref="title"
                 @change="servicesTitle($event, key)" placeholder="الرجاء كتابة عنوان الفيديو" />
               <input type="text" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2 " ref="title"
                 @change="servicesTitle($event, key)" placeholder="الرجاء كتابة العنوان" />
-                <input type="text" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2 " ref="title"
+              <input type="text" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2 " ref="title"
                 @change="servicesSubTitle($event, key)" placeholder="الرجاء كتابة السعر" />
               <input type="text" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2 " ref="title"
                 @change="servicesSubTitle($event, key)" placeholder="الرجاء كتابة الوصف" />
@@ -158,7 +147,7 @@
             <div class="flex flex-col items-start justify-start my-2 gap-y-2">
               <input type="file" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2 " ref="myFiles"
                 @change="previewFiles($event, key)" placeholder="الرجاء اختيار الصورة" />
-                <input type="text" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2 "
+              <input type="text" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2 "
                 @change="servicesTitle($event, key)" placeholder="الرجاء كتابة اسم الشخص" />
               <input type="text" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2 "
                 @change="servicesSubTitle($event, key)" placeholder="الرجاء كتابة الوصف" />
@@ -231,23 +220,22 @@ export default {
   // );
   // },
   methods: {
-      upload(event) {
-        console.log('name',event.target.files[0].name);
-        console.log('ref',event.target.files[0]);
-         console.log("reff",event.ref);
-              let formData = new FormData();
+    upload(event,key) {
+      console.log('name', event.target.files[0].name);
+      console.log('ref', event.target.files[0]);
+      let formData = new FormData();
 
-                    formData.append("file", event.target.files[0]);
-                          formData.append("ref", '123');
+      formData.append("file", event.target.files[0]);
+      formData.append("key", key);
 
-                    console.log(formData.file);
-                       axios.post("/setImeageSlider", formData, {
+      console.log('formDataa',formData);
+      axios.post("/setImeageSlider", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
 
-        },
+    },
     add() {
       this.inputs.push({ id: uuid(), value: "" })
     },
