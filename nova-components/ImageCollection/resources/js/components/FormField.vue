@@ -46,19 +46,7 @@
           </svg>
         </button>
       </div>
-      <button class="
-        shadow
-        bg-gray-500
-        hover:bg-black
-        focus:shadow-outline focus:outline-none
-        text-white
-        font-bold
-        px-16
-        py-4
-        rounded" type="submit"
-        >
-        save
-      </button>
+
    </form>
     </template>
   </DefaultField>
