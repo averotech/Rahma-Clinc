@@ -2,9 +2,21 @@
 <template >
   <DefaultField :field="field" :errors="errors" :show-help-text="showHelpText" :full-width-content="fullWidthContent">
     <template #field>
+      <form
+
+      enctype="multipart/form-data"
+       @submit.prevent="NewsetImeageSlider()"
+        ref="reglogin"
+
+    >
+       <input type="hidden" name="_token" :value="token" />
+  <!-- <input type="file" @change="onFile" /> -->
+  <img :src="imgSrc" v-if="imgSrc" />
       <div class="form-group flex flex-col  py-1.5 gap-y-2 w-full" v-for="(input, key) in inputs" :key="input.id">
         <div class="flex flex-row items-center justify-start my-2">
-          <input type="file" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2 " ref="myFiles" @change="previewFiles($event,key)" 
+
+
+          <input type="file" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2 " ref="myFiles" @change="upload"
             placeholder="الرجاء اختيار الصورة" />
           <div class="removeIcon" v-if="inputs.length > 1" v-on:click="remove(input.id)">
             <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +46,7 @@
           </svg>
         </button>
       </div>
-      <div class="
+      <button class="
         shadow
         bg-gray-500
         hover:bg-black
@@ -43,9 +55,11 @@
         font-bold
         px-16
         py-4
-        rounded" type="submit" @click="setImeageSlider()">
+        rounded" type="submit"
+        >
         save
-      </div>
+      </button>
+   </form>
     </template>
   </DefaultField>
 </template>
@@ -53,7 +67,7 @@
 import { FormField, HandlesValidationErrors } from "laravel-nova";
 import axios from "axios";
 
-import { v4 as uuid } from 'uuid'
+import { v4 as uuid } from "uuid";
 
 export default {
   mixins: [FormField, HandlesValidationErrors],
@@ -62,19 +76,57 @@ export default {
   data() {
     return {
       ImeageSlider: [],
-      inputs: [{
-        id: uuid(),
-        value: '',
-      }],
-    }
+      inputs: [
+        {
+          id: uuid(),
+          value: "",
+        },
+      ],
+    };
   },
 
   methods: {
-    add() {
-      this.inputs.push({ id: uuid(), value: "" })
+       upload(event) {
+        console.log('name',event.target.files[0].name);
+        console.log('ref',event.target.files[0]);
+         console.log("reff",event.ref);
+              let formData = new FormData();
+
+                    formData.append("file", event.target.files[0]);
+                          formData.append("ref", '123');
+
+                    console.log(formData);
+                       axios.post("/setImeageSlider", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+        },
+    handleFileUpload(type) {
+    //   console.log("reeeef",type);
+        console.log("reff",type.target.files[0]);
+            console.log("zero",this.$refs[type]);
+      this.file = this.$refs[type];
+      this.type = type;
+      console.log("sss", this.file);
+      let formData = new FormData();
+      formData.append("file", this.file);
+      formData.append("event_id", this.eventId);
+      formData.append("type", this.type);
+
+      console.log("formData", formData);
+      axios.post("/setImeageSlider", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
     },
-    previewFiles(event,key){
-      this.inputs[key].value = event.target.value
+    add() {
+      this.inputs.push({ id: uuid(), value: "" });
+    },
+    previewFiles(event, key) {
+      this.inputs[key].value = event.target.value;
     },
     remove(index) {
       this.inputs = this.inputs?.filter((item) => item?.id !== index);
@@ -83,14 +135,14 @@ export default {
      * Set the initial, internal value for the field.
      */
     setInitialValue() {
-      this.value = this.field.value || ''
+      this.value = this.field.value || "";
     },
 
     /**
      * Fill the given FormData object with the field's internal value.
      */
     fill(formData) {
-      formData.append(this.field.attribute, this.value || '')
+      formData.append(this.field.attribute, this.value || "");
     },
     getImeageSlider() {
       axios.post("/getImeageSlider").then((response) => {
@@ -105,7 +157,6 @@ export default {
       });
     },
   },
-
 
   beforeMount() {
     this.getImeageSlider();
