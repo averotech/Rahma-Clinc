@@ -20,12 +20,10 @@ class HomeController extends Controller
         $img =  $request->file->store('images', 'public');
         $str_slider = nova_get_setting('slider', 'default_value');
         if ($str_slider != 'default_value') {
-
             $json_slider = json_decode($str_slider);
             $pus = array(
                 'key' => $request->key,
-                'value' => $img,
-                'input' => $request->inputs
+                'value' =>'/storage/' .$img,
 
             );
             array_push($json_slider, $pus);
@@ -38,8 +36,7 @@ class HomeController extends Controller
             $json_slider = array();
             $pus = array(
                 'key' => $request->key,
-                'value' => $img,
-                'input' => $request->inputs
+                'value' =>'/storage/' .$img,
 
             );
             array_push($json_slider, $pus);
@@ -108,8 +105,6 @@ class HomeController extends Controller
 
     public function setaboutusslider(Request $request)
     {
-
-
         $img =  $request->file->store('images', 'public');
         $str_slider = nova_get_setting('slider', 'default_value');
         if ($str_slider != 'default_value') {
