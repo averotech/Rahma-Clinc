@@ -2528,7 +2528,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
   // );
   // },
   methods: {
-    setAboutusSlider: function setAboutusSlider(event, key) {
+    setAboutusSlidergit: function setAboutusSlidergit(event, key) {
       console.log('name', event.target.files[0].name);
       console.log('ref', event.target.files[0]);
       var formData = new FormData();
@@ -2925,7 +2925,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           ref_for: true,
           ref: "myFiles",
           onChange: function onChange($event) {
-            return $options.setAboutusSlider($event, input.id);
+            return $options.setAboutusSlidergit($event, input.id);
           },
           placeholder: "الرجاء اختيار الصورة"
         }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_3), $data.inputs.length > 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
