@@ -499,6 +499,7 @@ export default {
     return {
       ImageSlider: [],
       ImeagesecondBanner: [],
+      ImeageFourthBanner:[],
       secondBannerArray: [],
       FourthBannerArray: [],
       keyVal: [],
@@ -633,11 +634,7 @@ export default {
     fill(formData) {
       formData.append(this.field.attribute, this.value || "");
     },
-    getImeageSlider() {
-      axios.post("/getImeageSlider").then((response) => {
-        this.ImageSlider = response.data;
-      });
-    },
+
     upload(event, key) {
       console.log("name", event.target.files[0].name);
       console.log("ref", event.target.files[0]);
@@ -658,25 +655,12 @@ export default {
       });
       this.getImeageSlider();
     },
-    setAboutusSlider(event, key) {
-      let formData = new FormData();
-      formData.append("file", event.target.files[0]);
-      formData.append("key", key);
-      console.log("formDataa", formData);
-      axios.post("/setImeageSlider", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+      getImeageSlider() {
+      axios.post("/getImeageSlider").then((response) => {
+        this.ImageSlider = response.data;
       });
     },
-
-    getImeagesecondBanner() {
-      axios.post("/getImeagesecondBanner").then((response) => {
-        this.ImeagesecondBanner = response.data;
-        console.log("ImeagesecondBanner", this.ImeagesecondBanner);
-      });
-    },
-    setImeagesecondBanner() {
+      setImeagesecondBanner() {
       let formData = new FormData();
 
       for (let index = 0; index < this.keyVal.length; index++) {
@@ -745,6 +729,12 @@ export default {
       console.log(
         "****************************************************************************"
       );
+    },
+    getImeageFourthBanner() {
+      axios.post("/getImeageFourthBanner").then((response) => {
+        this.ImeageFourthBanner = response.data;
+        console.log("ImeageFourthBanner", this.ImeageFourthBanner);
+      });
     },
   },
   beforeMount() {

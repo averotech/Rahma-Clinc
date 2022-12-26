@@ -2496,7 +2496,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
-var _methods;
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
@@ -2511,6 +2510,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     return {
       ImageSlider: [],
       ImeagesecondBanner: [],
+      ImeageFourthBanner: [],
       secondBannerArray: [],
       FourthBannerArray: [],
       keyVal: [],
@@ -2528,7 +2528,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       }]
     };
   },
-  methods: (_methods = {
+  methods: {
     add: function add() {
       this.inputs.push({
         id: (0,uuid__WEBPACK_IMPORTED_MODULE_2__["default"])(),
@@ -2640,12 +2640,6 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     fill: function fill(formData) {
       formData.append(this.field.attribute, this.value || "");
     },
-    getImeageSlider: function getImeageSlider() {
-      var _this = this;
-      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/getImeageSlider").then(function (response) {
-        _this.ImageSlider = response.data;
-      });
-    },
     upload: function upload(event, key) {
       console.log("name", event.target.files[0].name);
       console.log("ref", event.target.files[0]);
@@ -2666,22 +2660,10 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       });
       this.getImeageSlider();
     },
-    setAboutusSlider: function setAboutusSlider(event, key) {
-      var formData = new FormData();
-      formData.append("file", event.target.files[0]);
-      formData.append("key", key);
-      console.log("formDataa", formData);
-      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/setImeageSlider", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data"
-        }
-      });
-    },
-    getImeagesecondBanner: function getImeagesecondBanner() {
-      var _this2 = this;
-      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/getImeagesecondBanner").then(function (response) {
-        _this2.ImeagesecondBanner = response.data;
-        console.log("ImeagesecondBanner", _this2.ImeagesecondBanner);
+    getImeageSlider: function getImeageSlider() {
+      var _this = this;
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/getImeageSlider").then(function (response) {
+        _this.ImageSlider = response.data;
       });
     },
     setImeagesecondBanner: function setImeagesecondBanner() {
@@ -2699,29 +2681,38 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
           }
         });
       }
-    }
-  }, _defineProperty(_methods, "getImeagesecondBanner", function getImeagesecondBanner() {
-    var _this3 = this;
-    axios__WEBPACK_IMPORTED_MODULE_1___default().post("/getImeagesecondBanner").then(function (response) {
-      _this3.ImeagesecondBanner = response.data;
-      console.log("ImeagesecondBanner", _this3.ImeagesecondBanner);
-    });
-  }), _defineProperty(_methods, "setImeageFourthBanner", function setImeageFourthBanner() {
-    var formData = new FormData();
-    console.log("asd");
-    for (var index = 0; index < this.keyValFourthBanner.length; index++) {
-      formData.append("file", this.FourthBannerArray[index][this.keyValFourthBanner[index]]["photo"]);
-      formData.append("title", this.FourthBannerArray[index][this.keyValFourthBanner[index]]["title"]);
-      formData.append("subtitle", this.FourthBannerArray[index][this.keyValFourthBanner[index]]["subtitle"]);
-      formData.append("key", this.keyValFourthBanner[index]);
-      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/setImeageFourthBanner", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data"
-        }
+    },
+    getImeagesecondBanner: function getImeagesecondBanner() {
+      var _this2 = this;
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/getImeagesecondBanner").then(function (response) {
+        _this2.ImeagesecondBanner = response.data;
+        console.log("ImeagesecondBanner", _this2.ImeagesecondBanner);
+      });
+    },
+    setImeageFourthBanner: function setImeageFourthBanner() {
+      var formData = new FormData();
+      console.log("asd");
+      for (var index = 0; index < this.keyValFourthBanner.length; index++) {
+        formData.append("file", this.FourthBannerArray[index][this.keyValFourthBanner[index]]["photo"]);
+        formData.append("title", this.FourthBannerArray[index][this.keyValFourthBanner[index]]["title"]);
+        formData.append("subtitle", this.FourthBannerArray[index][this.keyValFourthBanner[index]]["subtitle"]);
+        formData.append("key", this.keyValFourthBanner[index]);
+        axios__WEBPACK_IMPORTED_MODULE_1___default().post("/setImeageFourthBanner", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data"
+          }
+        });
+      }
+      console.log("****************************************************************************");
+    },
+    getImeageFourthBanner: function getImeageFourthBanner() {
+      var _this3 = this;
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/getImeageFourthBanner").then(function (response) {
+        _this3.ImeageFourthBanner = response.data;
+        console.log("ImeageFourthBanner", _this3.ImeageFourthBanner);
       });
     }
-    console.log("****************************************************************************");
-  }), _methods),
+  },
   beforeMount: function beforeMount() {
     // console.log('asadd')
     // console.log(this.inputs);

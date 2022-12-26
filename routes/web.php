@@ -26,6 +26,6 @@ Route::post("setaboutusslider", [HomeController::class, "setaboutusslider"])->na
 Route::post("getImeagesecondBanner", [HomeController::class, "getImeagesecondBanner"])->name('getImeagesecondBanner');
 Route::post("setImeagesecondBanner", [HomeController::class, "setImeagesecondBanner"])->name('setImeagesecondBanner');
 Route::post("setImeageFourthBanner", [HomeController::class, "setImeageFourthBanner"])->name('setImeageFourthBanner');
-// Route::post("setImeagesecondBanner", [HomeController::class, "setImeagesecondBanner"])->name('setImeagesecondBanner');
+Route::post("getImeageFourthBanner", [HomeController::class, "getImeageFourthBanner"])->name('getImeageFourthBanner');
 
 Route::post("removeImageSlider", [HomeController::class, "removeImageSlider"])->name('removeImageSlider');
