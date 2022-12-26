@@ -167,29 +167,10 @@
             </svg> -->
           </button>
         </div>
-        <div class="
-            bg-primary-500
-            hover:bg-primary-400
-            text-white
-            dark:text-gray-900
-            ml-auto
-            cursor-pointer
-            rounded
-            text-sm
-            font-bold
-            focus:outline-none focus:ring
-            ring-primary-200
-            dark:ring-gray-600
-            inline-flex
-            items-center
-            justify-center
-            h-9
-            px-6
-            shadow
-            relative
-            bg-primary-500
-            hover:bg-primary-400
-          " type="submit" @click="setImeageSlider()">
+        <div
+          class="bg-primary-500 hover:bg-primary-400 text-whitedark:text-gray-900 ml-auto cursor-pointer rounded
+           text-sm font-bold focus:outline-none focus:ring ring-primary-200 dark:ring-gray-600 inline-flex items-center justify-center h-9 px-6 shadow relative bg-primary-500 hover:bg-primary-400"
+          type="submit" @click="setImeageSlider()">
           save
         </div>
       </div>
