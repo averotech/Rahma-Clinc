@@ -22,3 +22,5 @@ Route::get('/', function () {
 
 Route::post("getImeageSlider", [HomeController::class, "getImeageSlider"])->name('getImeageSlider');
 Route::post("setImeageSlider", [HomeController::class, "setImeageSlider"])->name('setImeageSlider');
+Route::post("setaboutusslider", [HomeController::class, "setaboutusslider"])->name('setaboutusslider');
+Route::post("setImeagesecondBanner", [HomeController::class, "setImeagesecondBanner"])->name('setImeagesecondBanner');
