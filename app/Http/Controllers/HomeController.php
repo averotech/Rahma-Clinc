@@ -10,29 +10,53 @@ class HomeController extends Controller
 
     public function getImeageSlider()
     {
-        return "00";
+        $str_slider = nova_get_setting('slider', 'default_value');
+        $json_slider = json_decode($str_slider);
+        return   $json_slider;
     }
     public function setImeageSlider(Request $request)
     {
-        dd($request->all());
-        $event = $request->file->store('images', 'public');
-        DB::table('nova_settings')->insert([
-            'key ' =>$request->,
-            'value' => $event,
 
-        ]);
-          dd( $event   );
-        $imagePath = 'storage/' . $request->inputs[0]['value'];
+        $img =  $request->file->store('images', 'public');
+        $str_slider = nova_get_setting('slider', 'default_value');
+        if($str_slider != 'default_value')
+        {
 
-                // $filetype = exif_imagetype($imagePath);
-                // dd( $filetype);
+            $json_slider = json_decode($str_slider);
+            $pus = array(
+                'key' => $request->key,
+                'value' => $img,
 
-                // $request->inputs[0]['value']->store('images', 'public');
-        // dd();
-        // dd();
-        // dd($request->inputs[0]['value']->extension());
-        // $filename = time() . '.' . \File::extension($request->inputs[0]['value']);
-// dd( $filename);
+            );
+            array_push($json_slider, $pus);
+            $str_json = json_encode($json_slider);
+            // dd( $str_json);
+            DB::table('nova_settings')->where('key', 'slider')->update(['value'=> $str_json]);
+            return "okk";
+        }
+        else
+        {
+
+            $json_slider = array();
+            $pus = array(
+                'key' => $request->key,
+                'value' => $img,
+
+            );
+            array_push($json_slider, $pus);
+            $str_json = json_encode($json_slider);
+            // dd( $str_json);
+            DB::table('nova_settings')->insert([
+                'key' =>'slider',
+                'value' => $str_json,
+            ]);
+            return "full ok";
+
+        }
+
+
+
 
     }
+
 }

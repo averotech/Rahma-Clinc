@@ -15,7 +15,7 @@
         $About_Us_subtitle_About_Us = nova_get_setting('subtitle_About_Us', 'بنقدم خدمة إزالة الشعر بالليزر باستخدام أفضل جهاز عالمية هو Soprano Titanium لرجال والنساء بإدارة الممرضة رحمة عودة لتحصلي على ملمس حريري و لمعان من أول جلسة و نتائج مبهرة .');
         $About_Us_bottom_text_About_Us = nova_get_setting('bottom_text_About_Us', 'رؤية المزيد');
         $About_Us_bottom_link_About_Us = nova_get_setting('bottom_link_About_Us', '#');
-        
+
         // Our Services
         $Our_Services_title = nova_get_setting('title_Our_Services', 'قولي وداعا لشفرات الحلاقة');
         $Our_Services_subtitle = nova_get_setting('subtitle_Our_Services', 'نقدم في رحمة كلينك خدمة إزالة الشعر بالليزر مع أفضل جهاز عالمي Soprano Titanium و خدمات تجميلية مثل العناية بالبشرة و علاج الحروق لرجال و النساء على أيدي مختصين محترفين بإدارة الممرضة المختصة رحمة محاميد عودة الناصرة');
@@ -23,7 +23,7 @@
 
 
         // dd($NavBar[0]->attributes);
-        
+
     @endphp
     <!-- Start content -->
     <section class="bg-[#f6f6f6] pt-10 pb-10 lg:pb-0">
@@ -119,6 +119,11 @@
                         احترافي و أجهزة عالمية. --}}
                     </p>
                 </div>
+                @php
+                        $str_slider = nova_get_setting('slider', 'default_value');
+        $json_slider = json_decode($str_slider);
+        dd($json_slider );
+                @endphp
                 <div class="col-span-1 relative hidden lg:flex">
                     <div class="owl-carousel main-slider absolute bottom-0 h-[585px] overflow-hidden">
                         <div class="relative">
