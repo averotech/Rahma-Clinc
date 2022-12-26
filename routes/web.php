@@ -14,8 +14,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::redirect('/', '/ar');//ok
-Route::redirect('contactus',[Contactus::class, 'ContactUsForm'])->name('ContactUsForm');
+
+Route::redirect('/', '/ar'); //ok
+Route::redirect('contactus', [Contactus::class, 'ContactUsForm'])->name('ContactUsForm');
 Route::get('/', function () {
     return view('Pages/HomePage');
 });
@@ -25,3 +26,6 @@ Route::post("setImeageSlider", [HomeController::class, "setImeageSlider"])->name
 Route::post("setaboutusslider", [HomeController::class, "setaboutusslider"])->name('setaboutusslider');
 Route::post("getImeagesecondBanner", [HomeController::class, "getImeagesecondBanner"])->name('getImeagesecondBanner');
 Route::post("setImeagesecondBanner", [HomeController::class, "setImeagesecondBanner"])->name('setImeagesecondBanner');
+Route::post("removeImageSlider", [HomeController::class, "removeImageSlider"])->name('removeImageSlider');
+Route::post("setImageFourthBanner", [HomeController::class, "setImageFourthBanner"])->name('setImageFourthBanner');
+Route::post("getImageFourthBanner", [HomeController::class, "getImageFourthBanner"])->name('getImageFourthBanner');
