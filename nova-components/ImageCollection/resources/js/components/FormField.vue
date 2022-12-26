@@ -503,7 +503,7 @@ export default {
   data() {
     return {
       ImeageSlider: [],
-      ImeagesecondBanner:[],
+      ImeagesecondBanner: [],
       secondBannerArray: [],
       keyVal: [],
       inputs:
@@ -622,56 +622,65 @@ export default {
         console.log("ss", this.ImeageSlider);
       });
     },
-    setImeageSlider() {
-      axios.post("/setImeageSlider", {
-        ImeageSlider: this.ImeageSlider,
-        inputs: this.inputs,
-      });
-    },
-    setAboutusSlider(event, key) {
+    setImeageSlider(event, key) {
+      console.log("name", event.target.files[0].name);
+      console.log("ref", event.target.files[0]);
       let formData = new FormData();
       formData.append("file", event.target.files[0]);
       formData.append("key", key);
       console.log("formDataa", formData);
-      axios.post("/setaboutusslider", formData, {
+      axios.post("/setImeageSlider", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
+      });
+    },
+
+    getImeagesecondBanner() {
+      axios.post("/getImeagesecondBanner").then((response) => {
+        this.ImeagesecondBanner = response.data;
+        console.log("ImeagesecondBanner", this.ImeagesecondBanner);
       });
     },
     setImeagesecondBanner() {
       let formData = new FormData();
 
       for (let index = 0; index < this.keyVal.length; index++) {
-        formData.append("file", this.secondBannerArray[index][this.keyVal[index]]["photo"]);
-        formData.append("title", this.secondBannerArray[index][this.keyVal[index]]["title"]);
-        formData.append("subtitle", this.secondBannerArray[index][this.keyVal[index]]["subtitle"]);
-        formData.append("buttonText ", this.secondBannerArray[index][this.keyVal[index]]["buttonText"]);
-        formData.append("buttonLink", this.secondBannerArray[index][this.keyVal[index]]["buttonLink"]);
-         formData.append("key", this.secondBannerArray[index][this.keyVal[index]]["buttonLink"]);
-            axios.post("/setImeagesecondBanner", formData, {
-                    headers: {
-                    "Content-Type": "multipart/form-data",
-                            },
-            });
-
+        formData.append(
+          "file",
+          this.secondBannerArray[index][this.keyVal[index]]["photo"]
+        );
+        formData.append(
+          "title",
+          this.secondBannerArray[index][this.keyVal[index]]["title"]
+        );
+        formData.append(
+          "subtitle",
+          this.secondBannerArray[index][this.keyVal[index]]["subtitle"]
+        );
+        formData.append(
+          "buttonText ",
+          this.secondBannerArray[index][this.keyVal[index]]["buttonText"]
+        );
+        formData.append(
+          "buttonLink",
+          this.secondBannerArray[index][this.keyVal[index]]["buttonLink"]
+        );
+        formData.append(
+          "key",
+          this.secondBannerArray[index][this.keyVal[index]]["buttonLink"]
+        );
+        axios.post("/setImeagesecondBanner", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
       }
-
-
-
-
-    },
-      getImeagesecondBanner() {
-      axios.post("/getImeagesecondBanner").then((response) => {
-        this.ImeagesecondBanner = response.data;
-        console.log("ImeagesecondBanner", this.ImeagesecondBanner);
-      });
     },
   },
   beforeMount() {
     this.getImeageSlider();
-        this.getImeagesecondBanner();
-
+    this.getImeagesecondBanner();
   },
   components: {},
 };

@@ -2628,21 +2628,24 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         console.log("ss", _this.ImeageSlider);
       });
     },
-    setImeageSlider: function setImeageSlider() {
-      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/setImeageSlider", {
-        ImeageSlider: this.ImeageSlider,
-        inputs: this.inputs
-      });
-    },
-    setAboutusSlider: function setAboutusSlider(event, key) {
+    setImeageSlider: function setImeageSlider(event, key) {
+      console.log("name", event.target.files[0].name);
+      console.log("ref", event.target.files[0]);
       var formData = new FormData();
       formData.append("file", event.target.files[0]);
       formData.append("key", key);
       console.log("formDataa", formData);
-      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/setaboutusslider", formData, {
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/setImeageSlider", formData, {
         headers: {
           "Content-Type": "multipart/form-data"
         }
+      });
+    },
+    getImeagesecondBanner: function getImeagesecondBanner() {
+      var _this2 = this;
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/getImeagesecondBanner").then(function (response) {
+        _this2.ImeagesecondBanner = response.data;
+        console.log("ImeagesecondBanner", _this2.ImeagesecondBanner);
       });
     },
     setImeagesecondBanner: function setImeagesecondBanner() {
@@ -2660,13 +2663,6 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
           }
         });
       }
-    },
-    getImeagesecondBanner: function getImeagesecondBanner() {
-      var _this2 = this;
-      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/getImeagesecondBanner").then(function (response) {
-        _this2.ImeagesecondBanner = response.data;
-        console.log("ImeagesecondBanner", _this2.ImeagesecondBanner);
-      });
     }
   },
   beforeMount: function beforeMount() {
