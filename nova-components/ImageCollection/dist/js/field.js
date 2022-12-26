@@ -2496,6 +2496,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
+var _methods;
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
@@ -2511,7 +2512,9 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       ImageSlider: [],
       ImeagesecondBanner: [],
       secondBannerArray: [],
+      FourthBannerArray: [],
       keyVal: [],
+      keyValFourthBanner: [],
       inputs: this.field.type == 1 ? [{
         id: (0,uuid__WEBPACK_IMPORTED_MODULE_2__["default"])(),
         value: ""
@@ -2525,26 +2528,29 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       }]
     };
   },
-  methods: _defineProperty({
-    upload: function upload(event, key) {
-      console.log("name", event.target.files[0].name);
-      console.log("ref", event.target.files[0]);
-      var formData = new FormData();
-      formData.append("file", event.target.files[0]);
-      formData.append("key", key);
-      console.log("formDataa", formData);
-      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/setImeageSlider", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data"
-        }
+  methods: (_methods = {
+    add: function add() {
+      this.inputs.push({
+        id: (0,uuid__WEBPACK_IMPORTED_MODULE_2__["default"])(),
+        value: ""
       });
     },
-    addSecondBanner: function addSecondBanner(e) {
-      e.preventDefault();
-      // this.secondBanner[]
+    previewFiles: function previewFiles(event, key) {
+      this.inputs[key].value = event.target.value;
+    },
+    remove: function remove(index) {
+      var _this$inputs;
+      this.inputs = (_this$inputs = this.inputs) === null || _this$inputs === void 0 ? void 0 : _this$inputs.filter(function (item) {
+        return (item === null || item === void 0 ? void 0 : item.id) !== index;
+      });
     },
     removeImageSlider: function removeImageSlider(key, type) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/removeImageSlider", {
+        key: key,
+        type: type
+      });
       console.log(key, type);
+      this.getImeageSlider();
     },
     secondBanner: function secondBanner(e, key, index, type) {
       if (type == "photo") {
@@ -2593,20 +2599,34 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       }
       console.log(this.secondBannerArray);
     },
-    add: function add() {
-      this.inputs.push({
-        id: (0,uuid__WEBPACK_IMPORTED_MODULE_2__["default"])(),
-        value: ""
-      });
-    },
-    previewFiles: function previewFiles(event, key) {
-      this.inputs[key].value = event.target.value;
-    },
-    remove: function remove(index) {
-      var _this$inputs;
-      this.inputs = (_this$inputs = this.inputs) === null || _this$inputs === void 0 ? void 0 : _this$inputs.filter(function (item) {
-        return (item === null || item === void 0 ? void 0 : item.id) !== index;
-      });
+    FourthBanner: function FourthBanner(e, key, index, type) {
+      if (type == "photo") {
+        if (!this.FourthBannerArray[index]) {
+          this.keyValFourthBanner.push(key);
+          this.FourthBannerArray.push(_defineProperty({}, key, _defineProperty({}, type, e.target.files[0])));
+          console.log(e.target.files[0]);
+        } else {
+          this.FourthBannerArray[index][key][type] = e.target.files[0];
+          console.log(e.target.files[0]);
+        }
+      }
+      if (type == "title") {
+        if (!this.FourthBannerArray[index]) {
+          this.keyValFourthBanner.push(key);
+          this.FourthBannerArray.push(_defineProperty({}, key, _defineProperty({}, type, e.target.value)));
+        } else {
+          this.FourthBannerArray[index][key][type] = e.target.value;
+        }
+      } else if (type === "subtitle") {
+        if (!this.FourthBannerArray[index]) {
+          this.keyValFourthBanner.push(key);
+          this.FourthBannerArray.push(_defineProperty({}, key, _defineProperty({}, type, e.target.value)));
+        } else {
+          this.FourthBannerArray[index][key][type] = e.target.value;
+        }
+      }
+      console.log("baner", this.FourthBannerArray);
+      console.log("key", this.keyValFourthBanner);
     },
     /*
      * Set the initial, internal value for the field.
@@ -2624,6 +2644,19 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       var _this = this;
       axios__WEBPACK_IMPORTED_MODULE_1___default().post("/getImeageSlider").then(function (response) {
         _this.ImageSlider = response.data;
+      });
+    },
+    upload: function upload(event, key) {
+      console.log("name", event.target.files[0].name);
+      console.log("ref", event.target.files[0]);
+      var formData = new FormData();
+      formData.append("file", event.target.files[0]);
+      formData.append("key", key);
+      console.log("formDataa", formData);
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/setImeageSlider", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
       });
     },
     setImeageSlider: function setImeageSlider() {
@@ -2667,13 +2700,28 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         });
       }
     }
-  }, "getImeagesecondBanner", function getImeagesecondBanner() {
+  }, _defineProperty(_methods, "getImeagesecondBanner", function getImeagesecondBanner() {
     var _this3 = this;
     axios__WEBPACK_IMPORTED_MODULE_1___default().post("/getImeagesecondBanner").then(function (response) {
       _this3.ImeagesecondBanner = response.data;
       console.log("ImeagesecondBanner", _this3.ImeagesecondBanner);
     });
-  }),
+  }), _defineProperty(_methods, "setImeageFourthBanner", function setImeageFourthBanner() {
+    var formData = new FormData();
+    console.log("asd");
+    for (var index = 0; index < this.keyValFourthBanner.length; index++) {
+      formData.append("file", this.FourthBannerArray[index][this.keyValFourthBanner[index]]["photo"]);
+      formData.append("title", this.FourthBannerArray[index][this.keyValFourthBanner[index]]["title"]);
+      formData.append("subtitle", this.FourthBannerArray[index][this.keyValFourthBanner[index]]["subtitle"]);
+      formData.append("key", this.keyValFourthBanner[index]);
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/setImeageFourthBanner", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      });
+    }
+    console.log("****************************************************************************");
+  }), _methods),
   beforeMount: function beforeMount() {
     // console.log('asadd')
     // console.log(this.inputs);
@@ -3012,7 +3060,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             return $options.add && $options.add.apply($options, arguments);
           })
         }, _hoisted_13)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
-      }), 128 /* KEYED_FRAGMENT */))])) : $props.field.type == 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <form action=\"\" v-on:submit=\"setImeagesecondBanner\"> "), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.inputs, function (input, key) {
+      }), 128 /* KEYED_FRAGMENT */))])) : $props.field.type == 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_14, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.inputs, function (input, key) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
           "class": "form-group flex flex-col bg-[#b93939] mt-3 py-1.5 gap-y-2 w-full",
           key: input.id
@@ -3080,7 +3128,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: _cache[2] || (_cache[2] = function ($event) {
           return $options.setImeagesecondBanner();
         })
-      }, " save "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" </form> ")])) : $props.field.type == 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_27, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.inputs, function (input, key) {
+      }, " save ")])) : $props.field.type == 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_27, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.inputs, function (input, key) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
           "class": "form-group flex flex-col bg-[#b93939] mt-3 py-1.5 gap-y-2 w-full",
           key: input.id
@@ -3176,21 +3224,21 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           ref_for: true,
           ref: "myFiles",
           onChange: function onChange($event) {
-            return $options.previewFiles($event, key);
+            return $options.FourthBanner($event, input.id, key, 'photo');
           },
           placeholder: "الرجاء اختيار الصورة"
         }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_44), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
           type: "text",
           "class": "w-full my-2 h-[36px] px-2 py-1 border-b border-2",
           onChange: function onChange($event) {
-            return _ctx.servicesTitle($event, key);
+            return $options.FourthBanner($event, input.id, key, 'title');
           },
           placeholder: "الرجاء كتابة اسم الشخص"
         }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_45), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
           type: "text",
           "class": "w-full my-2 h-[36px] px-2 py-1 border-b border-2",
           onChange: function onChange($event) {
-            return _ctx.servicesSubTitle($event, key);
+            return $options.FourthBanner($event, input.id, key, 'subtitle');
           },
           placeholder: "الرجاء كتابة الوصف"
         }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_46)]), $data.inputs.length > 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
@@ -3210,7 +3258,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "bg-primary-500 hover:bg-primary-400 text-white dark:text-gray-900 ml-auto cursor-pointer rounded text-sm font-bold focus:outline-none focus:ring ring-primary-200 dark:ring-gray-600 inline-flex items-center justify-center h-9 px-6 shadow relative bg-primary-500 hover:bg-primary-400",
         type: "submit",
         onClick: _cache[6] || (_cache[6] = function ($event) {
-          return $options.setImeageSlider();
+          return $options.setImeageFourthBanner();
         })
       }, " save ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
     }),
