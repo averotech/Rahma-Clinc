@@ -27,7 +27,7 @@
 
         $str_aboutUsSlider = nova_get_setting('aboutus_slider', 'default_value');
         $json_aboutUsSlider = json_decode($str_aboutUsSlider);
-        // dd($json_aboutUsSlider);
+        
     @endphp
     <!-- Start content -->
     <section class="bg-[#f6f6f6] pt-10 pb-10 lg:pb-0">

@@ -202,17 +202,7 @@
           <button class="w-8 h-8" v-if="key == inputs.length - 1" @click="add">
             <img src="https://image.shutterstock.com/image-vector/add-icon-260nw-571594759.jpg"
               class="w-[24px] h-[24px]" alt="ssss">
-            <!-- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink">
-              <rect width="24" height="24" fill="url(#pattern0)" />
-              <defs>
-                <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-                  <use xlink:href="#image0_1_2" transform="scale(0.0416667)" />
-                </pattern>
-                <image id="image0_1_2" width="24" height="24"
-                  xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAW0lEQVR4nO2VQQrAIAwE53n+/wnxIdtLC0WQqKGkhwzkZMzAEhSKTRrQAR2W3TOmWGC4XpIpT9Mp8u6nCxQ8LwHbEWmx/isYqS0iPSKPfIF9/Vy3oMS8D6dg5ALzIZ+a+RX41gAAAABJRU5ErkJggg==" />
-              </defs>
-            </svg> -->
+
           </button>
         </div>
         <div

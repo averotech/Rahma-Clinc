@@ -2619,6 +2619,22 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         ImeageSlider: this.ImeageSlider,
         inputs: this.inputs
       });
+    },
+    setAboutusSlider: function setAboutusSlider(event, key) {
+      var formData = new FormData();
+      formData.append("file", event.target.files[0]);
+      formData.append("key", key);
+      console.log('formDataa', formData);
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/setaboutusslider", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      });
+    },
+    setImeagesecondBanner: function setImeagesecondBanner() {
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/setImeagesecondBanner", {
+        year: this.secondBannerArray
+      });
     }
   },
   beforeMount: function beforeMount() {
@@ -2905,7 +2921,7 @@ var _hoisted_52 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   "class": "w-[24px] h-[24px]",
   alt: "ssss"
 }, null, -1 /* HOISTED */);
-
+var _hoisted_53 = [_hoisted_52];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_DefaultField = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("DefaultField");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_DefaultField, {
@@ -2984,7 +3000,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" endSecond Slider "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
         action: "",
         onSubmit: _cache[6] || (_cache[6] = function () {
-          return $options.addSecondBanner && $options.addSecondBanner.apply($options, arguments);
+          return $options.setImeagesecondBanner && $options.setImeagesecondBanner.apply($options, arguments);
         })
       }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.inputs, function (input, key) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
@@ -3052,7 +3068,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "bg-primary-500 hover:bg-primary-400 text-white dark:text-gray-900 ml-auto cursor-pointer rounded text-sm font-bold focus:outline-none focus:ring ring-primary-200 dark:ring-gray-600 inline-flex items-center justify-center h-9 px-6 shadow relative bg-primary-500 hover:bg-primary-400",
         type: "submit",
         onClick: _cache[5] || (_cache[5] = function ($event) {
-          return $options.setImeageSlider();
+          return $options.setImeagesecondBanner();
         })
       }, " save ")], 32 /* HYDRATE_EVENTS */)])], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */)) : $props.field.type == 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_29, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.inputs, function (input, key) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
@@ -3179,7 +3195,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           onClick: _cache[9] || (_cache[9] = function () {
             return $options.add && $options.add.apply($options, arguments);
           })
-        }, [_hoisted_52, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"\r\n              xmlns:xlink=\"http://www.w3.org/1999/xlink\">\r\n              <rect width=\"24\" height=\"24\" fill=\"url(#pattern0)\" />\r\n              <defs>\r\n                <pattern id=\"pattern0\" patternContentUnits=\"objectBoundingBox\" width=\"1\" height=\"1\">\r\n                  <use xlink:href=\"#image0_1_2\" transform=\"scale(0.0416667)\" />\r\n                </pattern>\r\n                <image id=\"image0_1_2\" width=\"24\" height=\"24\"\r\n                  xlink:href=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAW0lEQVR4nO2VQQrAIAwE53n+/wnxIdtLC0WQqKGkhwzkZMzAEhSKTRrQAR2W3TOmWGC4XpIpT9Mp8u6nCxQ8LwHbEWmx/isYqS0iPSKPfIF9/Vy3oMS8D6dg5ALzIZ+a+RX41gAAAABJRU5ErkJggg==\" />\r\n              </defs>\r\n            </svg> ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
+        }, _hoisted_53)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
       }), 128 /* KEYED_FRAGMENT */)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
         "class": "bg-primary-500 hover:bg-primary-400 text-white dark:text-gray-900 ml-auto cursor-pointer rounded text-sm font-bold focus:outline-none focus:ring ring-primary-200 dark:ring-gray-600 inline-flex items-center justify-center h-9 px-6 shadow relative bg-primary-500 hover:bg-primary-400",
         type: "submit",
