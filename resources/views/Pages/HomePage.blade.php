@@ -5,6 +5,7 @@
         $NavBar = json_decode($HeaderNav);
         $Header_WhatsAppLink = nova_get_setting('logo', '');
         $Header_Logo = 'storage/' . nova_get_setting('logo', '');
+        
         $Banner_TopTitle = nova_get_setting('title_Top-Banner', ' تألقي بثقة و جمال مع رحمة كلينك أفضل أجهزة إزالة الشعر بدون ألم و نتائج مضمونة .');
         $Banner_subTitle = nova_get_setting('subtitle_Top-Banner', 'لأننا نهتم بأن تكوني بأجمل طلة مع رحمة كلينك نوفر أفضل جهاز لازالة الشعر soprano titanium بدون ألم.');
         $Banner_Video_Url = nova_get_setting('video_Url_Top-Banner', 'http://media.w3.org/2010/05/sintel/trailer.mp4');
@@ -24,10 +25,11 @@
         $str_slider = nova_get_setting('slider', 'default_value');
         $json_slider = json_decode($str_slider);
         // dd($json_slider[0]->value);
-
-        $str_aboutUsSlider = nova_get_setting('aboutus_slider', 'default_value');
-        $json_aboutUsSlider = json_decode($str_aboutUsSlider);
         
+        $FirstImage = 'storage/' . nova_get_setting('First_Image_About_Us', '');
+        $SecondImage = 'storage/' . nova_get_setting('Second_Image_About_Us', '');
+        $ThirdImage_Logo = 'storage/' . nova_get_setting('third_Image_About_Us', '');
+        // dd($FirstImage);
     @endphp
     <!-- Start content -->
     <section class="bg-[#f6f6f6] pt-10 pb-10 lg:pb-0">
@@ -88,26 +90,34 @@
                             {{-- لأننا نهتم بأن تكوني بأجمل طلة مع رحمة كلينك نوفر أفضل جهاز لازالة الشعر soprano titanium بدون
                             ألم. --}}
                         </p>
-                        <a class="mt-10 inline-block" href="{{ $Banner_Video_Url }}" data-fancybox>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"
-                                fill="none">
-                                <g clip-path="url(#clip0_45_558)">
-                                    <path
-                                        d="M24 0C10.7656 0 0 10.7666 0 24C0 37.2334 10.7656 48 24 48C37.2344 48 48 37.2334 48 24C48 10.7666 37.2344 0 24 0ZM33.541 24.8408L19.5411 33.8408C19.377 33.9473 19.1875 34 19 34C18.836 34 18.6699 33.959 18.5215 33.878C18.1992 33.7022 18 33.3662 18 33V15C18 14.6338 18.1992 14.2978 18.5215 14.122C18.8379 13.9482 19.2344 13.9589 19.5411 14.1592L33.541 23.1592C33.8262 23.3427 34 23.6602 34 24C34 24.3398 33.8262 24.6572 33.541 24.8408Z"
-                                        fill="#005340" />
-                                </g>
-                                <defs>
-                                    <clipPath id="clip0_45_558">
-                                        <rect width="48" height="48" fill="white" />
-                                    </clipPath>
-                                </defs>
-                            </svg>
-                        </a>
+                        <div class="flex flex-row items-center justify-start gap-x-4">
+                            <a class="mt-10 inline-block" href="{{ $Banner_Video_Url }}" data-fancybox>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"
+                                    fill="none">
+                                    <g clip-path="url(#clip0_45_558)">
+                                        <path
+                                            d="M24 0C10.7656 0 0 10.7666 0 24C0 37.2334 10.7656 48 24 48C37.2344 48 48 37.2334 48 24C48 10.7666 37.2344 0 24 0ZM33.541 24.8408L19.5411 33.8408C19.377 33.9473 19.1875 34 19 34C18.836 34 18.6699 33.959 18.5215 33.878C18.1992 33.7022 18 33.3662 18 33V15C18 14.6338 18.1992 14.2978 18.5215 14.122C18.8379 13.9482 19.2344 13.9589 19.5411 14.1592L33.541 23.1592C33.8262 23.3427 34 23.6602 34 24C34 24.3398 33.8262 24.6572 33.541 24.8408Z"
+                                            fill="#005340" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_45_558">
+                                            <rect width="48" height="48" fill="white" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                            </a>
+                            <button class="button-style mt-11 sitka-font text-[18px] font-[600] relative px-[40px] contact-btn"
+                                data-scroll="contact">
+                                <span
+                                    class="right-0 top-[-20px] flex items-center justify-center h-[64px] w-[64px] border border-[#CBD7E7] rounded-full absolute">
+                                    <span class="bg-[#000] h-[9px] w-[9px] rounded-full"></span>
+                                </span>
+                                احصل على استشارة مجانية
+                            </button>
+                        </div>
                     </div>
                     <p class="text-[#727475] text-[15px] poppins-font pl-5 mt-10 relative font-[500]">
                         {{ $Banner_second_subtitle_Top }}
-                        {{-- تائج مضمونة بلمسات سحرية من المختصة رحمه محاميد عودة إضافة إلى العديد من الخدمات التجميلية بطاقم
-                        احترافي و أجهزة عالمية. --}}
                     </p>
                 </div>
 
@@ -119,8 +129,7 @@
                                     $imgSlider = 'storage/' . $slider->value;
                                 @endphp
                                 <div class="relative">
-                                    <img class="max-w-full absolute bottom-0" src="{{ $imgSlider }}"
-                                        alt="logo">
+                                    <img class="max-w-full absolute bottom-0" src="{{ $imgSlider }}" alt="logo">
                                 </div>
                             @endforeach
                         @else
@@ -200,8 +209,12 @@
             </div>
             <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-20">
                 <div class="col-span-1 text-center " data-aos="fade-up" data-aos-duration="1000">
-                    <img class="w-full max-h-[410px] object-cover " src="{{ asset('assets/images/service-1.png') }}"
-                        alt="service">
+                    @if ($FirstImage == 'storage/')
+                        <img class="w-full max-h-[410px] object-cover " src="{{ asset('assets/images/service-1.png') }}"
+                            alt="service">
+                    @else
+                        <img class="w-full max-h-[410px] object-cover " src="{{ $FirstImage }}" alt="service" />
+                    @endif
                 </div>
                 <div class="col-span-1 text-center relative">
                     <button
@@ -212,7 +225,6 @@
                             <span class="bg-[#000] h-[9px] w-[9px] rounded-full"></span>
                         </span>
                         {{ $About_Us_bottom_text_About_Us }}
-                        {{-- رؤية المزيد --}}
                     </button>
                     <img data-aos="fade-down" data-aos-duration="1000"
                         class="w-full max-h-[410px] object-cover lg:absolute top-[100px]"
@@ -229,7 +241,6 @@
                             <span class="bg-[#000] h-[9px] w-[9px] rounded-full"></span>
                         </span>
                         {{ $About_Us_bottom_text_About_Us }}
-                        {{-- رؤية المزيد --}}
                     </button>
                 </div>
             </div>

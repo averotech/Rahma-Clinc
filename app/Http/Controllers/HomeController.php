@@ -19,44 +19,36 @@ class HomeController extends Controller
 
         $img =  $request->file->store('images', 'public');
         $str_slider = nova_get_setting('slider', 'default_value');
-        if($str_slider != 'default_value')
-        {
-
+        if ($str_slider != 'default_value') {
             $json_slider = json_decode($str_slider);
             $pus = array(
                 'key' => $request->key,
-                'value' => $img,
+                'value' =>'/storage/' .$img,
 
             );
             array_push($json_slider, $pus);
             $str_json = json_encode($json_slider);
             // dd( $str_json);
-            DB::table('nova_settings')->where('key', 'slider')->update(['value'=> $str_json]);
+            DB::table('nova_settings')->where('key', 'slider')->update(['value' => $str_json]);
             return "okk";
-        }
-        else
-        {
+        } else {
 
             $json_slider = array();
             $pus = array(
                 'key' => $request->key,
-                'value' => $img,
+                'value' =>'/storage/' .$img,
 
             );
             array_push($json_slider, $pus);
             $str_json = json_encode($json_slider);
             // dd( $str_json);
             DB::table('nova_settings')->insert([
-                'key' =>'slider',
+                'key' => 'slider',
                 'value' => $str_json,
+
             ]);
             return "full ok";
-
         }
-
-
-
-
     }
     public function setImeagesecondBanner(Request $request)
     {
@@ -64,8 +56,7 @@ class HomeController extends Controller
 
         $img =  $request->file->store('images', 'public');
         $str_slider = nova_get_setting('slider', 'default_value');
-        if($str_slider != 'default_value')
-        {
+        if ($str_slider != 'default_value') {
 
             $json_slider = json_decode($str_slider);
             $pus = array(
@@ -76,11 +67,9 @@ class HomeController extends Controller
             array_push($json_slider, $pus);
             $str_json = json_encode($json_slider);
             // dd( $str_json);
-            DB::table('nova_settings')->where('key', 'slider')->update(['value'=> $str_json]);
+            DB::table('nova_settings')->where('key', 'slider')->update(['value' => $str_json]);
             return "okk";
-        }
-        else
-        {
+        } else {
 
             $json_slider = array();
             $pus = array(
@@ -92,26 +81,18 @@ class HomeController extends Controller
             $str_json = json_encode($json_slider);
             // dd( $str_json);
             DB::table('nova_settings')->insert([
-                'key' =>'slider',
+                'key' => 'slider',
                 'value' => $str_json,
             ]);
             return "full ok";
-
         }
-
-
-
-
     }
 
     public function setaboutusslider(Request $request)
     {
-
-
         $img =  $request->file->store('images', 'public');
-        $str_slider = nova_get_setting('slider', 'default_value');
-        if($str_slider != 'default_value')
-        {
+        $str_slider = nova_get_setting('aboutus_slider', 'default_value');
+        if ($str_slider != 'default_value') {
 
             $json_slider = json_decode($str_slider);
             $pus = array(
@@ -122,11 +103,9 @@ class HomeController extends Controller
             array_push($json_slider, $pus);
             $str_json = json_encode($json_slider);
             // dd( $str_json);
-            DB::table('nova_settings')->where('key', 'aboutus_slider')->update(['value'=> $str_json]);
+            DB::table('nova_settings')->where('key', 'aboutus_slider')->update(['value' => $str_json]);
             return "okk";
-        }
-        else
-        {
+        } else {
 
             $json_slider = array();
             $pus = array(
@@ -138,11 +117,10 @@ class HomeController extends Controller
             $str_json = json_encode($json_slider);
             // dd( $str_json);
             DB::table('nova_settings')->insert([
-                'key' =>'aboutus_slider',
+                'key' => 'aboutus_slider',
                 'value' => $str_json,
             ]);
             return "full ok";
-
         }
-
+    }
 }

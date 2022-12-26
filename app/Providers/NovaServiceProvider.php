@@ -101,8 +101,14 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     Text::make(__('sub Title'), 'subtitle_About_Us'),
                     Text::make(__('Button Text'), 'bottom_text_About_Us'),
                     Text::make(__('Button Link'), 'bottom_link_About_Us'),
+
                     // photos
-                    ImageCollection::make('image', 'image')->imageType(5),
+                    Image::make(__('First Image'), 'First_Image_About_Us')->disk('public'),
+                    Image::make(__('Second Image'), 'Second_Image_About_Us')->disk('public'),
+                    Image::make(__('Third Image'), 'third_Image_About_Us')->disk('public'),
+
+
+                    // ImageCollection::make('image', 'image')->imageType(5),
 
                 ]),
                 Tab::make(__('our Services'), [
