@@ -1,6 +1,7 @@
 <template >
   <DefaultField :field="field" :errors="errors" :show-help-text="showHelpText" :full-width-content="fullWidthContent">
     <template #field>
+
       <div v-if="field.type == 1">
         <div class="form-group flex flex-col bg-[#b93939] my-3 py-1.5 gap-y-2 w-full " v-for="(input, key) in inputs"
           :key="input.id">
@@ -294,12 +295,15 @@ export default {
       formData.append(this.field.attribute, this.value || '')
     },
     getImeageSlider() {
+
       axios.post("/getImeageSlider").then((response) => {
         this.ImeageSlider = response.data;
-        console.log(this.ImeageSlider);
+        console.log("ss",this.ImeageSlider);
       });
+
     },
     setImeageSlider() {
+
       axios.post("/setImeageSlider", {
         ImeageSlider: this.ImeageSlider,
         inputs: this.inputs,
@@ -308,6 +312,7 @@ export default {
   },
   beforeMount() {
     this.getImeageSlider();
+
   },
   components: {},
 };
