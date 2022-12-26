@@ -50,38 +50,53 @@ class HomeController extends Controller
             return "full ok";
         }
     }
+    public function getImeagesecondBanner()
+    {
+        $str_slider = nova_get_setting('second_Banner', 'default_value');
+        $json_slider = json_decode($str_slider);
+        return   $json_slider;
+    }
     public function setImeagesecondBanner(Request $request)
     {
-        dd($request->year[0]);
+
+        // dd($request->all());
+
 
         $img =  $request->file->store('images', 'public');
-        $str_slider = nova_get_setting('slider', 'default_value');
+        $str_slider = nova_get_setting('second_Banner', 'default_value');
         if ($str_slider != 'default_value') {
 
             $json_slider = json_decode($str_slider);
             $pus = array(
                 'key' => $request->key,
-                'value' => $img,
+                'images' => $img,
+                "title" => $request->title,
+                "subtitle" => $request->subtitle,
+                "buttonText_" => $request->buttonText_,
+                "buttonLink" => $request->buttonLink
 
             );
             array_push($json_slider, $pus);
             $str_json = json_encode($json_slider);
             // dd( $str_json);
-            DB::table('nova_settings')->where('key', 'slider')->update(['value' => $str_json]);
+            DB::table('nova_settings')->where('key', 'second_Banner')->update(['value' => $str_json]);
             return "okk";
         } else {
 
             $json_slider = array();
             $pus = array(
                 'key' => $request->key,
-                'value' => $img,
-
+                'images' => $img,
+                "title" => $request->title,
+                "subtitle" => $request->subtitle,
+                "buttonText_" => $request->buttonText_,
+                "buttonLink" => $request->buttonLink
             );
             array_push($json_slider, $pus);
             $str_json = json_encode($json_slider);
             // dd( $str_json);
             DB::table('nova_settings')->insert([
-                'key' => 'slider',
+                'key' => 'second_Banner',
                 'value' => $str_json,
             ]);
             return "full ok";
@@ -91,7 +106,7 @@ class HomeController extends Controller
     public function setaboutusslider(Request $request)
     {
         $img =  $request->file->store('images', 'public');
-        $str_slider = nova_get_setting('aboutus_slider', 'default_value');
+        $str_slider = nova_get_setting('slider', 'default_value');
         if ($str_slider != 'default_value') {
 
             $json_slider = json_decode($str_slider);

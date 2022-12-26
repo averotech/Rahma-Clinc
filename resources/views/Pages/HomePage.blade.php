@@ -126,7 +126,7 @@
                         @if ($json_slider !== null)
                             @foreach ($json_slider as $slider)
                                 @php
-                                    $imgSlider = 'storage/' . $slider->value;
+                                    $imgSlider =  $slider->value;
                                 @endphp
                                 <div class="relative">
                                     <img class="max-w-full absolute bottom-0" src="{{ $imgSlider }}" alt="logo">
