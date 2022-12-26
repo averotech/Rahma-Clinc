@@ -30,6 +30,20 @@
         $SecondImage = 'storage/' . nova_get_setting('Second_Image_About_Us', '');
         $ThirdImage_Logo = 'storage/' . nova_get_setting('third_Image_About_Us', '');
         // dd($FirstImage);
+        
+        //second_Banner
+        $str_secondBanner = nova_get_setting('second_Banner', 'default_value');
+        $json_secondBanner = json_decode($str_secondBanner);
+        
+        //Fourth_Banner
+        $str_fourthBanner = nova_get_setting('Fourth_Banner', 'default_value');
+        $json_fourthBanner = json_decode($str_fourthBanner);
+        if (count($json_fourthBanner) > 1) {
+            $lastRecommendation = count($json_fourthBanner);
+            $lastOneRecommendation = $json_fourthBanner[$lastRecommendation - 1];
+            $lastTwoRecommendation = $json_fourthBanner[$lastRecommendation - 2];
+            // dd($lastTwoRecommendation);
+        }
     @endphp
     <!-- Start content -->
     <section class="bg-[#f6f6f6] pt-10 pb-10 lg:pb-0">
@@ -106,7 +120,8 @@
                                     </defs>
                                 </svg>
                             </a>
-                            <button class="button-style mt-11 sitka-font text-[18px] font-[600] relative px-[40px] contact-btn"
+                            <button
+                                class="button-style mt-11 sitka-font text-[18px] font-[600] relative px-[40px] contact-btn"
                                 data-scroll="contact">
                                 <span
                                     class="right-0 top-[-20px] flex items-center justify-center h-[64px] w-[64px] border border-[#CBD7E7] rounded-full absolute">
@@ -126,8 +141,8 @@
                         @if ($json_slider !== null)
                             @foreach ($json_slider as $slider)
                                 @php
-                                
-                                    $imgSlider =  $slider->value;
+                                    
+                                    $imgSlider = $slider->value;
                                 @endphp
                                 <div class="relative">
                                     <img class="max-w-full absolute bottom-0" src="{{ $imgSlider }}" alt="logo">
@@ -267,21 +282,35 @@
                 </p>
             </div>
             <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 mt-16">
-                <div class="col-span-1">
-                    <div class="border border-[#CBD7E7] text-center px-4 py-10 h-full" data-aos="zoom-in"
-                        data-aos-duration="1000">
-                        <div class="rounded-full mx-auto bg-[#F1F1F1] flex items-center justify-center h-[77px] w-[77px] ">
-                            <img src="{{ asset('assets/images/service-icons/epilator.svg') }}" alt="service icon">
+                @if ($json_secondBanner !== null)
+                    @foreach ($json_secondBanner as $item)
+                        <div class="col-span-1">
+                            <div class="border border-[#CBD7E7] text-center px-4 py-10 h-full" data-aos="zoom-in"
+                                data-aos-duration="1000">
+                                <div
+                                    class="rounded-full mx-auto bg-[#F1F1F1] flex items-center justify-center h-[77px] w-[77px] ">
+                                    <img src="{{ $item->images }}" alt="service icon">
+                                </div>
+                                <h3 class="sitka-font text-[22px] mb-4 mt-6 capitalize">
+                                    {{-- إزالة الشعر بالليزر لسيدات --}}
+                                    {{ $item->title }}
+                                </h3>
+                                <p class="text-[15px] poppins-font text-[#727475] capitalize">
+                                    {{-- مع الممرضة المختصة رحمة عودة<br> --}}
+                                    {{-- إزالة الشعر بدون ألم و أفضل نتائج<br>
+                            مع تقديم نصائح واستشارات --}}
+                                    {{ $item->subtitle }}
+                                </p>
+                                <button class="mt-20 sitka-font text-[22px] text-[#005340] contact-btn"
+                                    data-scroll="contact">
+                                    {{ $item->buttonText_ }}
+                                    {{-- تواصل معنا --}}
+                                </button>
+                            </div>
                         </div>
-                        <h3 class="sitka-font text-[22px] mb-4 mt-6 capitalize">إزالة الشعر بالليزر لسيدات</h3>
-                        <p class="text-[15px] poppins-font text-[#727475] capitalize">مع الممرضة المختصة رحمة عودة<br>
-                            إزالة الشعر بدون ألم و أفضل نتائج<br>
-                            مع تقديم نصائح واستشارات</p>
-                        <button class="mt-20 sitka-font text-[22px] text-[#005340] contact-btn"
-                            data-scroll="contact">تواصل معنا</button>
-                    </div>
-                </div>
-                <div class="col-span-1">
+                    @endforeach
+                @endif
+                {{-- <div class="col-span-1">
                     <div class="border border-[#CBD7E7] text-center px-4 py-10 h-full" data-aos="zoom-in"
                         data-aos-duration="1000">
                         <div class="rounded-full mx-auto bg-[#F1F1F1] flex items-center justify-center h-[77px] w-[77px] ">
@@ -322,7 +351,7 @@
                         <button class="mt-20 sitka-font text-[22px] text-[#005340] contact-btn"
                             data-scroll="contact">تواصل معنا</button>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>
@@ -478,71 +507,139 @@
                 <p class="text-[18px]">توصيات العملاء</p>
                 <h2 class="capitalize text-[27px] md:text-[30px] lg:text-[35px] max-w-[550px] ">ماذا يقول عملائنا عنا </h2>
             </div>
-            <div class="grid grid-cols-1 gap-20 sm:grid-cols-2 md:grid-cols-2">
-                <div class="mt-24 " data-aos="fade-down" data-aos-duration="2000" data-aos-delay="300">
-                    <div class="relative mb-16">
-                        <img class="w-full max-h-[434px]" src="{{ asset('assets/images/testimonial/t-1.png') }}"
-                            alt="image">
-                        <span
-                            class="w-[116px] h-[116px] flex justify-center items-center rounded-full bg-[#005340] absolute left-[20px] bottom-[-58px]">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44"
-                                fill="none">
-                                <g clip-path="url(#clip0_45_526)">
-                                    <path
-                                        d="M0.408829 25.2648H9.71323L3.51025 37.6706H12.8147L19.0176 25.2648V6.65601H0.408829V25.2648Z"
-                                        fill="white" />
-                                    <path
-                                        d="M25.2206 6.65601V25.2648H34.525L28.322 37.6706H37.6264L43.8294 25.2648V6.65601H25.2206Z"
-                                        fill="white" />
-                                </g>
-                                <defs>
-                                    <clipPath id="clip0_45_526">
-                                        <rect width="43.4206" height="43.4206" fill="white"
-                                            transform="translate(0.408829 0.453003)" />
-                                    </clipPath>
-                                </defs>
-                            </svg>
-                        </span>
+            @if (count($json_fourthBanner) < 1)
+                <div class="grid grid-cols-1 gap-20 sm:grid-cols-2 md:grid-cols-2">
+                    <div class="mt-24 " data-aos="fade-down" data-aos-duration="2000" data-aos-delay="300">
+                        <div class="relative mb-16">
+                            <img class="w-full max-h-[434px]" src="{{ asset('assets/images/testimonial/t-1.png') }}"
+                                alt="image">
+                            <span
+                                class="w-[116px] h-[116px] flex justify-center items-center rounded-full bg-[#005340] absolute left-[20px] bottom-[-58px]">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44"
+                                    viewBox="0 0 44 44" fill="none">
+                                    <g clip-path="url(#clip0_45_526)">
+                                        <path
+                                            d="M0.408829 25.2648H9.71323L3.51025 37.6706H12.8147L19.0176 25.2648V6.65601H0.408829V25.2648Z"
+                                            fill="white" />
+                                        <path
+                                            d="M25.2206 6.65601V25.2648H34.525L28.322 37.6706H37.6264L43.8294 25.2648V6.65601H25.2206Z"
+                                            fill="white" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_45_526">
+                                            <rect width="43.4206" height="43.4206" fill="white"
+                                                transform="translate(0.408829 0.453003)" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                            </span>
+                        </div>
+                        <h3 class="sitka-font text-[22px] mb-2">نسرين </h3>
+                        <p class="poppins-font text-[#727475] text-[15px]">
+                            أول مرة بعمل ليزر جسم
+                            من أول لقاء الملمس بجنن و لا احمرار ولا و جع و لا حكة
+                            قسما بالله شغل من قلب و تعبك و مافي زي السعر
+                            الله يباركلك و يرزقك .
+                        </p>
                     </div>
-                    <h3 class="sitka-font text-[22px] mb-2">نسرين </h3>
-                    <p class="poppins-font text-[#727475] text-[15px]">
-                        أول مرة بعمل ليزر جسم
+                    <div data-aos="fade-down" data-aos-duration="2000" data-aos-delay="300">
+                        <div class="relative mb-16">
+                            <img class="w-full max-h-[434px]" src="{{ asset('assets/images/testimonial/t-1.png') }}"
+                                alt="image">
+                            <span
+                                class="w-[116px] h-[116px] flex justify-center items-center rounded-full bg-[#005340] absolute left-[20px] bottom-[-58px]">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44"
+                                    viewBox="0 0 44 44" fill="none">
+                                    <g clip-path="url(#clip0_45_526)">
+                                        <path
+                                            d="M0.408829 25.2648H9.71323L3.51025 37.6706H12.8147L19.0176 25.2648V6.65601H0.408829V25.2648Z"
+                                            fill="white" />
+                                        <path
+                                            d="M25.2206 6.65601V25.2648H34.525L28.322 37.6706H37.6264L43.8294 25.2648V6.65601H25.2206Z"
+                                            fill="white" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_45_526">
+                                            <rect width="43.4206" height="43.4206" fill="white"
+                                                transform="translate(0.408829 0.453003)" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                            </span>
+                        </div>
+                        <h3 class="sitka-font text-[22px] mb-2">اسم الزبون</h3>
+                        <p class="poppins-font text-[#727475] text-[15px]">
+                            بعدني بأول لقاء و جسمي اتغير كثير عن قبل معاملة و أسعار خيالية و الجهاز و لا غلطة و لا في زيه.
+                        </p>
+                    </div>
+                </div>
+            @else
+                <div class="grid grid-cols-1 gap-20 sm:grid-cols-2 md:grid-cols-2">
+                    <div class="mt-24 " data-aos="fade-down" data-aos-duration="2000" data-aos-delay="300">
+                        <div class="relative mb-16">
+                            <img class="w-full max-h-[434px]" src="{{ $lastTwoRecommendation->images }}" alt="image">
+                            <span
+                                class="w-[116px] h-[116px] flex justify-center items-center rounded-full bg-[#005340] absolute left-[20px] bottom-[-58px]">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44"
+                                    viewBox="0 0 44 44" fill="none">
+                                    <g clip-path="url(#clip0_45_526)">
+                                        <path
+                                            d="M0.408829 25.2648H9.71323L3.51025 37.6706H12.8147L19.0176 25.2648V6.65601H0.408829V25.2648Z"
+                                            fill="white" />
+                                        <path
+                                            d="M25.2206 6.65601V25.2648H34.525L28.322 37.6706H37.6264L43.8294 25.2648V6.65601H25.2206Z"
+                                            fill="white" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_45_526">
+                                            <rect width="43.4206" height="43.4206" fill="white"
+                                                transform="translate(0.408829 0.453003)" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                            </span>
+                        </div>
+                        <h3 class="sitka-font text-[22px] mb-2">{{ $lastTwoRecommendation->title }} </h3>
+                        <p class="poppins-font text-[#727475] text-[15px]">
+                            {{ $lastTwoRecommendation->subtitle }}
+                            {{-- أول مرة بعمل ليزر جسم
                         من أول لقاء الملمس بجنن و لا احمرار ولا و جع و لا حكة
                         قسما بالله شغل من قلب و تعبك و مافي زي السعر
-                        الله يباركلك و يرزقك .
-                    </p>
-                </div>
-                <div data-aos="fade-down" data-aos-duration="2000" data-aos-delay="300">
-                    <div class="relative mb-16">
-                        <img class="w-full max-h-[434px]" src="{{ asset('assets/images/testimonial/t-1.png') }}"
-                            alt="image">
-                        <span
-                            class="w-[116px] h-[116px] flex justify-center items-center rounded-full bg-[#005340] absolute left-[20px] bottom-[-58px]">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44"
-                                fill="none">
-                                <g clip-path="url(#clip0_45_526)">
-                                    <path
-                                        d="M0.408829 25.2648H9.71323L3.51025 37.6706H12.8147L19.0176 25.2648V6.65601H0.408829V25.2648Z"
-                                        fill="white" />
-                                    <path
-                                        d="M25.2206 6.65601V25.2648H34.525L28.322 37.6706H37.6264L43.8294 25.2648V6.65601H25.2206Z"
-                                        fill="white" />
-                                </g>
-                                <defs>
-                                    <clipPath id="clip0_45_526">
-                                        <rect width="43.4206" height="43.4206" fill="white"
-                                            transform="translate(0.408829 0.453003)" />
-                                    </clipPath>
-                                </defs>
-                            </svg>
-                        </span>
+                        الله يباركلك و يرزقك . --}}
+                        </p>
                     </div>
-                    <h3 class="sitka-font text-[22px] mb-2">اسم الزبون</h3>
-                    <p class="poppins-font text-[#727475] text-[15px]">
-                        بعدني بأول لقاء و جسمي اتغير كثير عن قبل معاملة و أسعار خيالية و الجهاز و لا غلطة و لا في زيه.
-                    </p>
+                    <div data-aos="fade-down" data-aos-duration="2000" data-aos-delay="300">
+                        <div class="relative mb-16">
+                            <img class="w-full max-h-[434px]" src="{{ $lastOneRecommendation->images }}" alt="image">
+                            <span
+                                class="w-[116px] h-[116px] flex justify-center items-center rounded-full bg-[#005340] absolute left-[20px] bottom-[-58px]">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44"
+                                    viewBox="0 0 44 44" fill="none">
+                                    <g clip-path="url(#clip0_45_526)">
+                                        <path
+                                            d="M0.408829 25.2648H9.71323L3.51025 37.6706H12.8147L19.0176 25.2648V6.65601H0.408829V25.2648Z"
+                                            fill="white" />
+                                        <path
+                                            d="M25.2206 6.65601V25.2648H34.525L28.322 37.6706H37.6264L43.8294 25.2648V6.65601H25.2206Z"
+                                            fill="white" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_45_526">
+                                            <rect width="43.4206" height="43.4206" fill="white"
+                                                transform="translate(0.408829 0.453003)" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                            </span>
+                        </div>
+                        <h3 class="sitka-font text-[22px] mb-2">{{ $lastOneRecommendation->title }}</h3>
+                        <p class="poppins-font text-[#727475] text-[15px]">
+                            {{ $lastOneRecommendation->subtitle }}
+                            {{-- بعدني بأول لقاء و جسمي اتغير كثير عن قبل معاملة و أسعار خيالية و الجهاز و لا غلطة و لا في زيه. --}}
+                        </p>
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
     </section>
     <!-- End testimonial section-->
