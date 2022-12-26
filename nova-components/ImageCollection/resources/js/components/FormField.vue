@@ -75,7 +75,7 @@
 
       <!-- endSecond Slider -->
       <div v-else-if="field.type == 2">
-        <form action="" v-on:submit="addSecondBanner">
+        <form action="" v-on:submit="setImeagesecondBanner">
           <div class="form-group flex flex-col bg-[#b93939] mt-3 py-1.5 gap-y-2 w-full " v-for="(input, key) in inputs"
             :key="input.id">
             <div class="flex flex-row items-center justify-start">
@@ -112,7 +112,7 @@
           </div>
           <div
             class=" bg-primary-500 hover:bg-primary-400 text-white dark:text-gray-900 ml-auto cursor-pointer rounded text-sm font-bold focus:outline-none focus:ring ring-primary-200 dark:ring-gray-600 inline-flex items-center justify-center h-9 px-6 shadow relative bg-primary-500 hover:bg-primary-400 "
-            type="submit" @click="setImeageSlider()">
+            type="submit" @click="setImeagesecondBanner()">
             save
           </div>
         </form>
@@ -348,6 +348,27 @@ export default {
       axios.post("/setImeageSlider", {
         ImeageSlider: this.ImeageSlider,
         inputs: this.inputs,
+      });
+    },
+       setAboutusSlider(event, key) {
+
+      let formData = new FormData();
+      formData.append("file", event.target.files[0]);
+      formData.append("key", key);
+      console.log('formDataa', formData);
+      axios.post("/setaboutusslider", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+    },
+     setImeagesecondBanner() {
+
+
+     axios.post("/setImeagesecondBanner",  {
+           year: this.secondBannerArray,
+
       });
     },
   },
