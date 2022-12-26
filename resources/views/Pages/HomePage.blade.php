@@ -126,6 +126,7 @@
                         @if ($json_slider !== null)
                             @foreach ($json_slider as $slider)
                                 @php
+                                
                                     $imgSlider =  $slider->value;
                                 @endphp
                                 <div class="relative">
