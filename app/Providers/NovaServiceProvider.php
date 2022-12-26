@@ -102,7 +102,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     Text::make(__('Button Text'), 'bottom_text_About_Us'),
                     Text::make(__('Button Link'), 'bottom_link_About_Us'),
                     // photos
-                    ImageCollection::make('image', 'image')->imageType(1),
+                    ImageCollection::make('image', 'image')->imageType(5),
 
                 ]),
                 Tab::make(__('our Services'), [
