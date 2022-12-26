@@ -2509,17 +2509,19 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
   data: function data() {
     return {
       ImeageSlider: [],
+      ImeagesecondBanner: [],
       secondBannerArray: [],
+      keyVal: [],
       inputs: this.field.type == 1 ? [{
         id: (0,uuid__WEBPACK_IMPORTED_MODULE_2__["default"])(),
-        value: ''
+        value: ""
       }] : [{
         id: (0,uuid__WEBPACK_IMPORTED_MODULE_2__["default"])(),
-        value: '',
-        title: '',
-        subtitle: '',
-        button: '',
-        buttonLink: ''
+        value: "",
+        title: "",
+        subtitle: "",
+        button: "",
+        buttonLink: ""
       }]
     };
   },
@@ -2529,12 +2531,12 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
   // },
   methods: {
     upload: function upload(event, key) {
-      console.log('name', event.target.files[0].name);
-      console.log('ref', event.target.files[0]);
+      console.log("name", event.target.files[0].name);
+      console.log("ref", event.target.files[0]);
       var formData = new FormData();
       formData.append("file", event.target.files[0]);
       formData.append("key", key);
-      console.log('formDataa', formData);
+      console.log("formDataa", formData);
       axios__WEBPACK_IMPORTED_MODULE_1___default().post("/setImeageSlider", formData, {
         headers: {
           "Content-Type": "multipart/form-data"
@@ -2548,31 +2550,43 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     secondBanner: function secondBanner(e, key, index, type) {
       if (type == "photo") {
         if (!this.secondBannerArray[index]) {
+          this.keyVal.push(key);
+          console.log("sss", this.keyVal);
           this.secondBannerArray.push(_defineProperty({}, key, _defineProperty({}, type, e.target.files[0])));
+          console.log(e.target.files[0]);
         } else {
           this.secondBannerArray[index][key][type] = e.target.files[0];
+          console.log(e.target.files[0]);
         }
       }
-      if (type == 'title') {
+      if (type == "title") {
         if (!this.secondBannerArray[index]) {
+          this.keyVal.push(key);
+          console.log("sss", this.keyVal);
           this.secondBannerArray.push(_defineProperty({}, key, _defineProperty({}, type, e.target.value)));
         } else {
           this.secondBannerArray[index][key][type] = e.target.value;
         }
-      } else if (type === 'subtitle') {
+      } else if (type === "subtitle") {
         if (!this.secondBannerArray[index]) {
+          this.keyVal.push(key);
+          console.log("sss", this.keyVal);
           this.secondBannerArray.push(_defineProperty({}, key, _defineProperty({}, type, e.target.value)));
         } else {
           this.secondBannerArray[index][key][type] = e.target.value;
         }
-      } else if (type === 'buttonText') {
+      } else if (type === "buttonText") {
         if (!this.secondBannerArray[index]) {
+          this.keyVal.push(key);
+          console.log("sss", this.keyVal);
           this.secondBannerArray.push(_defineProperty({}, key, _defineProperty({}, type, e.target.value)));
         } else {
           this.secondBannerArray[index][key][type] = e.target.value;
         }
-      } else if (type === 'buttonLink') {
+      } else if (type === "buttonLink") {
         if (!this.secondBannerArray[index]) {
+          this.keyVal.push(key);
+          console.log("sss", this.keyVal);
           this.secondBannerArray.push(_defineProperty({}, key, _defineProperty({}, type, e.target.value)));
         } else {
           this.secondBannerArray[index][key][type] = e.target.value;
@@ -2599,13 +2613,13 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
      * Set the initial, internal value for the field.
      */
     setInitialValue: function setInitialValue() {
-      this.value = this.field.value || '';
+      this.value = this.field.value || "";
     },
     /**
      * Fill the given FormData object with the field's internal value.
      */
     fill: function fill(formData) {
-      formData.append(this.field.attribute, this.value || '');
+      formData.append(this.field.attribute, this.value || "");
     },
     getImeageSlider: function getImeageSlider() {
       var _this = this;
@@ -2624,7 +2638,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       var formData = new FormData();
       formData.append("file", event.target.files[0]);
       formData.append("key", key);
-      console.log('formDataa', formData);
+      console.log("formDataa", formData);
       axios__WEBPACK_IMPORTED_MODULE_1___default().post("/setaboutusslider", formData, {
         headers: {
           "Content-Type": "multipart/form-data"
@@ -2632,13 +2646,32 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       });
     },
     setImeagesecondBanner: function setImeagesecondBanner() {
-      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/setImeagesecondBanner", {
-        year: this.secondBannerArray
+      var formData = new FormData();
+      for (var index = 0; index < this.keyVal.length; index++) {
+        formData.append("file", this.secondBannerArray[index][this.keyVal[index]]["photo"]);
+        formData.append("title", this.secondBannerArray[index][this.keyVal[index]]["title"]);
+        formData.append("subtitle", this.secondBannerArray[index][this.keyVal[index]]["subtitle"]);
+        formData.append("buttonText ", this.secondBannerArray[index][this.keyVal[index]]["buttonText"]);
+        formData.append("buttonLink", this.secondBannerArray[index][this.keyVal[index]]["buttonLink"]);
+        formData.append("key", this.secondBannerArray[index][this.keyVal[index]]["buttonLink"]);
+        axios__WEBPACK_IMPORTED_MODULE_1___default().post("/setImeagesecondBanner", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data"
+          }
+        });
+      }
+    },
+    getImeagesecondBanner: function getImeagesecondBanner() {
+      var _this2 = this;
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/getImeagesecondBanner").then(function (response) {
+        _this2.ImeagesecondBanner = response.data;
+        console.log("ImeagesecondBanner", _this2.ImeagesecondBanner);
       });
     }
   },
   beforeMount: function beforeMount() {
     this.getImeageSlider();
+    this.getImeagesecondBanner();
   },
   components: {}
 });
@@ -2926,12 +2959,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: _cache[1] || (_cache[1] = function ($event) {
           return $options.setImeageSlider();
         })
-      }, " save ")])) : $props.field.type == 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
-        action: "",
-        onSubmit: _cache[4] || (_cache[4] = function () {
-          return $options.setImeagesecondBanner && $options.setImeagesecondBanner.apply($options, arguments);
-        })
-      }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.inputs, function (input, key) {
+      }, " save ")])) : $props.field.type == 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <form action=\"\" v-on:submit=\"setImeagesecondBanner\"> "), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.inputs, function (input, key) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
           "class": "form-group flex flex-col bg-[#b93939] mt-3 py-1.5 gap-y-2 w-full",
           key: input.id
@@ -2999,7 +3027,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: _cache[3] || (_cache[3] = function ($event) {
           return $options.setImeagesecondBanner();
         })
-      }, " save ")], 32 /* HYDRATE_EVENTS */)])) : $props.field.type == 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_22, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.inputs, function (input, key) {
+      }, " save "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" </form> ")])) : $props.field.type == 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_22, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.inputs, function (input, key) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
           "class": "form-group flex flex-col bg-[#b93939] mt-3 py-1.5 gap-y-2 w-full",
           key: input.id
@@ -3075,14 +3103,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }, _hoisted_34, 8 /* PROPS */, _hoisted_32)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), key == $data.inputs.length - 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
           key: 0,
           "class": "w-8 h-8",
-          onClick: _cache[5] || (_cache[5] = function () {
+          onClick: _cache[4] || (_cache[4] = function () {
             return $options.add && $options.add.apply($options, arguments);
           })
         }, [_hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"\n              xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n              <rect width=\"24\" height=\"24\" fill=\"url(#pattern0)\" />\n              <defs>\n                <pattern id=\"pattern0\" patternContentUnits=\"objectBoundingBox\" width=\"1\" height=\"1\">\n                  <use xlink:href=\"#image0_1_2\" transform=\"scale(0.0416667)\" />\n                </pattern>\n                <image id=\"image0_1_2\" width=\"24\" height=\"24\"\n                  xlink:href=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAW0lEQVR4nO2VQQrAIAwE53n+/wnxIdtLC0WQqKGkhwzkZMzAEhSKTRrQAR2W3TOmWGC4XpIpT9Mp8u6nCxQ8LwHbEWmx/isYqS0iPSKPfIF9/Vy3oMS8D6dg5ALzIZ+a+RX41gAAAABJRU5ErkJggg==\" />\n              </defs>\n            </svg> ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
       }), 128 /* KEYED_FRAGMENT */)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
         "class": "bg-primary-500 hover:bg-primary-400 text-white dark:text-gray-900 ml-auto cursor-pointer rounded text-sm font-bold focus:outline-none focus:ring ring-primary-200 dark:ring-gray-600 inline-flex items-center justify-center h-9 px-6 shadow relative bg-primary-500 hover:bg-primary-400",
         type: "submit",
-        onClick: _cache[6] || (_cache[6] = function ($event) {
+        onClick: _cache[5] || (_cache[5] = function ($event) {
           return $options.setImeageSlider();
         })
       }, " save ")])) : $props.field.type == 4 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_36, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.inputs, function (input, key) {
@@ -3121,14 +3149,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }, _hoisted_44, 8 /* PROPS */, _hoisted_42)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), key == $data.inputs.length - 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
           key: 0,
           "class": "w-8 h-8",
-          onClick: _cache[7] || (_cache[7] = function () {
+          onClick: _cache[6] || (_cache[6] = function () {
             return $options.add && $options.add.apply($options, arguments);
           })
         }, [_hoisted_45, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"\n              xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n              <rect width=\"24\" height=\"24\" fill=\"url(#pattern0)\" />\n              <defs>\n                <pattern id=\"pattern0\" patternContentUnits=\"objectBoundingBox\" width=\"1\" height=\"1\">\n                  <use xlink:href=\"#image0_1_2\" transform=\"scale(0.0416667)\" />\n                </pattern>\n                <image id=\"image0_1_2\" width=\"24\" height=\"24\"\n                  xlink:href=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAW0lEQVR4nO2VQQrAIAwE53n+/wnxIdtLC0WQqKGkhwzkZMzAEhSKTRrQAR2W3TOmWGC4XpIpT9Mp8u6nCxQ8LwHbEWmx/isYqS0iPSKPfIF9/Vy3oMS8D6dg5ALzIZ+a+RX41gAAAABJRU5ErkJggg==\" />\n              </defs>\n            </svg> ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
       }), 128 /* KEYED_FRAGMENT */)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
         "class": "bg-primary-500 hover:bg-primary-400 text-white dark:text-gray-900 ml-auto cursor-pointer rounded text-sm font-bold focus:outline-none focus:ring ring-primary-200 dark:ring-gray-600 inline-flex items-center justify-center h-9 px-6 shadow relative bg-primary-500 hover:bg-primary-400",
         type: "submit",
-        onClick: _cache[8] || (_cache[8] = function ($event) {
+        onClick: _cache[7] || (_cache[7] = function ($event) {
           return $options.setImeageSlider();
         })
       }, " save ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
