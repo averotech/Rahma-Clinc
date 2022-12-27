@@ -47,9 +47,14 @@
         <link rel="stylesheet" href="{{ asset('assets/front-end/css/main.css') }}?v={{rand(0, 99)}}">
         <link rel="stylesheet" href="{{ asset('assets/front-end/css/responsive.css') }}?v={{rand(0, 99)}}">
         <script src="{{asset('/')}}assets/front-end/js/tailwind.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
     </head>
 
     <body dir="{{LaravelLocalization::getCurrentLocaleDirection()}}" class="relative overflow-x-hidden pb-8 md:pb-0">
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
         <!-- Start Header -->
         @include('Layout.front-end.partials._header')
         <!-- End Header -->
@@ -67,6 +72,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.min.js"></script>
         <!-- animate scroll library -->
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
         <script>
             AOS.init();
         </script>

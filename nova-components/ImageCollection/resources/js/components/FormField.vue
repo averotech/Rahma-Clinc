@@ -61,7 +61,7 @@
               type="file"
               class="w-full my-2 h-[36px] px-2 py-1 border-b border-2"
               ref="myFiles"
-              @change="upload($event, input.id)"
+              @change="setImeageSlider($event, input.id)"
               placeholder="الرجاء اختيار الصورة"
             />
             <div
@@ -250,49 +250,49 @@
                 type="file"
                 class="w-full my-2 h-[36px] px-2 py-1 border-b border-2"
                 ref="myFiles"
-                @change="previewFiles($event, key)"
+                 @change="offerBanner($event, input.id, key, 'photo')"
                 placeholder="الرجاء اختيار صورة الفيديو"
               />
               <input
                 type="text"
                 class="w-full my-2 h-[36px] px-2 py-1 border-b border-2"
                 ref="title"
-                @change="servicesTitle($event, key)"
+                @change="offerBanner($event, input.id, key, 'videotitle')"
                 placeholder="الرجاء كتابة عنوان الفيديو"
               />
               <input
                 type="text"
                 class="w-full my-2 h-[36px] px-2 py-1 border-b border-2"
                 ref="title"
-                @change="servicesTitle($event, key)"
+                @change="offerBanner($event, input.id, key, 'title')"
                 placeholder="الرجاء كتابة العنوان"
               />
               <input
                 type="text"
                 class="w-full my-2 h-[36px] px-2 py-1 border-b border-2"
                 ref="title"
-                @change="servicesSubTitle($event, key)"
+                @change="offerBanner($event, input.id, key, 'price')"
                 placeholder="الرجاء كتابة السعر"
               />
               <input
                 type="text"
                 class="w-full my-2 h-[36px] px-2 py-1 border-b border-2"
                 ref="title"
-                @change="servicesSubTitle($event, key)"
-                placeholder="الرجاء كتابة الوصف"
+                @change="offerBanner($event, input.id, key, 'description')"
+                 placeholder="الرجاء كتابة الوصف"
               />
               <input
                 type="text"
                 class="w-full my-2 h-[36px] px-2 py-1 border-b border-2"
                 ref="title"
-                @change="servicesButtonTitle($event, key)"
+                @change="offerBanner($event, input.id, key, 'buttonTitle')"
                 placeholder="button Title"
               />
               <input
                 type="text"
                 class="w-full my-2 h-[36px] px-2 py-1 border-b border-2"
                 ref="title"
-                @change="servicesButtonLink($event, key)"
+              @change="offerBanner($event, input.id, key, 'buttonLink')"
                 placeholder="button Link"
               />
             </div>
@@ -373,8 +373,7 @@
             hover:bg-primary-400
           "
           type="submit"
-          @click="setImeageSlider()"
-        >
+          @click="setImeageofferBanner">
           save
         </div>
       </div>
@@ -500,10 +499,12 @@ export default {
       ImageSlider: [],
       ImeagesecondBanner: [],
       ImeageFourthBanner:[],
+           ImeageofferBanner:[],
       secondBannerArray: [],
-      FourthBannerArray: [],
+      offerBannerArray: [],
       keyVal: [],
       keyValFourthBanner: [],
+      keyValofferBanner:[],
       inputs:
         this.field.type == 1
           ? [
@@ -622,6 +623,76 @@ export default {
       console.log("baner", this.FourthBannerArray);
       console.log("key", this.keyValFourthBanner);
     },
+
+    offerBanner(e, key, index, type) {
+      if (type == "photo") {
+        if (!this.offerBannerArray[index]) {
+          this.keyValofferBanner.push(key);
+
+          this.offerBannerArray.push({ [key]: { [type]: e.target.files[0] } });
+          console.log(e.target.files[0]);
+        } else {
+          this.offerBannerArray[index][key][type] = e.target.files[0];
+          console.log(e.target.files[0]);
+        }
+      }
+      //
+      if (type == "videotitle") {
+        if (!this.offerBannerArray[index]) {
+          this.keyValofferBanner.push(key);
+
+          this.offerBannerArray.push({ [key]: { [type]: e.target.value } });
+        } else {
+          this.offerBannerArray[index][key][type] = e.target.value;
+        }
+      } else if (type === "title") {
+        if (!this.offerBannerArray[index]) {
+          this.keyValofferBanner.push(key);
+
+          this.offerBannerArray.push({ [key]: { [type]: e.target.value } });
+        } else {
+          this.offerBannerArray[index][key][type] = e.target.value;
+        }
+      }
+      else if (type === "price") {
+        if (!this.offerBannerArray[index]) {
+          this.keyValofferBanner.push(key);
+
+          this.offerBannerArray.push({ [key]: { [type]: e.target.value } });
+        } else {
+          this.offerBannerArray[index][key][type] = e.target.value;
+        }
+      }
+      else if (type === "description") {
+        if (!this.offerBannerArray[index]) {
+          this.keyValofferBanner.push(key);
+
+          this.offerBannerArray.push({ [key]: { [type]: e.target.value } });
+        } else {
+          this.offerBannerArray[index][key][type] = e.target.value;
+        }
+      }
+      else if (type === "buttonTitle") {
+        if (!this.offerBannerArray[index]) {
+          this.keyValofferBanner.push(key);
+
+          this.offerBannerArray.push({ [key]: { [type]: e.target.value } });
+        } else {
+          this.offerBannerArray[index][key][type] = e.target.value;
+        }
+      }
+      else if (type === "buttonLink") {
+        if (!this.offerBannerArray[index]) {
+          this.keyValofferBanner.push(key);
+
+          this.offerBannerArray.push({ [key]: { [type]: e.target.value } });
+        } else {
+          this.offerBannerArray[index][key][type] = e.target.value;
+        }
+      }
+      console.log("baner", this.offerBannerArray);
+      console.log("key", this.keyValofferBanner);
+    },
     /*
      * Set the initial, internal value for the field.
      */
@@ -648,10 +719,17 @@ export default {
         },
       });
     },
-    setImeageSlider() {
-      axios.post("/setImeageSlider", {
-        ImageSlider: this.ImageSlider,
-        inputs: this.inputs,
+    setImeageSlider(event, key) {
+  console.log("name", event.target.files[0].name);
+      console.log("ref", event.target.files[0]);
+      let formData = new FormData();
+      formData.append("file", event.target.files[0]);
+      formData.append("key", key);
+      console.log("formDataa", formData);
+      axios.post("/setImeageSlider", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       });
       this.getImeageSlider();
     },
@@ -659,6 +737,7 @@ export default {
       axios.post("/getImeageSlider").then((response) => {
         this.ImageSlider = response.data;
       });
+
     },
       setImeagesecondBanner() {
       let formData = new FormData();
@@ -686,7 +765,7 @@ export default {
         );
         formData.append(
           "key",
-          this.secondBannerArray[index][this.keyVal[index]]["buttonLink"]
+         this.keyVal[index]
         );
         axios.post("/setImeagesecondBanner", formData, {
           headers: {
@@ -736,12 +815,44 @@ export default {
         console.log("ImeageFourthBanner", this.ImeageFourthBanner);
       });
     },
+    setImeageofferBanner() {
+      let formData = new FormData();
+
+      for (let index = 0; index < this.keyValofferBanner.length; index++) {
+//
+
+        formData.append("file",this.offerBannerArray[index][this.keyValofferBanner[index]]["photo"]);
+        formData.append("videotitle",this.offerBannerArray[index][this.keyValofferBanner[index]]["videotitle"]);
+        formData.append("title",this.offerBannerArray[index][this.keyValofferBanner[index]]["title"]);
+        formData.append("price",this.offerBannerArray[index][this.keyValofferBanner[index]]["price"]);
+        formData.append("description",this.offerBannerArray[index][this.keyValofferBanner[index]]["description"]);
+        formData.append("buttonTitle",this.offerBannerArray[index][this.keyValofferBanner[index]]["buttonTitle"]);
+        formData.append("buttonLink",this.offerBannerArray[index][this.keyValofferBanner[index]]["buttonLink"]);
+
+        formData.append("key", this.keyValofferBanner[index]);
+
+        axios.post("/setImeageofferBanner", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+      }
+
+    },
+     getImeageofferBanner() {
+      axios.post("/getImeageofferBanner").then((response) => {
+        this.ImeageofferBanner = response.data;
+        console.log("ImeageofferBanner", this.ImeageofferBanner);
+      });
+    },
   },
   beforeMount() {
     // console.log('asadd')
     // console.log(this.inputs);
     this.getImeageSlider();
     this.getImeagesecondBanner();
+       this.getImeageFourthBanner();
+       this.getImeageofferBanner();
   },
   components: {},
 };

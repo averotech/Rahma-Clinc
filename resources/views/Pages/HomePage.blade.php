@@ -1,6 +1,7 @@
 @extends('layout.app')
 @section('content')
     @php
+        // dd('dd');
         $HeaderNav = nova_get_setting('navbar', '');
         $NavBar = json_decode($HeaderNav);
         $Header_WhatsAppLink = nova_get_setting('logo', '');
@@ -31,11 +32,15 @@
         $ThirdImage_Logo = 'storage/' . nova_get_setting('third_Image_About_Us', '');
         // dd($FirstImage);
 
-
         //Fourth_Banner
         $str_slider = nova_get_setting('Fourth_Banner', 'default_value');
         $json_slider = json_decode($str_slider);
-        return   $json_slider;
+
+
+        $str_slider = nova_get_setting('offer_Banner', 'default_value');
+        $offer_Banner = json_decode($str_slider);
+        dd( $offer_Banner);
+
     @endphp
     <!-- Start content -->
     <section class="bg-[#f6f6f6] pt-10 pb-10 lg:pb-0">
@@ -112,7 +117,8 @@
                                     </defs>
                                 </svg>
                             </a>
-                            <button class="button-style mt-11 sitka-font text-[18px] font-[600] relative px-[40px] contact-btn"
+                            <button
+                                class="button-style mt-11 sitka-font text-[18px] font-[600] relative px-[40px] contact-btn"
                                 data-scroll="contact">
                                 <span
                                     class="right-0 top-[-20px] flex items-center justify-center h-[64px] w-[64px] border border-[#CBD7E7] rounded-full absolute">
@@ -133,10 +139,10 @@
                             @foreach ($json_slider as $slider)
                                 @php
 
-                                    $imgSlider =  $slider->value;
+                                    // $imgSlider =  $slider->value;
                                 @endphp
                                 <div class="relative">
-                                    <img class="max-w-full absolute bottom-0" src="{{ $imgSlider }}" alt="logo">
+                                    {{-- <img class="max-w-full absolute bottom-0" src="{{ $imgSlider }}" alt="logo"> --}}
                                 </div>
                             @endforeach
                         @else
@@ -148,25 +154,84 @@
                     </div>
                 </div>
                 <div class="col-span-1 relative">
-                    <form action="">
+
+                    {{-- @error('first-name')
+                        <span class="text-red-700">
+                            <script>
+                                var bool = {!! json_encode($message) !!};
+                                let result = result.concat(bool);
+                                toastr.error(bool);
+                            </script>
+
+                        </span>
+                    @enderror
+                    @error('phone')
+                        <span class="text-red-700">
+                            <script>
+                                var bool = {!! json_encode($message) !!};
+                                let result = result.concat(bool);
+                                toastr.error(result);
+                            </script>
+
+                        </span>
+                    @enderror
+                    @error('area')
+                        <span class="text-red-700">
+                            <script>
+                                var bool = {!! json_encode($message) !!};
+                                let result = result.concat(bool);
+                                toastr.error(result);
+                            </script>
+
+                        </span>
+                    @enderror --}}
+
+                    @php
+                        $firstName = '';
+                    @endphp
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    @php
+
+                                        $firstName = $firstName . ' ' . $error . '<br>';
+
+                                    @endphp
+                                @endforeach
+                                <script>
+                                    var bool = {!! json_encode($firstName) !!};
+                                    toastr.error(bool);
+                                </script>
+                                {{-- {!! $firstName !!} --}}
+                            </ul>
+                        </div>
+                    @endif
+                    <form method="POST" action="/conctus" enctype="multipart/form-data">
+                        @csrf
                         <div class="mb-5">
                             <label for="full-name" class="block text-sm font-medium text-gray-700 sitka-font">الاسم
                                 الكامل</label>
                             <input type="text" name="first-name" id="full-name" autocomplete="given-name"
                                 class="mt-1 px-2 py-2 block w-full bg-transparent rounded-md border border-[#D1D5DB] focus:outline-[#CBD7E7] focus:ring-[#CBD7E7] sm:text-sm">
                         </div>
+                        @if ($errors->has('first-name'))
+                            <span class="text-red-700 ">{{ $errors->first('name') }}</span>
+                        @endif
                         <div class="mb-5">
                             <label for="phone" class="block text-sm font-medium text-gray-700 sitka-font">رقم الهاتف
                             </label>
                             <input type="text" name="phone" id="phone" autocomplete="given-name"
                                 class="mt-1 px-2 py-2 block w-full bg-transparent rounded-md border border-[#D1D5DB] focus:outline-[#CBD7E7] focus:ring-[#CBD7E7] sm:text-sm">
                         </div>
+
                         <div>
                             <label for="ch-1" class="block text-sm font-medium text-gray-700 sitka-font">اختيار
                                 المنطقة</label>
                             <input type="text" name="area" id="ch-1" autocomplete="given-name"
                                 class="mt-1 px-2 py-2 block w-full bg-transparent rounded-md border border-[#D1D5DB] focus:outline-[#CBD7E7] focus:ring-[#CBD7E7] sm:text-sm">
                         </div>
+
                         <button class="button-style sitka-font text-[18px] font-[600] relative mt-8 px-[40px]"
                             type="submit">
                             <span
@@ -449,7 +514,8 @@
                     سارع بالتواصل معنا
                 </h2>
             </div>
-            <form action="">
+            <form method="POST" action="/conctus" enctype="multipart/form-data">
+                @csrf
                 <div class="mb-5">
                     <label for="full-name" class="block text-sm font-medium text-gray-700 sitka-font">الاسم الكامل</label>
                     <input type="text" name="first-name" id="full-name" autocomplete="given-name"

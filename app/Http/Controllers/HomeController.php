@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ContactUs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 class HomeController extends Controller
 {
 
@@ -152,7 +154,66 @@ class HomeController extends Controller
             return "full ok";
         }
     }
+    public function getImeageofferBanner()
+    {
+        $str_slider = nova_get_setting('offer_Banner', 'default_value');
+        $json_slider = json_decode($str_slider);
+        return   $json_slider;
+    }
 
+
+    public function setImeageofferBanner(Request $request)
+    {
+
+        // dd($request->all());
+
+
+        $img =  $request->file->store('images', 'public');
+        $str_slider = nova_get_setting('offer_Banner', 'default_value');
+        if ($str_slider != 'default_value') {
+
+            $json_slider = json_decode($str_slider);
+            $pus = array(
+                'key' => $request->key,
+                'images' => $img,
+                "title" => $request->title,
+                "videotitle" => $request->videotitle,
+                "price" => $request->price,
+                "description" => $request->description,
+                "buttonTitle" => $request->buttonTitle,
+                "buttonLink" => $request->buttonLink,
+
+
+            );
+            array_push($json_slider, $pus);
+            $str_json = json_encode($json_slider);
+            // dd( $str_json);
+            DB::table('nova_settings')->where('key', 'offer_Banner')->update(['value' => $str_json]);
+            return "okk";
+        } else {
+
+            $json_slider = array();
+            $pus = array(
+                'key' => $request->key,
+                'images' => $img,
+                "title" => $request->title,
+                "videotitle" => $request->videotitle,
+                "price" => $request->price,
+                "description" => $request->description,
+                "buttonTitle" => $request->buttonTitle,
+                "buttonLink" => $request->buttonLink,
+
+            );
+            array_push($json_slider, $pus);
+            $str_json = json_encode($json_slider);
+            // dd( $str_json);
+            DB::table('nova_settings')->insert([
+                'key' => 'offer_Banner',
+                'value' => $str_json,
+            ]);
+            return "full ok";
+        }
+    }
     public function setaboutusslider(Request $request)
     {
         $img =  $request->file->store('images', 'public');
@@ -197,13 +258,91 @@ class HomeController extends Controller
 
         foreach ($json_slider as $key => $value) {
 
-            if ($value['key']== $request->key)   unset($json_slider[$key]);
+            if ($value['key'] == $request->key)   unset($json_slider[$key]);
         }
         // dd($json_slider);
         $str_json = json_encode($json_slider);
         // $array = \array_diff($json_slider, ["23661ba1-5053-46df-a50a-a0cb1813a754"]);
         DB::table('nova_settings')->where('key', $request->type)->update(['value' => $str_json]);
         return "super ok";
+    }
 
+
+
+
+    public function ContactUsForm(Request $request)
+    {
+        // dd($request->all());
+        $request->validate( [
+            'first-name' => 'required|string|min:3|max:50',
+            'phone' => 'digits_between:10,14',
+            'area' => 'required',
+        ],
+        [
+            'first-name.required' => 'الرجاء ادخال الاسم. ',
+            'first-name.string' => 'الرجاء ادخال الاسم بشكل صحيح . ',
+            'first-name.min' => 'الاسم يجب ان يكون على الأقل 3 حروف. ',
+            'first-name.max' => 'الاسم يجب ان لا يزيد عن 50 حرف. ',
+
+            'phone.digits_between' => 'الرجاء ادخال رقم الهاتف بشكل صحيح. ',
+            'area.required' => 'الرجاء ادخال الرسالة. ',
+        ]);
+        // $validator = Validator::make(
+        //     $request->all(),
+        //     [
+        //         'first-name' => 'required|string|min:3|max:50',
+        //         'phone' => 'digits_between:10,14',
+        //         'area' => 'required',
+        //     ],
+        //     [
+        //         'first-name.required' => 'الرجاء ادخال الاسم. ',
+        //         'first-name.string' => 'الرجاء ادخال الاسم بشكل صحيح . ',
+        //         'first-name.min' => 'الاسم يجب ان يكون على الأقل 3 حروف. ',
+        //         'first-name.max' => 'الاسم يجب ان لا يزيد عن 50 حرف. ',
+
+        //         'phone.digits_between' => 'الرجاء ادخال رقم الهاتف بشكل صحيح. ',
+        //         'area.required' => 'الرجاء ادخال الرسالة. ',
+        //     ]
+        // );
+        // if($validator->fails()){
+        //     return back()->withErrors($validator->errors())->withInput();
+        //   }
+
+            ContactUs::create([
+                'name' => $request['first-name'],
+                'phone' => $request['phone'],
+                'location' => $request['area'],
+
+            ]);
+
+        //     session()->flash("success", "This is success message");
+
+        // session()->flash("warning", "This is warning message");
+
+        // session()->flash("info", "This is information message");
+
+        // session()->flash("error", "This is error message");
+
+            return  redirect()->back();
+        // }return Redirect::to('/')->with($notification);
+
+        // return response()->json(['error' => $validator->errors()->all()]);
+    }
+
+
+    public function showToastrMessages()
+    {
+
+        // Flash messages settings
+
+        session()->flash("success", "This is success message");
+
+        session()->flash("warning", "This is warning message");
+
+        session()->flash("info", "This is information message");
+
+        session()->flash("error", "This is error message");
+        return view('Pages/HomePage');
+        return view("toastr-notification");
     }
 }
