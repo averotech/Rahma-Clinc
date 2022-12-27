@@ -3,21 +3,45 @@
     <template #field>
       <div v-if="field.type == 1">
         <div class="" v-for="(image, key) in ImageSlider" :key="key">
-          <div class="relative mb-6 bg-gray-600 flex flex-col items-center justify-start max-w-xs  max-h-10 h-36  ">
-            <img class="h-1/5 w-full sliderImage" :src="image.value" :alt="image.key">
-            <svg @click="removeImageSlider(image.key, 'slider')" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-              fill="currentColor" width="20" height="20"
-              class="absolute closeIcons cursor-pointer text-gray-800 dark:text-gray-200" role="presentation">
-              <path fill-rule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                clip-rule="evenodd"></path>
-            </svg>
+          <div class="grid grid-cols-4 gap-x-6 gap-y-2">
+            <div class="h-full flex items-start justify-center">
+              <div class="relative w-full">
+                <button type="button" @click="removeImageSlider(image.key, 'slider')"
+                  class="rounded-full shadow bg-white dark:bg-gray-800 text-center flex items-center justify-center h-[20px] w-[21px] absolute z-20 top-[-10px] right-[-9px] v-popper--has-tooltip"
+                  dusk="logo-delete-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                    fill="currentColor" width="20" height="20" class="inline-block text-gray-800 dark:text-gray-200"
+                    role="presentation">
+                    <path fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                      clip-rule="evenodd"></path>
+                  </svg></button>
+                <div
+                  class="bg-gray-50 relative aspect-square flex items-center justify-center border-2 border-gray-200 dark:border-gray-700 overflow-hidden rounded-lg">
+                  <img :src="image.value" :alt="image.key" class="aspect-square object-scale-down">
+                </div>
+                <p class="font-semibold text-xs mt-1">{{ image.key }}</p>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="form-group flex flex-col bg-[#b93939] my-3 py-1.5 gap-y-2 w-full " v-for="(input, key) in inputs"
-          :key="input.id">
+        <div class="form-group flex flex-col bg-[#b93939] my-5 mt-3 py-1.5 gap-y-2 w-full "
+          v-for="(input, key) in inputs" :key="input.id">
+          <div @click="AddFirstBanner(input.id)"
+            class="block cursor-pointer p-4 bg-gray-50 dark:bg-gray-900 dark:hover:bg-gray-900 border-4 border-dashed hover:border-gray-300 dark:border-gray-700 dark:hover:border-gray-600 rounded-lg">
+            <div class="flex items-center space-x-4 pointer-events-none">
+              <p class="text-center pointer-events-none">
+              <div size="lg" align="center" class="shadow relative bg-primary-500 hover:bg-primary-400 text-white dark:text-gray-900 
+              cursor-pointer rounded text-sm font-bold focus:outline-none focus:ring ring-primary-200
+               dark:ring-gray-600 inline-flex items-center justify-center h-9 px-3 shadow relative 
+               bg-primary-500 hover:bg-primary-400 text-white dark:text-gray-900">Choose File</div>
+              </p>
+              <p class="pointer-events-none text-center text-sm text-gray-500 dark:text-gray-400 font-semibold">Drop
+                file
+                or click to choose</p>
+            </div>
+          </div>
           <div class="flex flex-row items-center justify-start my-2">
-            <input type="file" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2" ref="myFiles"
+            <input type="file" class=" w-full my-2 h-[36px] px-2 py-1 border-b border-2 hidden" :id="input.id"
               @change="upload($event, input.id)" placeholder="الرجاء اختيار الصورة" />
             <div class="removeIcon" v-if="inputs.length > 1" v-on:click="remove(input.id)">
               <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -33,15 +57,91 @@
               </svg>
             </div>
           </div>
-          <button class="w-8 h-8" v-if="key == inputs.length - 1" @click="add">
-            <img src="https://image.shutterstock.com/image-vector/add-icon-260nw-571594759.jpg"
+          <button class="w-6 h-6" v-if="key == inputs.length - 1" @click="add">
+            <img src="https://media.discordapp.net/attachments/938405759996276806/1057012477243707402/more.png"
               class="w-[24px] h-[24px]" alt="ssss" />
           </button>
         </div>
       </div>
       <div v-else-if="field.type == 2">
-        <div v-for="(item, key) in ImagesecondBanner" :key="key">
-          <div class=" relative flex flex-col items-center bg-gray-500 justify-start w-full secondBannerContainer">
+        <div>
+          <ul class="layout-list">
+            <div v-for="(item, key) in ImagesecondBanner" :key="key">
+              <li class="layout-list__item layout-item">
+                <h4 class="layout-item__title">
+                  Banner {{ key + 1 }}
+                  <button class="btn btn-default btn-danger"
+                    @click="removeImageSlider(item.key, 'second_Banner')">Remove</button>
+                </h4>
+                <div class="layout-item__fields">
+                  <div class="layout-item__fields__item">
+                    <div class="flexible-input-container input-file ">
+                      <div class="input-file__input-field">
+                        <label for="0main_img_workplace" class="input-label">
+                          صورة
+                        </label>
+                        <p>Click here to upload</p>
+                        <input id="0main_img_workplace" type="file"
+                        @change="secondBanner($event, item.key, key, 'photo')"
+                        class="input-file__input">
+                      </div>
+                      <div class="input-file__values">
+                        <div class="input-file__single imageContainer">
+                          <img class="imageBanner" :src="item.images" alt="item.key">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="layout-item__fields__item pt-3 ">
+                    <div class="flexible-input-container">
+                      <label for="2text_main_workplace" class="input-label pl-3">
+                        Title
+                      </label>
+                      <div class="input-control__container">
+                        <input id="2text_main_workplace" type="text"
+                          @change="secondBanner($event, item.id, key, 'title')" :value="item.title"
+                          class="input-control ">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="layout-item__fields__item  pt-3">
+                    <div class="flexible-input-container">
+                      <label for="3sup_text_workplace " class="input-label pl-3">
+                        Sub Banner
+                      </label>
+                      <div class="input-control__container">
+                        <input id="3sup_text_workplace" type="text" :value="item.subtitle" placeholder=""
+                          class="input-control ">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="layout-item__fields__item  pt-3">
+                    <div class="flexible-input-container">
+                      <label for="4text_bottom_workplace_" class="input-label pl-3">
+                        Button Text
+                      </label>
+                      <div class="input-control__container">
+                        <input id="4text_bottom_workplace_" type="text" placeholder="" :value="item.buttonText_"
+                          class="input-control ">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="layout-item__fields__item  pt-3">
+                    <div class="flexible-input-container">
+                      <label for="5link bottom" class="input-label pl-3">
+                        Button Link
+                      </label>
+                      <div class="input-control__container">
+                        <input id="5link bottom" :value="item.buttonLink" type="text" placeholder=""
+                          class="input-control ">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </div>
+          </ul>
+          <!-- <div class=" relative flex flex-col items-center bg-gray-500 justify-start w-full secondBannerContainer">
             <img class="imageSecondBannershow" :src="item.images" alt="item.key">
             <div dir="rtl" class="flex flex-row items-start justify-start  w-full">
               <p class=" text-white text-xl ">العنوان:</p>
@@ -67,7 +167,7 @@
                 d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
                 clip-rule="evenodd"></path>
             </svg>
-          </div>
+          </div> -->
         </div>
         <div class="form-group flex flex-col bg-[#b93939] mt-3 py-1.5 gap-y-2 w-full" v-for="(input, key) in inputs"
           :key="input.id">
@@ -264,8 +364,11 @@ export default {
           ],
     };
   },
-  methods: {
 
+  methods: {
+    AddFirstBanner(key) {
+      document.getElementById(key).click();
+    },
     upload(event, key) {
       console.log("name", event.target.files[0].name);
       console.log("ref", event.target.files[0]);
@@ -284,6 +387,7 @@ export default {
       // this.secondBanner[]
     },
     removeImageSlider(key, type) {
+      console.log('remoooooove')
       axios.post("/removeImageSlider", {
         key: key,
         type: type,
@@ -291,11 +395,15 @@ export default {
       this.getImeageSlider();
     },
     secondBanner(e, key, index, type) {
+      console.log('key',key)
       if (type == "photo") {
         if (!this.secondBannerArray[index]) {
+          console.log('111HERERERE',this.secondBannerArray)
+
           this.keyVal.push(key);
           this.secondBannerArray.push({ [key]: { [type]: e.target.files[0] } });
         } else {
+          console.log('HERERERE',this.secondBannerArray[index][key])
           this.secondBannerArray[index][key][type] = e.target.files[0];
         }
       }
@@ -381,6 +489,7 @@ export default {
     getImeageSlider() {
       axios.post("/getImeageSlider").then((response) => {
         this.ImageSlider = response.data;
+        console.log('this.ImageSlider', this.ImageSlider)
       });
     },
     setImeageSlider() {
@@ -388,6 +497,8 @@ export default {
         ImageSlider: this.ImageSlider,
         inputs: this.inputs,
       });
+
+
       this.getImeageSlider();
     },
     setImagesecondBanner() {
@@ -443,6 +554,9 @@ export default {
     this.getImageFourthBanner();
 
   },
+  mounted() {
+
+  }
 };
 </script>
 <style scoped>
@@ -498,5 +612,147 @@ export default {
   position: absolute;
   top: 30px;
   right: 35px;
+}
+
+.input-file {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.imageContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  margin: 10px 15px 0 0;
+  text-align: center;
+  background: #cccccc;
+  border-radius: 50%;
+  height: 120px;
+  width: 120px;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-file__input {
+  margin: 10px 0;
+  cursor: pointer;
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+.input-file__input-field {
+  padding: 10px;
+  margin: 10px 15px 0 0;
+  text-align: center;
+  background: #cccccc;
+  border-radius: 50%;
+  height: 120px;
+  width: 120px;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  -ms-flex-item-align: start;
+  align-self: flex-start;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.flexible-input-container .input-label {
+  font-weight: bold;
+  background: #eeeeee;
+  font-size: 16px;
+  margin: 0 0 6px 0;
+}
+
+.input-file__input-field label {
+  display: block;
+  margin: 0 0 7px;
+  background: none !important;
+}
+
+.input-file__values {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  /* padding: 15px; */
+  min-width: 50%;
+}
+
+.imageBanner {
+  width: 50px;
+  height: 50px;
+}
+
+.input-control__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+}
+
+.flexible-input-container .input-control {
+  width: 100%;
+  border-radius: 3px;
+  border: 1px solid #bacad6;
+  color: #000000;
+  padding: 7px 10px;
+}
+
+.input-control__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+}
+
+.input-control {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
 }
 </style>
