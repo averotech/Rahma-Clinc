@@ -1,6 +1,7 @@
 @extends('layout.app')
 @section('content')
     @php
+        // dd('dd');
         $HeaderNav = nova_get_setting('navbar', '');
         $NavBar = json_decode($HeaderNav);
         $Header_WhatsAppLink = nova_get_setting('logo', '');
@@ -34,7 +35,9 @@
         //second_Banner
         $str_secondBanner = nova_get_setting('second_Banner', 'default_value');
         $json_secondBanner = json_decode($str_secondBanner);
-        
+        // offer Slider
+        $str_Offerslider = nova_get_setting('offer_Banner', 'default_value');
+        $offer_Slider = json_decode($str_Offerslider);
         //Fourth_Banner
         $str_fourthBanner = nova_get_setting('Fourth_Banner', 'default_value');
         $json_fourthBanner = json_decode($str_fourthBanner);
@@ -145,7 +148,7 @@
                                     $imgSlider = $slider->value;
                                 @endphp
                                 <div class="relative">
-                                    <img class="max-w-full absolute bottom-0" src="{{ $imgSlider }}" alt="logo">
+                                    {{-- <img class="max-w-full absolute bottom-0" src="{{ $imgSlider }}" alt="logo"> --}}
                                 </div>
                             @endforeach
                         @else
@@ -176,7 +179,7 @@
                             </ul>
                         </div>
                     @endif
-                    <form method="POST"  action="/conctus" enctype="multipart/form-data">
+                    <form method="POST" action="/conctus" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-5">
                             <label for="full-name" class="block text-sm font-medium text-gray-700 sitka-font">الاسم
@@ -184,18 +187,23 @@
                             <input type="text" name="first-name" id="full-name" autocomplete="given-name"
                                 class="mt-1 px-2 py-2 block w-full bg-transparent rounded-md border border-[#D1D5DB] focus:outline-[#CBD7E7] focus:ring-[#CBD7E7] sm:text-sm">
                         </div>
+                        @if ($errors->has('first-name'))
+                            <span class="text-red-700 ">{{ $errors->first('name') }}</span>
+                        @endif
                         <div class="mb-5">
                             <label for="phone" class="block text-sm font-medium text-gray-700 sitka-font">رقم الهاتف
                             </label>
                             <input type="text" name="phone" id="phone" autocomplete="given-name"
                                 class="mt-1 px-2 py-2 block w-full bg-transparent rounded-md border border-[#D1D5DB] focus:outline-[#CBD7E7] focus:ring-[#CBD7E7] sm:text-sm">
                         </div>
+
                         <div>
                             <label for="ch-1" class="block text-sm font-medium text-gray-700 sitka-font">اختيار
                                 المنطقة</label>
                             <input type="text" name="area" id="ch-1" autocomplete="given-name"
                                 class="mt-1 px-2 py-2 block w-full bg-transparent rounded-md border border-[#D1D5DB] focus:outline-[#CBD7E7] focus:ring-[#CBD7E7] sm:text-sm">
                         </div>
+
                         <button class="button-style sitka-font text-[18px] font-[600] relative mt-8 px-[40px]"
                             type="submit">
                             <span
@@ -492,9 +500,8 @@
                     سارع بالتواصل معنا
                 </h2>
             </div>
-
-        <form method="POST" v-on:submit.prevent="submit" action="/conctus" enctype="multipart/form-data">
-            @csrf            
+            <form method="POST" action="/conctus" enctype="multipart/form-data">
+                @csrf
                 <div class="mb-5">
                     <label for="full-name" class="block text-sm font-medium text-gray-700 sitka-font">الاسم الكامل</label>
                     <input type="text" name="first-name" id="full-name" autocomplete="given-name"

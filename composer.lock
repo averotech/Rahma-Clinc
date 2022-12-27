@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "720f923bbe33a7f7deef16794d5e4044",
+    "content-hash": "376a1aeba4f35faefbe02ef066630c86",
     "packages": [
         {
             "name": "acme/color-picker",
@@ -4157,6 +4157,69 @@
                 }
             ],
             "time": "2022-12-09T15:18:32+00:00"
+        },
+        {
+            "name": "sietse85/nova-button",
+            "version": "1.0.24",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sietse85/nova-button.git",
+                "reference": "b12b9115c41510058170c43018efa7f991a90169"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sietse85/nova-button/zipball/b12b9115c41510058170c43018efa7f991a90169",
+                "reference": "b12b9115c41510058170c43018efa7f991a90169",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "^4.0",
+                "php": "^7.4|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Sietse85\\NovaButton\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sietse85\\NovaButton\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sietse Sietsma",
+                    "email": "sietse85@gmail.com"
+                },
+                {
+                    "name": "Danique Wijnalda",
+                    "email": "hello@dnwjn.dev"
+                },
+                {
+                    "name": "Brian Dillingham",
+                    "email": "bdillingham88@gmail.com"
+                }
+            ],
+            "description": "(Nova 4+) A Laravel Nova package for adding buttons to your resources.",
+            "keywords": [
+                "button",
+                "field",
+                "laravel",
+                "nova",
+                "nova4"
+            ],
+            "support": {
+                "issues": "https://github.com/sietse85/nova-button/issues",
+                "source": "https://github.com/sietse85/nova-button/tree/v1.0.24"
+            },
+            "time": "2022-12-23T12:46:48+00:00"
         },
         {
             "name": "spatie/once",
