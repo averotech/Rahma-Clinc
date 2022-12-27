@@ -2507,8 +2507,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
   mixins: [laravel_nova__WEBPACK_IMPORTED_MODULE_0__.FormField, laravel_nova__WEBPACK_IMPORTED_MODULE_0__.HandlesValidationErrors],
   props: ["resourceName", "resourceId", "field"],
   data: function data() {
-    var _ref;
-    return _ref = {
+    return {
       ImageSlider: [],
       ImagesecondBanner: [],
       secondBannerArray: [],
@@ -2518,18 +2517,19 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       ImeageofferBanner: [],
       offerBannerArray: [],
       keyValofferBanner: [],
-      keyVal: []
-    }, _defineProperty(_ref, "keyValFourthBanner", []), _defineProperty(_ref, "keyValofferBanner", []), _defineProperty(_ref, "inputs", this.field.type == 1 ? [{
-      id: (0,uuid__WEBPACK_IMPORTED_MODULE_2__["default"])(),
-      value: ""
-    }] : [{
-      id: (0,uuid__WEBPACK_IMPORTED_MODULE_2__["default"])(),
-      value: "",
-      title: "",
-      subtitle: "",
-      button: "",
-      buttonLink: ""
-    }]), _ref;
+      keyVal: [],
+      inputs: this.field.type == 1 ? [{
+        id: (0,uuid__WEBPACK_IMPORTED_MODULE_2__["default"])(),
+        value: ""
+      }] : [{
+        id: (0,uuid__WEBPACK_IMPORTED_MODULE_2__["default"])(),
+        value: "",
+        title: "",
+        subtitle: "",
+        button: "",
+        buttonLink: ""
+      }]
+    };
   },
   methods: {
     AddFirstBanner: function AddFirstBanner(key) {

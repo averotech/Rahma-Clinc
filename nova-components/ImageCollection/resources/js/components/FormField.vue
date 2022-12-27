@@ -1,10 +1,5 @@
 <template >
-  <DefaultField
-    :field="field"
-    :errors="errors"
-    :show-help-text="showHelpText"
-    :full-width-content="fullWidthContent"
-  >
+  <DefaultField :field="field" :errors="errors" :show-help-text="showHelpText" :full-width-content="fullWidthContent">
     <template #field>
       <div v-if="field.type == 1">
         <div class="" v-for="(image, key) in ImageSlider" :key="key">
@@ -53,20 +48,11 @@
                 xmlns:xlink="http://www.w3.org/1999/xlink">
                 <rect width="23" height="23" fill="url(#pattern01)" />
                 <defs>
-                  <pattern
-                    id="pattern01"
-                    patternContentUnits="objectBoundingBox"
-                    width="1"
-                    height="1"
-                  >
+                  <pattern id="pattern01" patternContentUnits="objectBoundingBox" width="1" height="1">
                     <use xlink:href="#image0_1_3" transform="scale(0.03125)" />
                   </pattern>
-                  <image
-                    id="image0_1_3"
-                    width="32"
-                    height="32"
-                    xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAABGUlEQVR4nO2WsU7DMBCGPzEwBEbYMiB2HgAJ8QIs5an6In2FjqngERoxRkIM6c7WzejoRTqsNMRxaoTkX7IsX2L9n+/OUSArK1zPwA5w3pDYggTa9Zh3o00B4HSMjUcbuZnG/wOYI63RZXEZgJ8pjF1Hl8BlAHIJ+LUnmr9swgYozfozNUCp85nO9wqRDED0CLwBNwbC1zVQAXecAGCtsXcD4Ztv9Z3qFAAFsNH4B3Drmdf6TCCuQgHGqtDTWQh78lHmsdfoAngx5Qg6eadWNz0wHeLVHKQOMRctJ/z57IGn790Hsy7tQ415VOcK0Uaab00mgiGmqK/hhm7HrBq6akkgKmMuML4uTTnklswu+bwKRJ+5hVhJL3wBanf6orViRbcAAAAASUVORK5CYII="
-                  />
+                  <image id="image0_1_3" width="32" height="32"
+                    xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAABGUlEQVR4nO2WsU7DMBCGPzEwBEbYMiB2HgAJ8QIs5an6In2FjqngERoxRkIM6c7WzejoRTqsNMRxaoTkX7IsX2L9n+/OUSArK1zPwA5w3pDYggTa9Zh3o00B4HSMjUcbuZnG/wOYI63RZXEZgJ8pjF1Hl8BlAHIJ+LUnmr9swgYozfozNUCp85nO9wqRDED0CLwBNwbC1zVQAXecAGCtsXcD4Ztv9Z3qFAAFsNH4B3Drmdf6TCCuQgHGqtDTWQh78lHmsdfoAngx5Qg6eadWNz0wHeLVHKQOMRctJ/z57IGn790Hsy7tQ415VOcK0Uaab00mgiGmqK/hhm7HrBq6akkgKmMuML4uTTnklswu+bwKRJ+5hVhJL3wBanf6orViRbcAAAAASUVORK5CYII=" />
                 </defs>
               </svg>
             </div>
@@ -197,35 +183,16 @@
               <input type="text" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2" ref="title"
                 @change="secondBanner($event, input.id, key, 'buttonLink')" placeholder="button Link" />
             </div>
-            <div
-              class="removeIcon"
-              v-if="inputs.length > 1"
-              v-on:click="remove(input.id)"
-            >
-              <svg
-                width="23"
-                height="23"
-                viewBox="0 0 23 23"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
+            <div class="removeIcon" v-if="inputs.length > 1" v-on:click="remove(input.id)">
+              <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
                 <rect width="23" height="23" fill="url(#pattern01)" />
                 <defs>
-                  <pattern
-                    id="pattern01"
-                    patternContentUnits="objectBoundingBox"
-                    width="1"
-                    height="1"
-                  >
+                  <pattern id="pattern01" patternContentUnits="objectBoundingBox" width="1" height="1">
                     <use xlink:href="#image0_1_3" transform="scale(0.03125)" />
                   </pattern>
-                  <image
-                    id="image0_1_3"
-                    width="32"
-                    height="32"
-                    xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAABGUlEQVR4nO2WsU7DMBCGPzEwBEbYMiB2HgAJ8QIs5an6In2FjqngERoxRkIM6c7WzejoRTqsNMRxaoTkX7IsX2L9n+/OUSArK1zPwA5w3pDYggTa9Zh3o00B4HSMjUcbuZnG/wOYI63RZXEZgJ8pjF1Hl8BlAHIJ+LUnmr9swgYozfozNUCp85nO9wqRDED0CLwBNwbC1zVQAXecAGCtsXcD4Ztv9Z3qFAAFsNH4B3Drmdf6TCCuQgHGqtDTWQh78lHmsdfoAngx5Qg6eadWNz0wHeLVHKQOMRctJ/z57IGn790Hsy7tQ415VOcK0Uaab00mgiGmqK/hhm7HrBq6akkgKmMuML4uTTnklswu+bwKRJ+5hVhJL3wBanf6orViRbcAAAAASUVORK5CYII="
-                  />
+                  <image id="image0_1_3" width="32" height="32"
+                    xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAABGUlEQVR4nO2WsU7DMBCGPzEwBEbYMiB2HgAJ8QIs5an6In2FjqngERoxRkIM6c7WzejoRTqsNMRxaoTkX7IsX2L9n+/OUSArK1zPwA5w3pDYggTa9Zh3o00B4HSMjUcbuZnG/wOYI63RZXEZgJ8pjF1Hl8BlAHIJ+LUnmr9swgYozfozNUCp85nO9wqRDED0CLwBNwbC1zVQAXecAGCtsXcD4Ztv9Z3qFAAFsNH4B3Drmdf6TCCuQgHGqtDTWQh78lHmsdfoAngx5Qg6eadWNz0wHeLVHKQOMRctJ/z57IGn790Hsy7tQ415VOcK0Uaab00mgiGmqK/hhm7HrBq6akkgKmMuML4uTTnklswu+bwKRJ+5hVhJL3wBanf6orViRbcAAAAASUVORK5CYII=" />
                 </defs>
               </svg>
             </div>
@@ -270,35 +237,16 @@
               <input type="text" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2" ref="title"
                 @change="offerBanner($event, input.id, key, 'buttonLink')" placeholder="button Link" />
             </div>
-            <div
-              class="removeIcon"
-              v-if="inputs.length > 1"
-              v-on:click="remove(input.id)"
-            >
-              <svg
-                width="23"
-                height="23"
-                viewBox="0 0 23 23"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
+            <div class="removeIcon" v-if="inputs.length > 1" v-on:click="remove(input.id)">
+              <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
                 <rect width="23" height="23" fill="url(#pattern01)" />
                 <defs>
-                  <pattern
-                    id="pattern01"
-                    patternContentUnits="objectBoundingBox"
-                    width="1"
-                    height="1"
-                  >
+                  <pattern id="pattern01" patternContentUnits="objectBoundingBox" width="1" height="1">
                     <use xlink:href="#image0_1_3" transform="scale(0.03125)" />
                   </pattern>
-                  <image
-                    id="image0_1_3"
-                    width="32"
-                    height="32"
-                    xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAABGUlEQVR4nO2WsU7DMBCGPzEwBEbYMiB2HgAJ8QIs5an6In2FjqngERoxRkIM6c7WzejoRTqsNMRxaoTkX7IsX2L9n+/OUSArK1zPwA5w3pDYggTa9Zh3o00B4HSMjUcbuZnG/wOYI63RZXEZgJ8pjF1Hl8BlAHIJ+LUnmr9swgYozfozNUCp85nO9wqRDED0CLwBNwbC1zVQAXecAGCtsXcD4Ztv9Z3qFAAFsNH4B3Drmdf6TCCuQgHGqtDTWQh78lHmsdfoAngx5Qg6eadWNz0wHeLVHKQOMRctJ/z57IGn790Hsy7tQ415VOcK0Uaab00mgiGmqK/hhm7HrBq6akkgKmMuML4uTTnklswu+bwKRJ+5hVhJL3wBanf6orViRbcAAAAASUVORK5CYII="
-                  />
+                  <image id="image0_1_3" width="32" height="32"
+                    xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAABGUlEQVR4nO2WsU7DMBCGPzEwBEbYMiB2HgAJ8QIs5an6In2FjqngERoxRkIM6c7WzejoRTqsNMRxaoTkX7IsX2L9n+/OUSArK1zPwA5w3pDYggTa9Zh3o00B4HSMjUcbuZnG/wOYI63RZXEZgJ8pjF1Hl8BlAHIJ+LUnmr9swgYozfozNUCp85nO9wqRDED0CLwBNwbC1zVQAXecAGCtsXcD4Ztv9Z3qFAAFsNH4B3Drmdf6TCCuQgHGqtDTWQh78lHmsdfoAngx5Qg6eadWNz0wHeLVHKQOMRctJ/z57IGn790Hsy7tQ415VOcK0Uaab00mgiGmqK/hhm7HrBq6akkgKmMuML4uTTnklswu+bwKRJ+5hVhJL3wBanf6orViRbcAAAAASUVORK5CYII=" />
                 </defs>
               </svg>
             </div>
@@ -350,35 +298,16 @@
               <input type="text" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2"
                 @change="FourthBanner($event, input.id, key, 'subtitle')" placeholder="الرجاء كتابة الوصف" />
             </div>
-            <div
-              class="removeIcon"
-              v-if="inputs.length > 1"
-              v-on:click="remove(input.id)"
-            >
-              <svg
-                width="23"
-                height="23"
-                viewBox="0 0 23 23"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
+            <div class="removeIcon" v-if="inputs.length > 1" v-on:click="remove(input.id)">
+              <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
                 <rect width="23" height="23" fill="url(#pattern01)" />
                 <defs>
-                  <pattern
-                    id="pattern01"
-                    patternContentUnits="objectBoundingBox"
-                    width="1"
-                    height="1"
-                  >
+                  <pattern id="pattern01" patternContentUnits="objectBoundingBox" width="1" height="1">
                     <use xlink:href="#image0_1_3" transform="scale(0.03125)" />
                   </pattern>
-                  <image
-                    id="image0_1_3"
-                    width="32"
-                    height="32"
-                    xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAABGUlEQVR4nO2WsU7DMBCGPzEwBEbYMiB2HgAJ8QIs5an6In2FjqngERoxRkIM6c7WzejoRTqsNMRxaoTkX7IsX2L9n+/OUSArK1zPwA5w3pDYggTa9Zh3o00B4HSMjUcbuZnG/wOYI63RZXEZgJ8pjF1Hl8BlAHIJ+LUnmr9swgYozfozNUCp85nO9wqRDED0CLwBNwbC1zVQAXecAGCtsXcD4Ztv9Z3qFAAFsNH4B3Drmdf6TCCuQgHGqtDTWQh78lHmsdfoAngx5Qg6eadWNz0wHeLVHKQOMRctJ/z57IGn790Hsy7tQ415VOcK0Uaab00mgiGmqK/hhm7HrBq6akkgKmMuML4uTTnklswu+bwKRJ+5hVhJL3wBanf6orViRbcAAAAASUVORK5CYII="
-                  />
+                  <image id="image0_1_3" width="32" height="32"
+                    xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAABGUlEQVR4nO2WsU7DMBCGPzEwBEbYMiB2HgAJ8QIs5an6In2FjqngERoxRkIM6c7WzejoRTqsNMRxaoTkX7IsX2L9n+/OUSArK1zPwA5w3pDYggTa9Zh3o00B4HSMjUcbuZnG/wOYI63RZXEZgJ8pjF1Hl8BlAHIJ+LUnmr9swgYozfozNUCp85nO9wqRDED0CLwBNwbC1zVQAXecAGCtsXcD4Ztv9Z3qFAAFsNH4B3Drmdf6TCCuQgHGqtDTWQh78lHmsdfoAngx5Qg6eadWNz0wHeLVHKQOMRctJ/z57IGn790Hsy7tQ415VOcK0Uaab00mgiGmqK/hhm7HrBq6akkgKmMuML4uTTnklswu+bwKRJ+5hVhJL3wBanf6orViRbcAAAAASUVORK5CYII=" />
                 </defs>
               </svg>
             </div>
@@ -417,29 +346,26 @@ export default {
       offerBannerArray: [],
       keyValofferBanner: [],
       keyVal: [],
-      keyValFourthBanner: [],
-      keyValofferBanner: [],
       inputs:
         this.field.type == 1
           ? [
-              {
-                id: uuid(),
-                value: "",
-              },
-            ]
+            {
+              id: uuid(),
+              value: "",
+            },
+          ]
           : [
-              {
-                id: uuid(),
-                value: "",
-                title: "",
-                subtitle: "",
-                button: "",
-                buttonLink: "",
-              },
-            ],
+            {
+              id: uuid(),
+              value: "",
+              title: "",
+              subtitle: "",
+              button: "",
+              buttonLink: "",
+            },
+          ],
     };
   },
-
   methods: {
     AddFirstBanner(key) {
       document.getElementById(key).click();
@@ -698,9 +624,6 @@ export default {
       });
     },
   },
-
-
-
   beforeMount() {
     this.getImeageSlider();
     this.getImagesecondBanner();
@@ -715,41 +638,34 @@ export default {
   top: 5px;
   right: 5px;
 }
-
 .closeSecondBannerIcons {
   position: absolute;
   top: 15px;
   right: 10px;
 }
-
 .sliderImage {
   width: auto;
   height: 320px;
 }
-
 .iput_seconBanner {
   width: 100%;
 }
-
 .secondBannerContainer {
   margin: 20px 0px;
   padding: 0 25px;
   border-radius: 25px;
 }
-
 .imageSecondBannershow {
   border-radius: 2px solid black;
   width: 35px;
   height: 35px;
   margin: 20px 0;
 }
-
 .forthBannerContainer {
   margin: 40px 0px;
   padding: 0 25px;
   border-radius: 25px;
 }
-
 .imageFourthBannershow {
   border-radius: 2px solid black;
   width: 100%;
@@ -757,20 +673,17 @@ export default {
   height: auto;
   margin: 20px 0;
 }
-
 .closeForthBannerIcons {
   position: absolute;
   top: 30px;
   right: 35px;
 }
-
 .input-file {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
 }
-
 .imageContainer {
   display: flex;
   flex-direction: row;
@@ -792,7 +705,6 @@ export default {
   justify-content: center;
   align-items: center;
 }
-
 .input-file__input {
   margin: 10px 0;
   cursor: pointer;
@@ -804,7 +716,6 @@ export default {
   height: 100%;
   z-index: 10;
 }
-
 .input-file__input-field {
   padding: 10px;
   margin: 10px 15px 0 0;
@@ -833,20 +744,17 @@ export default {
   -ms-flex-align: center;
   align-items: center;
 }
-
 .flexible-input-container .input-label {
   font-weight: bold;
   background: #eeeeee;
   font-size: 16px;
   margin: 0 0 6px 0;
 }
-
 .input-file__input-field label {
   display: block;
   margin: 0 0 7px;
   background: none !important;
 }
-
 .input-file__values {
   -webkit-box-flex: 1;
   -ms-flex-positive: 1;
@@ -854,12 +762,10 @@ export default {
   /* padding: 15px; */
   min-width: 50%;
 }
-
 .imageBanner {
   width: 50px;
   height: 50px;
 }
-
 .input-control__container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -875,7 +781,6 @@ export default {
   -ms-flex-align: stretch;
   align-items: stretch;
 }
-
 .flexible-input-container .input-control {
   width: 100%;
   border-radius: 3px;
@@ -883,7 +788,6 @@ export default {
   color: #000000;
   padding: 7px 10px;
 }
-
 .input-control__container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -899,7 +803,6 @@ export default {
   -ms-flex-align: stretch;
   align-items: stretch;
 }
-
 .input-control {
   -webkit-box-flex: 1;
   -ms-flex-positive: 1;
