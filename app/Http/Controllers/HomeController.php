@@ -28,7 +28,6 @@ class HomeController extends Controller
             );
             array_push($json_slider, $pus);
             $str_json = json_encode($json_slider);
-            // dd( $str_json);
             DB::table('nova_settings')->where('key', 'slider')->update(['value' => $str_json]);
             return "okk";
         } else {
@@ -41,7 +40,6 @@ class HomeController extends Controller
             );
             array_push($json_slider, $pus);
             $str_json = json_encode($json_slider);
-            // dd( $str_json);
             DB::table('nova_settings')->insert([
                 'key' => 'slider',
                 'value' => $str_json,
