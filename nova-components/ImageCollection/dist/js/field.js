@@ -2514,6 +2514,9 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       ImageFourthBanner: [],
       FourthBannerArray: [],
       keyValFourthBanner: [],
+      ImeageofferBanner: [],
+      offerBannerArray: [],
+      keyValofferBanner: [],
       keyVal: [],
       inputs: this.field.type == 1 ? [{
         id: (0,uuid__WEBPACK_IMPORTED_MODULE_2__["default"])(),
@@ -2705,11 +2708,94 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         });
       }
     },
-    getImageFourthBanner: function getImageFourthBanner() {
+    offerBanner: function offerBanner(e, key, index, type) {
+      if (type == "photo") {
+        if (!this.offerBannerArray[index]) {
+          this.keyValofferBanner.push(key);
+          this.offerBannerArray.push(_defineProperty({}, key, _defineProperty({}, type, e.target.files[0])));
+          console.log(e.target.files[0]);
+        } else {
+          this.offerBannerArray[index][key][type] = e.target.files[0];
+          console.log(e.target.files[0]);
+        }
+      }
+      //
+      if (type == "videotitle") {
+        if (!this.offerBannerArray[index]) {
+          this.keyValofferBanner.push(key);
+          this.offerBannerArray.push(_defineProperty({}, key, _defineProperty({}, type, e.target.value)));
+        } else {
+          this.offerBannerArray[index][key][type] = e.target.value;
+        }
+      } else if (type === "title") {
+        if (!this.offerBannerArray[index]) {
+          this.keyValofferBanner.push(key);
+          this.offerBannerArray.push(_defineProperty({}, key, _defineProperty({}, type, e.target.value)));
+        } else {
+          this.offerBannerArray[index][key][type] = e.target.value;
+        }
+      } else if (type === "price") {
+        if (!this.offerBannerArray[index]) {
+          this.keyValofferBanner.push(key);
+          this.offerBannerArray.push(_defineProperty({}, key, _defineProperty({}, type, e.target.value)));
+        } else {
+          this.offerBannerArray[index][key][type] = e.target.value;
+        }
+      } else if (type === "description") {
+        if (!this.offerBannerArray[index]) {
+          this.keyValofferBanner.push(key);
+          this.offerBannerArray.push(_defineProperty({}, key, _defineProperty({}, type, e.target.value)));
+        } else {
+          this.offerBannerArray[index][key][type] = e.target.value;
+        }
+      } else if (type === "buttonTitle") {
+        if (!this.offerBannerArray[index]) {
+          this.keyValofferBanner.push(key);
+          this.offerBannerArray.push(_defineProperty({}, key, _defineProperty({}, type, e.target.value)));
+        } else {
+          this.offerBannerArray[index][key][type] = e.target.value;
+        }
+      } else if (type === "buttonLink") {
+        if (!this.offerBannerArray[index]) {
+          this.keyValofferBanner.push(key);
+          this.offerBannerArray.push(_defineProperty({}, key, _defineProperty({}, type, e.target.value)));
+        } else {
+          this.offerBannerArray[index][key][type] = e.target.value;
+        }
+      }
+      console.log("baner", this.offerBannerArray);
+      console.log("key", this.keyValofferBanner);
+    },
+    setImeageofferBanner: function setImeageofferBanner() {
+      var formData = new FormData();
+      for (var index = 0; index < this.keyValofferBanner.length; index++) {
+        formData.append("file", this.offerBannerArray[index][this.keyValofferBanner[index]]["photo"]);
+        formData.append("videotitle", this.offerBannerArray[index][this.keyValofferBanner[index]]["videotitle"]);
+        formData.append("title", this.offerBannerArray[index][this.keyValofferBanner[index]]["title"]);
+        formData.append("price", this.offerBannerArray[index][this.keyValofferBanner[index]]["price"]);
+        formData.append("description", this.offerBannerArray[index][this.keyValofferBanner[index]]["description"]);
+        formData.append("buttonTitle", this.offerBannerArray[index][this.keyValofferBanner[index]]["buttonTitle"]);
+        formData.append("buttonLink", this.offerBannerArray[index][this.keyValofferBanner[index]]["buttonLink"]);
+        formData.append("key", this.keyValofferBanner[index]);
+        axios__WEBPACK_IMPORTED_MODULE_1___default().post("/setImeageofferBanner", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data"
+          }
+        });
+      }
+    },
+    getImeageofferBanner: function getImeageofferBanner() {
       var _this3 = this;
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/getImeageofferBanner").then(function (response) {
+        _this3.ImeageofferBanner = response.data;
+        console.log("ImeageofferBanner", _this3.ImeageofferBanner);
+      });
+    },
+    getImageFourthBanner: function getImageFourthBanner() {
+      var _this4 = this;
       axios__WEBPACK_IMPORTED_MODULE_1___default().post("/getImageFourthBanner").then(function (response) {
-        _this3.ImageFourthBanner = response.data;
-        console.log("ImageFourthBanner", _this3.ImageFourthBanner);
+        _this4.ImageFourthBanner = response.data;
+        console.log("ImageFourthBanner", _this4.ImageFourthBanner);
       });
     }
   },
@@ -2717,8 +2803,8 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     this.getImeageSlider();
     this.getImagesecondBanner();
     this.getImageFourthBanner();
-  },
-  mounted: function mounted() {}
+    this.getImeageofferBanner();
+  }
 });
 
 /***/ }),
@@ -3370,7 +3456,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           ref_for: true,
           ref: "myFiles",
           onChange: function onChange($event) {
-            return $options.previewFiles($event, key);
+            return $options.offerBanner($event, input.id, key, 'photo');
           },
           placeholder: "الرجاء اختيار صورة الفيديو"
         }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_71), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
@@ -3379,7 +3465,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           ref_for: true,
           ref: "title",
           onChange: function onChange($event) {
-            return _ctx.servicesTitle($event, key);
+            return $options.offerBanner($event, input.id, key, 'videotitle');
           },
           placeholder: "الرجاء كتابة عنوان الفيديو"
         }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_72), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
@@ -3388,7 +3474,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           ref_for: true,
           ref: "title",
           onChange: function onChange($event) {
-            return _ctx.servicesTitle($event, key);
+            return $options.offerBanner($event, input.id, key, 'title');
           },
           placeholder: "الرجاء كتابة العنوان"
         }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_73), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
@@ -3397,7 +3483,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           ref_for: true,
           ref: "title",
           onChange: function onChange($event) {
-            return _ctx.servicesSubTitle($event, key);
+            return $options.offerBanner($event, input.id, key, 'price');
           },
           placeholder: "الرجاء كتابة السعر"
         }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_74), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
@@ -3406,7 +3492,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           ref_for: true,
           ref: "title",
           onChange: function onChange($event) {
-            return _ctx.servicesSubTitle($event, key);
+            return $options.offerBanner($event, input.id, key, 'description');
           },
           placeholder: "الرجاء كتابة الوصف"
         }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_75), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
@@ -3415,7 +3501,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           ref_for: true,
           ref: "title",
           onChange: function onChange($event) {
-            return _ctx.servicesButtonTitle($event, key);
+            return $options.offerBanner($event, input.id, key, 'buttonTitle');
           },
           placeholder: "button Title"
         }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_76), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
@@ -3424,7 +3510,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           ref_for: true,
           ref: "title",
           onChange: function onChange($event) {
-            return _ctx.servicesButtonLink($event, key);
+            return $options.offerBanner($event, input.id, key, 'buttonLink');
           },
           placeholder: "button Link"
         }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_77)]), $data.inputs.length > 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
@@ -3443,8 +3529,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }), 128 /* KEYED_FRAGMENT */)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
         "class": "bg-primary-500 hover:bg-primary-400 text-whitedark:text-gray-900 ml-auto cursor-pointer rounded text-sm font-bold focus:outline-none focus:ring ring-primary-200 dark:ring-gray-600 inline-flex items-center justify-center h-9 px-6 shadow relative bg-primary-500 hover:bg-primary-400",
         type: "submit",
-        onClick: _cache[4] || (_cache[4] = function ($event) {
-          return $options.setImeageSlider();
+        onClick: _cache[4] || (_cache[4] = function () {
+          return $options.setImeageofferBanner && $options.setImeageofferBanner.apply($options, arguments);
         })
       }, " save ")])) : $props.field.type == 4 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_83, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.ImageFourthBanner, function (item, key) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {

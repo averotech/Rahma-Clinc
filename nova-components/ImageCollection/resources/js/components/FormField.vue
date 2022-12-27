@@ -82,8 +82,7 @@
                         </label>
                         <p>Click here to upload</p>
                         <input id="0main_img_workplace" type="file"
-                        @change="secondBanner($event, item.key, key, 'photo')"
-                        class="input-file__input">
+                          @change="secondBanner($event, item.key, key, 'photo')" class="input-file__input">
                       </div>
                       <div class="input-file__values">
                         <div class="input-file__single imageContainer">
@@ -224,19 +223,19 @@
           <div class="flex flex-row items-center justify-start">
             <div class="flex flex-col items-start justify-start my-2 gap-y-2">
               <input type="file" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2" ref="myFiles"
-                @change="previewFiles($event, key)" placeholder="الرجاء اختيار صورة الفيديو" />
+                @change="offerBanner($event, input.id, key, 'photo')" placeholder="الرجاء اختيار صورة الفيديو" />
               <input type="text" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2" ref="title"
-                @change="servicesTitle($event, key)" placeholder="الرجاء كتابة عنوان الفيديو" />
+                @change="offerBanner($event, input.id, key, 'videotitle')" placeholder="الرجاء كتابة عنوان الفيديو" />
               <input type="text" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2" ref="title"
-                @change="servicesTitle($event, key)" placeholder="الرجاء كتابة العنوان" />
+                @change="offerBanner($event, input.id, key, 'title')" placeholder="الرجاء كتابة العنوان" />
               <input type="text" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2" ref="title"
-                @change="servicesSubTitle($event, key)" placeholder="الرجاء كتابة السعر" />
+                @change="offerBanner($event, input.id, key, 'price')" placeholder="الرجاء كتابة السعر" />
               <input type="text" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2" ref="title"
-                @change="servicesSubTitle($event, key)" placeholder="الرجاء كتابة الوصف" />
+                @change="offerBanner($event, input.id, key, 'description')" placeholder="الرجاء كتابة الوصف" />
               <input type="text" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2" ref="title"
-                @change="servicesButtonTitle($event, key)" placeholder="button Title" />
+                @change="offerBanner($event, input.id, key, 'buttonTitle')" placeholder="button Title" />
               <input type="text" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2" ref="title"
-                @change="servicesButtonLink($event, key)" placeholder="button Link" />
+                @change="offerBanner($event, input.id, key, 'buttonLink')" placeholder="button Link" />
             </div>
             <div class="removeIcon" v-if="inputs.length > 1" v-on:click="remove(input.id)">
               <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -260,7 +259,7 @@
         <div
           class="bg-primary-500 hover:bg-primary-400 text-whitedark:text-gray-900 ml-auto cursor-pointer rounded
            text-sm font-bold focus:outline-none focus:ring ring-primary-200 dark:ring-gray-600 inline-flex items-center justify-center h-9 px-6 shadow relative bg-primary-500 hover:bg-primary-400"
-          type="submit" @click="setImeageSlider()">
+          type="submit" @click="setImeageofferBanner">
           save
         </div>
       </div>
@@ -343,6 +342,9 @@ export default {
       ImageFourthBanner: [],
       FourthBannerArray: [],
       keyValFourthBanner: [],
+      ImeageofferBanner: [],
+      offerBannerArray: [],
+      keyValofferBanner: [],
       keyVal: [],
       inputs:
         this.field.type == 1
@@ -395,15 +397,15 @@ export default {
       this.getImeageSlider();
     },
     secondBanner(e, key, index, type) {
-      console.log('key',key)
+      console.log('key', key)
       if (type == "photo") {
         if (!this.secondBannerArray[index]) {
-          console.log('111HERERERE',this.secondBannerArray)
+          console.log('111HERERERE', this.secondBannerArray)
 
           this.keyVal.push(key);
           this.secondBannerArray.push({ [key]: { [type]: e.target.files[0] } });
         } else {
-          console.log('HERERERE',this.secondBannerArray[index][key])
+          console.log('HERERERE', this.secondBannerArray[index][key])
           this.secondBannerArray[index][key][type] = e.target.files[0];
         }
       }
@@ -539,6 +541,92 @@ export default {
         });
       }
     },
+
+    offerBanner(e, key, index, type) {
+      if (type == "photo") {
+        if (!this.offerBannerArray[index]) {
+          this.keyValofferBanner.push(key);
+          this.offerBannerArray.push({ [key]: { [type]: e.target.files[0] } });
+          console.log(e.target.files[0]);
+        } else {
+          this.offerBannerArray[index][key][type] = e.target.files[0];
+          console.log(e.target.files[0]);
+        }
+      }
+      //
+      if (type == "videotitle") {
+        if (!this.offerBannerArray[index]) {
+          this.keyValofferBanner.push(key);
+          this.offerBannerArray.push({ [key]: { [type]: e.target.value } });
+        } else {
+          this.offerBannerArray[index][key][type] = e.target.value;
+        }
+      } else if (type === "title") {
+        if (!this.offerBannerArray[index]) {
+          this.keyValofferBanner.push(key);
+          this.offerBannerArray.push({ [key]: { [type]: e.target.value } });
+        } else {
+          this.offerBannerArray[index][key][type] = e.target.value;
+        }
+      } else if (type === "price") {
+        if (!this.offerBannerArray[index]) {
+          this.keyValofferBanner.push(key);
+          this.offerBannerArray.push({ [key]: { [type]: e.target.value } });
+        } else {
+          this.offerBannerArray[index][key][type] = e.target.value;
+        }
+      } else if (type === "description") {
+        if (!this.offerBannerArray[index]) {
+          this.keyValofferBanner.push(key);
+          this.offerBannerArray.push({ [key]: { [type]: e.target.value } });
+        } else {
+          this.offerBannerArray[index][key][type] = e.target.value;
+        }
+      } else if (type === "buttonTitle") {
+        if (!this.offerBannerArray[index]) {
+          this.keyValofferBanner.push(key);
+          this.offerBannerArray.push({ [key]: { [type]: e.target.value } });
+        } else {
+          this.offerBannerArray[index][key][type] = e.target.value;
+        }
+      } else if (type === "buttonLink") {
+        if (!this.offerBannerArray[index]) {
+          this.keyValofferBanner.push(key);
+          this.offerBannerArray.push({ [key]: { [type]: e.target.value } });
+        } else {
+          this.offerBannerArray[index][key][type] = e.target.value;
+        }
+      }
+      console.log("baner", this.offerBannerArray);
+      console.log("key", this.keyValofferBanner);
+    },
+
+    setImeageofferBanner() {
+      let formData = new FormData();
+      for (let index = 0; index < this.keyValofferBanner.length; index++) {
+        formData.append("file", this.offerBannerArray[index][this.keyValofferBanner[index]]["photo"]);
+        formData.append("videotitle", this.offerBannerArray[index][this.keyValofferBanner[index]]["videotitle"]);
+        formData.append("title", this.offerBannerArray[index][this.keyValofferBanner[index]]["title"]);
+        formData.append("price", this.offerBannerArray[index][this.keyValofferBanner[index]]["price"]);
+        formData.append("description", this.offerBannerArray[index][this.keyValofferBanner[index]]["description"]);
+        formData.append("buttonTitle", this.offerBannerArray[index][this.keyValofferBanner[index]]["buttonTitle"]);
+        formData.append("buttonLink", this.offerBannerArray[index][this.keyValofferBanner[index]]["buttonLink"]);
+        formData.append("key", this.keyValofferBanner[index]);
+        axios.post("/setImeageofferBanner", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+      }
+    },
+    getImeageofferBanner() {
+      axios.post("/getImeageofferBanner").then((response) => {
+        this.ImeageofferBanner = response.data;
+        console.log("ImeageofferBanner", this.ImeageofferBanner);
+      });
+    },
+
+
     getImageFourthBanner() {
       axios.post("/getImageFourthBanner").then((response) => {
         this.ImageFourthBanner = response.data;
@@ -552,11 +640,8 @@ export default {
     this.getImeageSlider();
     this.getImagesecondBanner();
     this.getImageFourthBanner();
-
+    this.getImeageofferBanner();
   },
-  mounted() {
-
-  }
 };
 </script>
 <style scoped>
