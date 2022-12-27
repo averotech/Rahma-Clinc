@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Acme\ColorPicker\ColorPicker;
 use Acme\ImageCollection\ImageCollection;
+use App\Nova\ContactUs;
 use App\Nova\User;
 use Illuminate\Http\Request;
 use Laravel\Nova\Dashboards\Main;
@@ -44,6 +45,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 MenuSection::make(__('user'), [
                     MenuItem::resource(User::class),
                 ])->icon('user')->collapsable(),
+
+                MenuSection::make(__('ContactUs '), [
+                    MenuItem::resource(ContactUs::class),
+                ])->icon('annotation')->collapsable(),
 
                 MenuSection::make(__('seting'), [
                     MenuSection::make(__('Main Page'))->path('/nova-settings/main-page'),

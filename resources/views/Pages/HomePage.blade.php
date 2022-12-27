@@ -1,6 +1,7 @@
 @extends('layout.app')
 @section('content')
     @php
+        // dd('dd');
         $HeaderNav = nova_get_setting('navbar', '');
         $NavBar = json_decode($HeaderNav);
         $Header_WhatsAppLink = nova_get_setting('logo', '');
@@ -34,7 +35,10 @@
         //second_Banner
         $str_secondBanner = nova_get_setting('second_Banner', 'default_value');
         $json_secondBanner = json_decode($str_secondBanner);
-        
+        // offer Slider
+        $str_Offerslider = nova_get_setting('offer_Banner', 'default_value');
+        $offer_Slider = json_decode($str_Offerslider);
+        // dd($str_Offerslider);
         //Fourth_Banner
         $str_fourthBanner = nova_get_setting('Fourth_Banner', 'default_value');
         $json_fourthBanner = json_decode($str_fourthBanner);
@@ -176,7 +180,7 @@
                             </ul>
                         </div>
                     @endif
-                    <form method="POST"  action="/conctus" enctype="multipart/form-data">
+                    <form method="POST" action="/conctus" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-5">
                             <label for="full-name" class="block text-sm font-medium text-gray-700 sitka-font">الاسم
@@ -184,18 +188,23 @@
                             <input type="text" name="first-name" id="full-name" autocomplete="given-name"
                                 class="mt-1 px-2 py-2 block w-full bg-transparent rounded-md border border-[#D1D5DB] focus:outline-[#CBD7E7] focus:ring-[#CBD7E7] sm:text-sm">
                         </div>
+                        @if ($errors->has('first-name'))
+                            <span class="text-red-700 ">{{ $errors->first('name') }}</span>
+                        @endif
                         <div class="mb-5">
                             <label for="phone" class="block text-sm font-medium text-gray-700 sitka-font">رقم الهاتف
                             </label>
                             <input type="text" name="phone" id="phone" autocomplete="given-name"
                                 class="mt-1 px-2 py-2 block w-full bg-transparent rounded-md border border-[#D1D5DB] focus:outline-[#CBD7E7] focus:ring-[#CBD7E7] sm:text-sm">
                         </div>
+
                         <div>
                             <label for="ch-1" class="block text-sm font-medium text-gray-700 sitka-font">اختيار
                                 المنطقة</label>
                             <input type="text" name="area" id="ch-1" autocomplete="given-name"
                                 class="mt-1 px-2 py-2 block w-full bg-transparent rounded-md border border-[#D1D5DB] focus:outline-[#CBD7E7] focus:ring-[#CBD7E7] sm:text-sm">
                         </div>
+
                         <button class="button-style sitka-font text-[18px] font-[600] relative mt-8 px-[40px]"
                             type="submit">
                             <span
@@ -381,50 +390,61 @@
     <section class="bg-[#F6F6F6] mb-20 mt-20 py-10 lg:py-0 " id="features">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="owl-carousel offers-slider">
-                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-                    <div class="col-span-2 relative">
-                        <div class="absolute w-full h-full inset-0 play-vid-overlay flex items-center justify-center">
-                            <a class="mt-10 inline-block" href="http://media.w3.org/2010/05/sintel/trailer.mp4"
-                                data-fancybox="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
-                                    viewBox="0 0 48 48" fill="none">
-                                    <g clip-path="url(#clip0_45_558)">
-                                        <path
-                                            d="M24 0C10.7656 0 0 10.7666 0 24C0 37.2334 10.7656 48 24 48C37.2344 48 48 37.2334 48 24C48 10.7666 37.2344 0 24 0ZM33.541 24.8408L19.5411 33.8408C19.377 33.9473 19.1875 34 19 34C18.836 34 18.6699 33.959 18.5215 33.878C18.1992 33.7022 18 33.3662 18 33V15C18 14.6338 18.1992 14.2978 18.5215 14.122C18.8379 13.9482 19.2344 13.9589 19.5411 14.1592L33.541 23.1592C33.8262 23.3427 34 23.6602 34 24C34 24.3398 33.8262 24.6572 33.541 24.8408Z"
-                                            fill="#fff"></path>
-                                    </g>
-                                    <defs>
-                                        <clipPath id="clip0_45_558">
-                                            <rect width="48" height="48" fill="white"></rect>
-                                        </clipPath>
-                                    </defs>
-                                </svg>
-                            </a>
-                        </div>
-                        <img class="max-w-full min-h-auto md:min-h-[500px] lg:min-h-[600px] object-cover"
-                            src="{{ asset('assets/images/offer-img.png') }}" alt="">
-                    </div>
-                    <div class="col-span-3 flex items-center pb-20">
-                        <div>
-                            <div class=" sitka-font ">
-                                <p class="text-[18px]">عرض </p>
-                                <h2 class="capitalize text-[27px] md:text-[30px] lg:text-[35px] max-w-[550px] ">توهج وجهك
-                                    وحيويتك مع أفضل خدمة لدينا</h2>
+                @if ($offer_Slider !== null)
+                    @foreach ($offer_Slider as $item)
+                        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+                            <div class="col-span-2 relative">
+                                <div
+                                    class="absolute w-full h-full inset-0 play-vid-overlay flex items-center justify-center">
+                                    <a class="mt-10 inline-block" href="http://media.w3.org/2010/05/sintel/trailer.mp4"
+                                        data-fancybox="">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+                                            viewBox="0 0 48 48" fill="none">
+                                            <g clip-path="url(#clip0_45_558)">
+                                                <path
+                                                    d="M24 0C10.7656 0 0 10.7666 0 24C0 37.2334 10.7656 48 24 48C37.2344 48 48 37.2334 48 24C48 10.7666 37.2344 0 24 0ZM33.541 24.8408L19.5411 33.8408C19.377 33.9473 19.1875 34 19 34C18.836 34 18.6699 33.959 18.5215 33.878C18.1992 33.7022 18 33.3662 18 33V15C18 14.6338 18.1992 14.2978 18.5215 14.122C18.8379 13.9482 19.2344 13.9589 19.5411 14.1592L33.541 23.1592C33.8262 23.3427 34 23.6602 34 24C34 24.3398 33.8262 24.6572 33.541 24.8408Z"
+                                                    fill="#fff"></path>
+                                            </g>
+                                            <defs>
+                                                <clipPath id="clip0_45_558">
+                                                    <rect width="48" height="48" fill="white"></rect>
+                                                </clipPath>
+                                            </defs>
+                                        </svg>
+                                    </a>
+                                </div>
+                                <img class="max-w-full min-h-auto md:min-h-[500px] lg:min-h-[600px] object-cover"
+                                src="{{ $item->images }}"    
+                                {{-- src="{{ asset('assets/images/offer-img.png') }}"  --}}
+                                    alt="">
                             </div>
-                            <div class="border-b border-[#727475] my-5"></div>
-                            <span class="text-[#005340] text-[50px] block">555 ₪</span>
-                            <p class="text-[#727475] text-[15px] poppins-font mt-4 font-[500]">
-                                جهاز Soprano Titanium ، من ألما ليزر
-                                أفضل جهاز في السوق بدون منافس
-                                سريع و آمن بدون حروق بارد على البشرة
-                                ملائم للأطفال من 7 سنين
-                                نتائج مذهلة من اول جلسة
-                            </p>
-                        </div>
+                            <div class="col-span-3 flex items-center pb-20">
+                                <div>
+                                    <div class=" sitka-font ">
+                                        <p class="text-[18px]">عرض </p>
+                                        <h2 class="capitalize text-[27px] md:text-[30px] lg:text-[35px] max-w-[550px] ">
+                                            {{-- توهج وجهك
+                                            وحيويتك مع أفضل خدمة لدينا --}}
+                                            {{ $item->title }}
+                                        </h2>
+                                    </div>
+                                    <div class="border-b border-[#727475] my-5"></div>
+                                    <span class="text-[#005340] text-[50px] block">555 ₪</span>
+                                    <p class="text-[#727475] text-[15px] poppins-font mt-4 font-[500]">
+                                        {{-- جهاز Soprano Titanium ، من ألما ليزر
+                                        أفضل جهاز في السوق بدون منافس
+                                        سريع و آمن بدون حروق بارد على البشرة
+                                        ملائم للأطفال من 7 سنين
+                                        نتائج مذهلة من اول جلسة --}}
+                                        {{ $item->description }}
+                                    </p>
+                                </div>
 
-                    </div>
-                </div>
-                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
+                {{-- <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
                     <div class="col-span-2">
                         <img class="max-w-full min-h-auto md:min-h-[500px] lg:min-h-[600px] object-cover"
                             src="{{ asset('assets/images/offer-img.png') }}" alt="">
@@ -444,9 +464,9 @@
                             </p>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
-            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+            {{-- <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
                 <div class="col-span-2"></div>
                 <div class="col-span-3">
                     <div class="flex items-center justify-between lg:-mt-20 z-20 relative mt-20">
@@ -478,7 +498,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </section>
     <!-- End offers section -->
@@ -492,9 +512,8 @@
                     سارع بالتواصل معنا
                 </h2>
             </div>
-
-        <form method="POST" v-on:submit.prevent="submit" action="/conctus" enctype="multipart/form-data">
-            @csrf            
+            <form method="POST" action="/conctus" enctype="multipart/form-data">
+                @csrf
                 <div class="mb-5">
                     <label for="full-name" class="block text-sm font-medium text-gray-700 sitka-font">الاسم الكامل</label>
                     <input type="text" name="first-name" id="full-name" autocomplete="given-name"

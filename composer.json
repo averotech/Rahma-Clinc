@@ -9,6 +9,8 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "acme/color-picker": "*",
+        "acme/image-collection": "*",
         "badinansoft/nova-language-switch": "^1.0",
         "eminiarts/nova-tabs": "^2.2",
         "guzzlehttp/guzzle": "^7.2",
@@ -19,9 +21,8 @@
         "laravel/tinker": "^2.7",
         "mcamara/laravel-localization": "^1.7",
         "outl1ne/nova-settings": "^5.0",
-        "whitecube/nova-flexible-content": "^1.0",
-        "acme/color-picker": "*",
-        "acme/image-collection": "*"
+        "sietse85/nova-button": "^1.0",
+        "whitecube/nova-flexible-content": "^1.0"
     },
     "repositories": [
         {

@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\ContactUs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 class HomeController extends Controller
 {
 
