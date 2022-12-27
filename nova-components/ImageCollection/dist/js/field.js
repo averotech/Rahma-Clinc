@@ -2725,13 +2725,21 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
           "Content-Type": "multipart/form-data"
         }
       });
-      this.getImeageSlider();
+      console.log("befor time");
+      setTimeout(function () {
+        console.log("in time");
+        this.getImeageSlider();
+      }, 30000);
+      //
+      console.log("after time");
     },
     getImeageSlider: function getImeageSlider() {
       var _this = this;
+      console.log("hi my wordddddd");
       axios__WEBPACK_IMPORTED_MODULE_1___default().post("/getImeageSlider").then(function (response) {
         _this.ImageSlider = response.data;
       });
+      console.log("hi my wordddddd");
     },
     setImeagesecondBanner: function setImeagesecondBanner() {
       var formData = new FormData();

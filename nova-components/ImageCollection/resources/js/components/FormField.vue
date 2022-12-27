@@ -250,7 +250,7 @@
                 type="file"
                 class="w-full my-2 h-[36px] px-2 py-1 border-b border-2"
                 ref="myFiles"
-                 @change="offerBanner($event, input.id, key, 'photo')"
+                @change="offerBanner($event, input.id, key, 'photo')"
                 placeholder="الرجاء اختيار صورة الفيديو"
               />
               <input
@@ -279,7 +279,7 @@
                 class="w-full my-2 h-[36px] px-2 py-1 border-b border-2"
                 ref="title"
                 @change="offerBanner($event, input.id, key, 'description')"
-                 placeholder="الرجاء كتابة الوصف"
+                placeholder="الرجاء كتابة الوصف"
               />
               <input
                 type="text"
@@ -292,7 +292,7 @@
                 type="text"
                 class="w-full my-2 h-[36px] px-2 py-1 border-b border-2"
                 ref="title"
-              @change="offerBanner($event, input.id, key, 'buttonLink')"
+                @change="offerBanner($event, input.id, key, 'buttonLink')"
                 placeholder="button Link"
               />
             </div>
@@ -373,7 +373,8 @@
             hover:bg-primary-400
           "
           type="submit"
-          @click="setImeageofferBanner">
+          @click="setImeageofferBanner"
+        >
           save
         </div>
       </div>
@@ -498,13 +499,13 @@ export default {
     return {
       ImageSlider: [],
       ImeagesecondBanner: [],
-      ImeageFourthBanner:[],
-           ImeageofferBanner:[],
+      ImeageFourthBanner: [],
+      ImeageofferBanner: [],
       secondBannerArray: [],
       offerBannerArray: [],
       keyVal: [],
       keyValFourthBanner: [],
-      keyValofferBanner:[],
+      keyValofferBanner: [],
       inputs:
         this.field.type == 1
           ? [
@@ -653,8 +654,7 @@ export default {
         } else {
           this.offerBannerArray[index][key][type] = e.target.value;
         }
-      }
-      else if (type === "price") {
+      } else if (type === "price") {
         if (!this.offerBannerArray[index]) {
           this.keyValofferBanner.push(key);
 
@@ -662,8 +662,7 @@ export default {
         } else {
           this.offerBannerArray[index][key][type] = e.target.value;
         }
-      }
-      else if (type === "description") {
+      } else if (type === "description") {
         if (!this.offerBannerArray[index]) {
           this.keyValofferBanner.push(key);
 
@@ -671,8 +670,7 @@ export default {
         } else {
           this.offerBannerArray[index][key][type] = e.target.value;
         }
-      }
-      else if (type === "buttonTitle") {
+      } else if (type === "buttonTitle") {
         if (!this.offerBannerArray[index]) {
           this.keyValofferBanner.push(key);
 
@@ -680,8 +678,7 @@ export default {
         } else {
           this.offerBannerArray[index][key][type] = e.target.value;
         }
-      }
-      else if (type === "buttonLink") {
+      } else if (type === "buttonLink") {
         if (!this.offerBannerArray[index]) {
           this.keyValofferBanner.push(key);
 
@@ -720,7 +717,7 @@ export default {
       });
     },
     setImeageSlider(event, key) {
-  console.log("name", event.target.files[0].name);
+      console.log("name", event.target.files[0].name);
       console.log("ref", event.target.files[0]);
       let formData = new FormData();
       formData.append("file", event.target.files[0]);
@@ -731,15 +728,23 @@ export default {
           "Content-Type": "multipart/form-data",
         },
       });
-      this.getImeageSlider();
+      console.log("befor time");
+
+       setTimeout(function () {
+           console.log("in time");
+       this.getImeageSlider();
+    }, 30000);
+    //
+      console.log("after time");
     },
-      getImeageSlider() {
+    getImeageSlider() {
+      console.log("hi my wordddddd");
       axios.post("/getImeageSlider").then((response) => {
         this.ImageSlider = response.data;
       });
-
+      console.log("hi my wordddddd");
     },
-      setImeagesecondBanner() {
+    setImeagesecondBanner() {
       let formData = new FormData();
 
       for (let index = 0; index < this.keyVal.length; index++) {
@@ -763,10 +768,7 @@ export default {
           "buttonLink",
           this.secondBannerArray[index][this.keyVal[index]]["buttonLink"]
         );
-        formData.append(
-          "key",
-         this.keyVal[index]
-        );
+        formData.append("key", this.keyVal[index]);
         axios.post("/setImeagesecondBanner", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
@@ -784,7 +786,6 @@ export default {
       let formData = new FormData();
       console.log("asd");
       for (let index = 0; index < this.keyValFourthBanner.length; index++) {
-
         formData.append(
           "file",
           this.FourthBannerArray[index][this.keyValFourthBanner[index]]["photo"]
@@ -795,7 +796,9 @@ export default {
         );
         formData.append(
           "subtitle",
-          this.FourthBannerArray[index][this.keyValFourthBanner[index]]["subtitle"]
+          this.FourthBannerArray[index][this.keyValFourthBanner[index]][
+            "subtitle"
+          ]
         );
         formData.append("key", this.keyValFourthBanner[index]);
 
@@ -819,15 +822,44 @@ export default {
       let formData = new FormData();
 
       for (let index = 0; index < this.keyValofferBanner.length; index++) {
-//
+        //
 
-        formData.append("file",this.offerBannerArray[index][this.keyValofferBanner[index]]["photo"]);
-        formData.append("videotitle",this.offerBannerArray[index][this.keyValofferBanner[index]]["videotitle"]);
-        formData.append("title",this.offerBannerArray[index][this.keyValofferBanner[index]]["title"]);
-        formData.append("price",this.offerBannerArray[index][this.keyValofferBanner[index]]["price"]);
-        formData.append("description",this.offerBannerArray[index][this.keyValofferBanner[index]]["description"]);
-        formData.append("buttonTitle",this.offerBannerArray[index][this.keyValofferBanner[index]]["buttonTitle"]);
-        formData.append("buttonLink",this.offerBannerArray[index][this.keyValofferBanner[index]]["buttonLink"]);
+        formData.append(
+          "file",
+          this.offerBannerArray[index][this.keyValofferBanner[index]]["photo"]
+        );
+        formData.append(
+          "videotitle",
+          this.offerBannerArray[index][this.keyValofferBanner[index]][
+            "videotitle"
+          ]
+        );
+        formData.append(
+          "title",
+          this.offerBannerArray[index][this.keyValofferBanner[index]]["title"]
+        );
+        formData.append(
+          "price",
+          this.offerBannerArray[index][this.keyValofferBanner[index]]["price"]
+        );
+        formData.append(
+          "description",
+          this.offerBannerArray[index][this.keyValofferBanner[index]][
+            "description"
+          ]
+        );
+        formData.append(
+          "buttonTitle",
+          this.offerBannerArray[index][this.keyValofferBanner[index]][
+            "buttonTitle"
+          ]
+        );
+        formData.append(
+          "buttonLink",
+          this.offerBannerArray[index][this.keyValofferBanner[index]][
+            "buttonLink"
+          ]
+        );
 
         formData.append("key", this.keyValofferBanner[index]);
 
@@ -837,9 +869,8 @@ export default {
           },
         });
       }
-
     },
-     getImeageofferBanner() {
+    getImeageofferBanner() {
       axios.post("/getImeageofferBanner").then((response) => {
         this.ImeageofferBanner = response.data;
         console.log("ImeageofferBanner", this.ImeageofferBanner);
@@ -851,8 +882,8 @@ export default {
     // console.log(this.inputs);
     this.getImeageSlider();
     this.getImeagesecondBanner();
-       this.getImeageFourthBanner();
-       this.getImeageofferBanner();
+    this.getImeageFourthBanner();
+    this.getImeageofferBanner();
   },
   components: {},
 };

@@ -45,6 +45,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 MenuSection::make(__('user'), [
                     MenuItem::resource(User::class),
                 ])->icon('user')->collapsable(),
+
                 MenuSection::make(__('ContactUs '), [
                     MenuItem::resource(ContactUs::class),
                 ])->icon('annotation')->collapsable(),

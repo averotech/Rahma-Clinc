@@ -9,6 +9,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Sietse85\NovaButton\Button;
 use App\Nova\Actions\ReadMessage;
+
 class ContactUs extends Resource
 {
     /**
@@ -33,7 +34,68 @@ class ContactUs extends Resource
     public static $search = [
         'id',
     ];
+    /**
+     * Get the displayable label of the resource.
+     *
+     * @return string
+     */
+    public static function label()
+    {
+        return __('ContactUs');
+    }
+    /**
+     * Get the displayable singular label of the resource.
+     *
+     * @return string
+     */
+    public static function singularLabel()
+    {
+        return __('ContactUs');
+    }
 
+        /**
+     * Determine whether the user can create models.
+     *
+     * @param  \App\Models\ContactUs  $ContactUs
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public static function authorizedToCreate(Request $request)
+    {
+        return false;
+    }
+       /**
+     * Determine whether the user can delete the model.
+     *
+     * @param  \App\Models\ContactUs  $ContactUs
+     * @param  \App\Models\ActionEvents  $actionEvents
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function authorizedTodelete(Request $request)
+    {
+        return false;
+    }
+   /**
+     * Determine whether the user can update the model.
+     *
+     * @param  \App\Models\ContactUs  $ContactUs
+     * @param  \App\Models\ActionEvents  $actionEvents
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function authorizedToupdate(Request $request)
+    {
+        return false;
+    }
+    /**
+     * Determine whether the user can Replicate the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\ActionEvents  $actionEvents
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function authorizedToReplicate(Request $request)
+    {
+        return false;
+    }
     /**
      * Get the fields displayed by the resource.
      *
@@ -44,14 +106,14 @@ class ContactUs extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('Name','name')
-            ->sortable()
-            ->rules('required', 'max:255'),
+            Text::make('Name', 'name')
+                ->sortable()
+                ->rules('required', 'max:255'),
 
-            Text::make('location','location')
-            ->sortable()
-            ->rules('required', 'max:255'),
-            Boolean::make('is_read','is_read'),
+            Text::make('location', 'location')
+                ->sortable()
+                ->rules('required', 'max:255'),
+            Boolean::make('is_read', 'is_read'),
             Button::make('Read Message')->action(ReadMessage::class)->canSee(function () {
                 return $this->is_read === '0';
             })->reload()->style('success'),
