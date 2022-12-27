@@ -127,20 +127,6 @@
         </div>
         <div class="form-group flex flex-col bg-[#b93939] mt-3 py-1.5 gap-y-2 w-full" v-for="(input, key) in inputs"
           :key="input.id">
-          <!-- <div @click="AddFirstBanner(input.id)"
-            class="block cursor-pointer p-4 bg-gray-50 dark:bg-gray-900 dark:hover:bg-gray-900 border-4 border-dashed hover:border-gray-300 dark:border-gray-700 dark:hover:border-gray-600 rounded-lg">
-            <div class="flex items-center space-x-4 pointer-events-none">
-              <p class="text-center pointer-events-none">
-              <div size="lg" align="center" class="shadow relative bg-primary-500 hover:bg-primary-400 text-white dark:text-gray-900 
-              cursor-pointer rounded text-sm font-bold focus:outline-none focus:ring ring-primary-200
-               dark:ring-gray-600 inline-flex items-center justify-center h-9 px-3 shadow relative 
-               bg-primary-500 hover:bg-primary-400 text-white dark:text-gray-900">Choose File</div>
-              </p>
-              <p class="pointer-events-none text-center text-sm text-gray-500 dark:text-gray-400 font-semibold">Drop
-                file
-                or click to choose</p>
-            </div>
-          </div> -->
           <!-- second Banner Add new List -->
           <div v-if="showSecondBannerData == true" class="layout-list__item layout-item">
             <h4 class="layout-item__title">Add New Banner
@@ -204,95 +190,340 @@
           </div>
 
           <button class="button" v-if="key == inputs.length - 1" @click="addSecondBannerList">Add New Content</button>
-          <!-- <div class="flex flex-row items-center justify-start ">
-            <div class="flex flex-col items-start justify-start my-2 gap-y-2 w-full">
-              <input type="file" class="iput_seconBanner w-full my-2 h-[36px] px-2 py-1 border-b border-2 hidden"
-                ref="myFiles" @change="secondBanner($event, input.id, key, 'photo')"
-                placeholder="الرجاء اختيار الصورة" />
-              <input type="text" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2 hidden" ref="title"
-                @change="secondBanner($event, input.id, key, 'title')" placeholder="الرجاء كتابة العنوان" />
-              <input type="text" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2 hidden" ref="title"
-                @change="secondBanner($event, input.id, key, 'subtitle')" placeholder="الرجاء كتابة الوصف" />
-              <input type="text" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2 hidden" ref="title"
-                @change="secondBanner($event, input.id, key, 'buttonText')" placeholder="button Title" />
-              <input type="text" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2 hidden" ref="title"
-                @change="secondBanner($event, input.id, key, 'buttonLink')" placeholder="button Link" />
-            </div>
-            <div class="removeIcon hidden" v-if="inputs.length > 1" v-on:click="remove(input.id)">
-              <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink">
-                <rect width="23" height="23" fill="url(#pattern01)" />
-                <defs>
-                  <pattern id="pattern01" patternContentUnits="objectBoundingBox" width="1" height="1">
-                    <use xlink:href="#image0_1_3" transform="scale(0.03125)" />
-                  </pattern>
-                  <image id="image0_1_3" width="32" height="32"
-                    xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAABGUlEQVR4nO2WsU7DMBCGPzEwBEbYMiB2HgAJ8QIs5an6In2FjqngERoxRkIM6c7WzejoRTqsNMRxaoTkX7IsX2L9n+/OUSArK1zPwA5w3pDYggTa9Zh3o00B4HSMjUcbuZnG/wOYI63RZXEZgJ8pjF1Hl8BlAHIJ+LUnmr9swgYozfozNUCp85nO9wqRDED0CLwBNwbC1zVQAXecAGCtsXcD4Ztv9Z3qFAAFsNH4B3Drmdf6TCCuQgHGqtDTWQh78lHmsdfoAngx5Qg6eadWNz0wHeLVHKQOMRctJ/z57IGn790Hsy7tQ415VOcK0Uaab00mgiGmqK/hhm7HrBq6akkgKmMuML4uTTnklswu+bwKRJ+5hVhJL3wBanf6orViRbcAAAAASUVORK5CYII=" />
-                </defs>
-              </svg>
-            </div>
-          </div> -->
-          <!-- <button class="w-8 h-8" v-if="key == inputs.length - 1" @click="add">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink">
-              <rect width="20" height="20" fill="url(#pattern0)" />
-              <defs>
-                <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-                  <use xlink:href="#image0_10_3" transform="scale(0.00195312)" />
-                </pattern>
-                <image id="image0_10_3" width="512" height="512"
-                  xlink:href="data:image/png;base64,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" />
-              </defs>
-            </svg>
-          </button> -->
         </div>
 
       </div>
       <div v-else-if="field.type == 3">
-        <div class="form-group flex flex-col bg-[#b93939] mt-3 py-1.5 gap-y-2 w-full" v-for="(input, key) in inputs"
-          :key="input.id">
-          <div class="flex flex-row items-center justify-start">
-            <div class="flex flex-col items-start justify-start my-2 gap-y-2">
-              <input type="file" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2" ref="myFiles"
-                @change="offerBanner($event, input.id, key, 'photo')" placeholder="الرجاء اختيار صورة الفيديو" />
-              <input type="text" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2" ref="title"
-                @change="offerBanner($event, input.id, key, 'videotitle')" placeholder="الرجاء كتابة عنوان الفيديو" />
-              <input type="text" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2" ref="title"
-                @change="offerBanner($event, input.id, key, 'title')" placeholder="الرجاء كتابة العنوان" />
-              <input type="text" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2" ref="title"
-                @change="offerBanner($event, input.id, key, 'price')" placeholder="الرجاء كتابة السعر" />
-              <input type="text" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2" ref="title"
-                @change="offerBanner($event, input.id, key, 'description')" placeholder="الرجاء كتابة الوصف" />
-              <input type="text" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2" ref="title"
-                @change="offerBanner($event, input.id, key, 'buttonTitle')" placeholder="button Title" />
-              <input type="text" class="w-full my-2 h-[36px] px-2 py-1 border-b border-2" ref="title"
-                @change="offerBanner($event, input.id, key, 'buttonLink')" placeholder="button Link" />
-            </div>
-            <div class="removeIcon" v-if="inputs.length > 1" v-on:click="remove(input.id)">
-              <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink">
-                <rect width="23" height="23" fill="url(#pattern01)" />
-                <defs>
-                  <pattern id="pattern01" patternContentUnits="objectBoundingBox" width="1" height="1">
-                    <use xlink:href="#image0_1_3" transform="scale(0.03125)" />
-                  </pattern>
-                  <image id="image0_1_3" width="32" height="32"
-                    xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAABGUlEQVR4nO2WsU7DMBCGPzEwBEbYMiB2HgAJ8QIs5an6In2FjqngERoxRkIM6c7WzejoRTqsNMRxaoTkX7IsX2L9n+/OUSArK1zPwA5w3pDYggTa9Zh3o00B4HSMjUcbuZnG/wOYI63RZXEZgJ8pjF1Hl8BlAHIJ+LUnmr9swgYozfozNUCp85nO9wqRDED0CLwBNwbC1zVQAXecAGCtsXcD4Ztv9Z3qFAAFsNH4B3Drmdf6TCCuQgHGqtDTWQh78lHmsdfoAngx5Qg6eadWNz0wHeLVHKQOMRctJ/z57IGn790Hsy7tQ415VOcK0Uaab00mgiGmqK/hhm7HrBq6akkgKmMuML4uTTnklswu+bwKRJ+5hVhJL3wBanf6orViRbcAAAAASUVORK5CYII=" />
-                </defs>
-              </svg>
+
+        <!-- Add ImageofferBanner List -->
+        <div v-for="(input, key) in ImeageofferBanner" :key="key">
+          <!-- show OfferList Grop -->
+          <div class="mt-1 md:mt-0 pb-5  md:w-full md:py-5">
+            <div>
+              <div class="relative mb-4 pb-1" id="cmiH9zU5bwMG5HBG" dusk="navbar-0">
+                <div class="w-full shrink">
+                  <!-- top componentView -->
+                  <div class="border-t border-r border-l border-gray-200 dark:border-gray-700 rounded-t-lg">
+                    <div
+                      class="h-8 leading-normal h-full flex items-center box-content border-b border-gray-200 dark:border-gray-700">
+                      <button dusk="collapse-group" type="button"
+                        class="group-control btn border-r border-gray-200 dark:border-gray-700 w-8 h-8 block"
+                        title="Collapse"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                          stroke="currentColor" width="16" height="16" class="inline-block align-top"
+                          role="presentation">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6"></path>
+                        </svg></button>
+                      <p class="text-80 grow px-4"><span class="mr-3 font-semibold">#1</span> {{ input.key }}</p>
+                      <div class="flex">
+                        <button dusk="delete-group" type="button" @click="removeImageSlider(input.key, 'offer_Banner')"
+                          class="group-control btn border-l border-gray-200 dark:border-gray-700 w-8 h-8 block"
+                          title="Delete"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" width="16" height="16" class="inline-block" role="presentation">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                            </path>
+                          </svg></button>
+                      </div>
+                    </div>
+                  </div>
+                  <!--end top componentView -->
+                  <!-- Inputs and Labels -->
+                  <div class="grow border-b border-r border-l border-gray-200 dark:border-gray-700 rounded-b-lg">
+                    <div class="flex flex-col md:flex-row">
+                      <div class="px-6 md:px-8 mt-2 md:mt-0 w-full md:w-1/5 md:py-5">
+                        <label for="name-default-text-field" class="inline-block pt-2 leading-tight">image </label>
+                      </div>
+                      <!-- First Input -->
+                      <div class="offerBannerImage-contener flex flex-row items-center justify-center w-full ">
+                        <div class=" offerBannerImage h-full flex items-start justify-center">
+                          <div class="relative w-full">
+                            <div
+                              class="bg-gray-50 relative aspect-square flex items-center justify-center border-2 border-gray-200 dark:border-gray-700 overflow-hidden rounded-lg">
+                              <img :src="input.images" :alt="input.key"
+                                class="aspect-square object-scale-down w-28 h-28">
+                            </div>
+                            <p class="font-semibold text-xs mt-1">{{ input.key }}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- end First Input -->
+                    <!-- Second Input -->
+                    <div class="flex flex-col md:flex-row remove-bottom-border offerBannerInput mt-8">
+                      <div class="px-6 md:px-8 mt-2 md:mt-0 w-full md:w-1/4 md:py-5">
+                        <label for="select_name-default-select-field" class="inline-block pt-2 leading-tight">title
+                          <span class="text-red-500 text-sm">*</span>
+                        </label>
+                      </div>
+                      <div class="mt-1 md:mt-0 pb-5 px-6 md:px-0 md:w-3/5 w-full md:py-5">
+                        <div class="space-y-1"><input type="text" :value="input.title"
+                            class="w-full form-control form-input form-input-bordered" id="name-default-text-field"
+                            dusk="cmiH9zU5bwMG5HBG__name" maxlength="-1"></div>
+                      </div>
+                    </div>
+                    <!--end Second Input -->
+                    <!-- third Input -->
+                    <div class="flex flex-col md:flex-row remove-bottom-border  ">
+                      <div class="px-6 md:px-8 mt-2 md:mt-0 w-full md:w-1/4 md:py-5">
+                        <label for="select_name-default-select-field" class="inline-block pt-2 leading-tight">video
+                          title
+                          <span class="text-red-500 text-sm">*</span>
+                        </label>
+                      </div>
+                      <div class="mt-1 md:mt-0 pb-5 px-6 md:px-0 md:w-3/5 w-full md:py-5">
+                        <div class="space-y-1"><input type="text" :value="input.videotitle"
+                            class="w-full form-control form-input form-input-bordered" id="name-default-text-field"
+                            dusk="cmiH9zU5bwMG5HBG__name" maxlength="-1"></div>
+                      </div>
+                    </div>
+                    <!-- end third Input -->
+                    <!-- Forth Input -->
+                    <div class="flex flex-col md:flex-row remove-bottom-border  ">
+                      <div class="px-6 md:px-8 mt-2 md:mt-0 w-full md:w-1/4 md:py-5">
+                        <label for="select_name-default-select-field" class="inline-block pt-2 leading-tight">price
+
+                          <span class="text-red-500 text-sm">*</span>
+                        </label>
+                      </div>
+                      <div class="mt-1 md:mt-0 pb-5 px-6 md:px-0 md:w-3/5 w-full md:py-5">
+                        <div class="space-y-1"><input type="text" :value="input.price"
+                            class="w-full form-control form-input form-input-bordered" id="name-default-text-field"
+                            dusk="cmiH9zU5bwMG5HBG__name" maxlength="-1"></div>
+                      </div>
+                    </div>
+                    <!-- end Forth Input -->
+                    <!-- Fifth Input -->
+                    <div class="flex flex-col md:flex-row remove-bottom-border  ">
+                      <div class="px-6 md:px-8 mt-2 md:mt-0 w-full md:w-1/4 md:py-5">
+                        <label for="select_name-default-select-field"
+                          class="inline-block pt-2 leading-tight">description
+                          <span class="text-red-500 text-sm">*</span>
+                        </label>
+                      </div>
+                      <div class="mt-1 md:mt-0 pb-5 px-6 md:px-0 md:w-3/5 w-full md:py-5">
+                        <div class="space-y-1"><input type="text" :value="input.description"
+                            class="w-full form-control form-input form-input-bordered" id="name-default-text-field"
+                            dusk="cmiH9zU5bwMG5HBG__name" maxlength="-1"></div>
+                      </div>
+                    </div>
+                    <!-- end Fifth Input -->
+                    <!-- Six Input -->
+                    <div class="flex flex-col md:flex-row remove-bottom-border  ">
+                      <div class="px-6 md:px-8 mt-2 md:mt-0 w-full md:w-1/4 md:py-5">
+                        <label for="select_name-default-select-field" class="inline-block pt-2 leading-tight">button
+                          title
+                          <span class="text-red-500 text-sm">*</span>
+                        </label>
+                      </div>
+                      <div class="mt-1 md:mt-0 pb-5 px-6 md:px-0 md:w-3/5 w-full md:py-5">
+                        <div class="space-y-1"><input type="text" :value="input.buttonTitle"
+                            class="w-full form-control form-input form-input-bordered" id="name-default-text-field"
+                            dusk="cmiH9zU5bwMG5HBG__name" maxlength="-1"></div>
+                      </div>
+                    </div>
+                    <!-- end Six Input -->
+                    <!-- siventh Input -->
+                    <div class="flex flex-col md:flex-row remove-bottom-border  ">
+                      <div class="px-6 md:px-8 mt-2 md:mt-0 w-full md:w-1/4 md:py-5">
+                        <label for="select_name-default-select-field" class="inline-block pt-2 leading-tight">button
+                          link
+                          <span class="text-red-500 text-sm">*</span>
+                        </label>
+                      </div>
+                      <div class="mt-1 md:mt-0 pb-5 px-6 md:px-0 md:w-3/5 w-full md:py-5">
+                        <div class="space-y-1"><input type="text" :value="input.buttonLink"
+                            class="w-full form-control form-input form-input-bordered" id="name-default-text-field"
+                            dusk="cmiH9zU5bwMG5HBG__name" maxlength="-1"></div>
+                      </div>
+                    </div>
+                    <!-- end siventh Input -->
+                  </div>
+                  <!--end Inputs and Labels -->
+                </div>
+              </div>
             </div>
           </div>
-          <button class="w-8 h-8" v-if="key == inputs.length - 1" @click="add">
-            <img src="https://image.shutterstock.com/image-vector/add-icon-260nw-571594759.jpg"
-              class="w-[24px] h-[24px]" alt="ssss" />
+          <!-- end show OfferList Grop -->
+        </div>
+        <!-- End ImageofferBanner List -->
+        <!-- Add New Image Offer -->
+        <div class="form-group flex flex-col bg-[#b93939] mt-3 py-1.5 gap-y-2 w-full" v-for="(input, key) in inputs"
+          :key="input.id">
+          <!--Add Single Offer -->
+          <!-- show OfferList Grop -->
+          <div v-if="showOfferBannerData == true" class="mt-1 md:mt-0 pb-5  md:w-full md:py-5">
+            <div>
+              <div class="relative mb-4 pb-1" id="cmiH9zU5bwMG5HBG" dusk="navbar-0">
+                <div class="w-full shrink">
+                  <!-- top componentView -->
+                  <div class="border-t border-r border-l border-gray-200 dark:border-gray-700 rounded-t-lg">
+                    <div
+                      class="h-8 leading-normal h-full flex items-center box-content border-b border-gray-200 dark:border-gray-700">
+                      <button dusk="collapse-group" type="button"
+                        class="group-control btn border-r border-gray-200 dark:border-gray-700 w-8 h-8 block"
+                        title="Collapse"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                          stroke="currentColor" width="16" height="16" class="inline-block align-top"
+                          role="presentation">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6"></path>
+                        </svg></button>
+                      <p class="text-80 grow px-4"><span class="mr-3 font-semibold">#1</span> {{ input.key }}</p>
+                      <div class="flex">
+                      </div>
+                    </div>
+                  </div>
+                  <!--end top componentView -->
+                  <!-- Inputs and Labels -->
+                  <div class="grow border-b border-r border-l border-gray-200 dark:border-gray-700 rounded-b-lg">
+                    <!-- First Input -->
+                    <div class="flex flex-col md:flex-row">
+                      <div class="px-6 md:px-8 mt-2 md:mt-0 w-full md:w-1/5 md:py-5">
+                        <label for="name-default-text-field" class="inline-block pt-2 leading-tight">image </label>
+                      </div>
+                      <div class="offerBannerImage-contener flex flex-row items-center justify-center w-full ">
+                        <div class=" offerBannerImage h-full flex items-start justify-center">
+                          <div class="relative w-full">
+                            <div @click="UplodeOfferImage(input.id)"
+                              class="bg-gray-50 relative aspect-square text-center cursor-pointer flex items-center justify-center border-2 border-gray-200 dark:border-gray-700 overflow-hidden rounded-lg">
+                              <p class="">press to upload photo</p>
+                              <input :id="input.id" type="file" class="hidden"
+                                @change="offerBanner($event, input.id, key, 'photo')"
+                                placeholder="الرجاء اختيار صورة الفيديو" />
+                              <!-- <img :src="input.images" :alt="input.key"
+                                class="aspect-square object-scale-down w-28 h-28"> -->
+                            </div>
+                            <!-- <p class="font-semibold text-xs mt-1">{{ input.key }}</p> -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- end First Input -->
+                    <!-- Second Input -->
+                    <div class="flex flex-col md:flex-row remove-bottom-border ">
+                      <div class="px-6 md:px-8 mt-2 md:mt-0 w-full md:w-1/4 md:py-5">
+                        <label for="select_name-default-select-field" class="inline-block pt-2 leading-tight">title
+                          <span class="text-red-500 text-sm">*</span>
+                        </label>
+                      </div>
+                      <div class="mt-1 md:mt-0 pb-5 px-6 md:px-0 md:w-3/5 w-full md:py-5">
+                        <div class="space-y-1">
+                          <input type="text" @change="offerBanner($event, input.id, key, 'title')"
+                            class="w-full form-control form-input form-input-bordered" id="name-default-text-field"
+                            dusk="cmiH9zU5bwMG5HBG__name" maxlength="-1">
+                        </div>
+                      </div>
+                    </div>
+                    <!--end Second Input -->
+                    <!-- third Input -->
+                    <div class="flex flex-col md:flex-row remove-bottom-border  ">
+                      <div class="px-6 md:px-8 mt-2 md:mt-0 w-full md:w-1/4 md:py-5">
+                        <label for="select_name-default-select-field" class="inline-block pt-2 leading-tight">video
+                          title
+                          <span class="text-red-500 text-sm">*</span>
+                        </label>
+                      </div>
+                      <div class="mt-1 md:mt-0 pb-5 px-6 md:px-0 md:w-3/5 w-full md:py-5">
+                        <div class="space-y-1"><input type="text"
+                            @change="offerBanner($event, input.id, key, 'videotitle')"
+                            class="w-full form-control form-input form-input-bordered" id="name-default-text-field"
+                            dusk="cmiH9zU5bwMG5HBG__name" maxlength="-1"></div>
+                      </div>
+                    </div>
+                    <!-- end third Input -->
+                    <!-- Forth Input -->
+                    <div class="flex flex-col md:flex-row remove-bottom-border  ">
+                      <div class="px-6 md:px-8 mt-2 md:mt-0 w-full md:w-1/4 md:py-5">
+                        <label for="select_name-default-select-field" class="inline-block pt-2 leading-tight">price
+
+                          <span class="text-red-500 text-sm">*</span>
+                        </label>
+                      </div>
+                      <div class="mt-1 md:mt-0 pb-5 px-6 md:px-0 md:w-3/5 w-full md:py-5">
+                        <div class="space-y-1"><input type="text" @change="offerBanner($event, input.id, key, 'price')"
+                            class="w-full form-control form-input form-input-bordered" id="name-default-text-field"
+                            dusk="cmiH9zU5bwMG5HBG__name" maxlength="-1"></div>
+                      </div>
+                    </div>
+                    <!-- end Forth Input -->
+                    <!-- Fifth Input -->
+                    <div class="flex flex-col md:flex-row remove-bottom-border  ">
+                      <div class="px-6 md:px-8 mt-2 md:mt-0 w-full md:w-1/4 md:py-5">
+                        <label for="select_name-default-select-field"
+                          class="inline-block pt-2 leading-tight">description
+                          <span class="text-red-500 text-sm">*</span>
+                        </label>
+                      </div>
+                      <div class="mt-1 md:mt-0 pb-5 px-6 md:px-0 md:w-3/5 w-full md:py-5">
+                        <div class="space-y-1"><input type="text"
+                            @change="offerBanner($event, input.id, key, 'description')"
+                            class="w-full form-control form-input form-input-bordered" id="name-default-text-field"
+                            dusk="cmiH9zU5bwMG5HBG__name" maxlength="-1"></div>
+                      </div>
+                    </div>
+                    <!-- end Fifth Input -->
+                    <!-- Six Input -->
+                    <div class="flex flex-col md:flex-row remove-bottom-border  ">
+                      <div class="px-6 md:px-8 mt-2 md:mt-0 w-full md:w-1/4 md:py-5">
+                        <label for="select_name-default-select-field" class="inline-block pt-2 leading-tight">button
+                          title
+                          <span class="text-red-500 text-sm">*</span>
+                        </label>
+                      </div>
+                      <div class="mt-1 md:mt-0 pb-5 px-6 md:px-0 md:w-3/5 w-full md:py-5">
+                        <div class="space-y-1"><input type="text"
+                            @change="offerBanner($event, input.id, key, 'buttonTitle')"
+                            class="w-full form-control form-input form-input-bordered" id="name-default-text-field"
+                            dusk="cmiH9zU5bwMG5HBG__name" maxlength="-1"></div>
+                      </div>
+                    </div>
+                    <!-- end Six Input -->
+                    <!-- siventh Input -->
+                    <div class="flex flex-col md:flex-row remove-bottom-border  ">
+                      <div class="px-6 md:px-8 mt-2 md:mt-0 w-full md:w-1/4 md:py-5">
+                        <label for="select_name-default-select-field" class="inline-block pt-2 leading-tight">button
+                          link
+                          <span class="text-red-500 text-sm">*</span>
+                        </label>
+                      </div>
+                      <div class="mt-1 md:mt-0 pb-5 px-6 md:px-0 md:w-3/5 w-full md:py-5">
+                        <div class="space-y-1"><input type="text"
+                            @change="offerBanner($event, input.id, key, 'buttonLink')"
+                            class="w-full form-control form-input form-input-bordered" id="name-default-text-field"
+                            dusk="cmiH9zU5bwMG5HBG__name" maxlength="-1"></div>
+                      </div>
+                    </div>
+                    <!-- end siventh Input -->
+                  </div>
+                  <!--end Inputs and Labels -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end show OfferList Grop -->
+
+          <!--End Single Offer -->
+        </div>
+        <!-- Add Layout Button -->
+        <div class="relative">
+          <button size="lg" align="center" component="button" dusk="toggle-layouts-dropdown-or-add-default"
+            type="button" tabindex="0" @click="addOfferBannerList" class="shadow relative bg-primary-500 hover:bg-primary-400 text-white 
+          dark:text-gray-900 cursor-pointer rounded text-sm font-bold focus:outline-none 
+          focus:ring ring-primary-200 dark:ring-gray-600 inline-flex items-center justify-center h-9 px-3 
+          shadow relative bg-primary-500 hover:bg-primary-400 text-white dark:text-gray-900">
+            <span>Add layout</span>
           </button>
+          <!-- Save Button -->
+          <div class="flex flex-row w-full items-center justify-end">
+            <div v-if="showOfferBannerData == true"
+              class="bg-primary-500 hover:bg-primary-400 text-white dark:text-gray-900 ml-auto cursor-pointer rounded 
+           text-sm font-bold focus:outline-none focus:ring ring-primary-200 dark:ring-gray-600 inline-flex items-center justify-center h-9 px-6 shadow relative bg-primary-500 hover:bg-primary-400 "
+              type="submit" @click="setImeageofferBanner">
+              save
+            </div>
+          </div>
+          <!-- End Save Button -->
         </div>
-        <div
-          class="bg-primary-500 hover:bg-primary-400 text-whitedark:text-gray-900 ml-auto cursor-pointer rounded
-           text-sm font-bold focus:outline-none focus:ring ring-primary-200 dark:ring-gray-600 inline-flex items-center justify-center h-9 px-6 shadow relative bg-primary-500 hover:bg-primary-400"
-          type="submit" @click="setImeageofferBanner">
-          save
-        </div>
+        <!-- End Layout Button -->
+        <!-- End Add New Image Offer -->
       </div>
       <div v-else-if="field.type == 4">
         <div v-for="(item, key) in ImageFourthBanner" :key="key">
@@ -378,30 +609,24 @@ export default {
       keyValofferBanner: [],
       counter: 0,
       showSecondBannerData: false,
+      showOfferBannerData: false,
       keyVal: [],
-      inputs:
-        this.field.type == 1
-          ? [
-            {
-              id: uuid(),
-              value: "",
-            },
-          ]
-          : [
-            {
-              id: uuid(),
-              value: "",
-              title: "",
-              subtitle: "",
-              button: "",
-              buttonLink: "",
-            },
-          ],
+      inputs: [
+        {
+          id: uuid(),
+          value: "",
+        },
+      ]
+
     };
   },
   methods: {
     AddFirstBanner(key) {
       document.getElementById(key).click();
+    },
+    UplodeOfferImage(key) {
+      document.getElementById(key).click();
+
     },
     upload(event, key) {
       console.log("name", event.target.files[0].name);
@@ -416,10 +641,7 @@ export default {
         },
       });
     },
-    addSecondBanner(e) {
-      e.preventDefault();
-      // this.secondBanner[]
-    },
+
     removeImageSlider(key, type) {
       console.log('remoooooove')
       axios.post("/removeImageSlider", {
@@ -498,14 +720,6 @@ export default {
     },
     addSecondBannerList(e) {
       e.preventDefault();
-      // if (this.counter == 1) {
-      //   this.showSecondBannerData = true;
-      //   this.inputs.push({ id: uuid(), value: "" });
-      // }
-      // if (this.inputs.length == 1) {
-      //   this.showSecondBannerData = true;
-      //   this.counter = 1;
-      // }
       if (this.counter == 0) {
         this.showSecondBannerData = true;
       }
@@ -514,8 +728,20 @@ export default {
         this.inputs.push({ id: uuid(), value: "" });
       }
       console.log(this.counter);
-
     },
+
+    addOfferBannerList(e) {
+      e.preventDefault();
+      if (this.counter == 0) {
+        this.showOfferBannerData = true;
+      }
+      this.counter++;
+      if (this.counter > 1) {
+        this.inputs.push({ id: uuid(), value: "" });
+      }
+      console.log(this.counter);
+    },
+
     previewFiles(event, key) {
       this.inputs[key].value = event.target.value;
     },
@@ -664,7 +890,7 @@ export default {
     getImeageofferBanner() {
       axios.post("/getImeageofferBanner").then((response) => {
         this.ImeageofferBanner = response.data;
-        console.log("ImeageofferBanner", this.ImeageofferBanner);
+        // console.log("ImeageofferBanner", this.ImeageofferBanner);
       });
     },
     getImageFourthBanner() {
@@ -911,5 +1137,19 @@ export default {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+}
+
+.offerBannerImage {
+  margin-top: 5%;
+  width: 113px;
+  height: 113px;
+}
+
+.offerBannerImage-contener {
+  margin-right: 17%;
+}
+
+.offerBannerInput {
+  margin-top: 45px;
 }
 </style>
