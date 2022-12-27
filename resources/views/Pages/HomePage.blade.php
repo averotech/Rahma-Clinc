@@ -157,7 +157,27 @@
                     </div>
                 </div>
                 <div class="col-span-1 relative">
-                    <form action="">
+                    @php
+                        $firstName = '';
+                    @endphp
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    @php
+                                        $firstName = $firstName . ' ' . $error . '<br>';
+                                    @endphp
+                                @endforeach
+                                <script>
+                                    var bool = {!! json_encode($firstName) !!};
+                                    toastr.error(bool);
+                                </script>
+                                {{-- {!! $firstName !!} --}}
+                            </ul>
+                        </div>
+                    @endif
+                    <form method="POST"  action="/conctus" enctype="multipart/form-data">
+                        @csrf
                         <div class="mb-5">
                             <label for="full-name" class="block text-sm font-medium text-gray-700 sitka-font">الاسم
                                 الكامل</label>
@@ -472,7 +492,9 @@
                     سارع بالتواصل معنا
                 </h2>
             </div>
-            <form action="">
+
+        <form method="POST" v-on:submit.prevent="submit" action="/conctus" enctype="multipart/form-data">
+            @csrf            
                 <div class="mb-5">
                     <label for="full-name" class="block text-sm font-medium text-gray-700 sitka-font">الاسم الكامل</label>
                     <input type="text" name="first-name" id="full-name" autocomplete="given-name"

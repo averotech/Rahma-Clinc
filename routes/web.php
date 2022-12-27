@@ -26,6 +26,11 @@ Route::post("setImeageSlider", [HomeController::class, "setImeageSlider"])->name
 Route::post("setaboutusslider", [HomeController::class, "setaboutusslider"])->name('setaboutusslider');
 Route::post("getImeagesecondBanner", [HomeController::class, "getImeagesecondBanner"])->name('getImeagesecondBanner');
 Route::post("setImeagesecondBanner", [HomeController::class, "setImeagesecondBanner"])->name('setImeagesecondBanner');
-Route::post("removeImageSlider", [HomeController::class, "removeImageSlider"])->name('removeImageSlider');
+Route::post("setImeageofferBanner", [HomeController::class, "setImeageofferBanner"])->name('setImeageofferBanner');
+Route::post("getImeageofferBanner", [HomeController::class, "getImeageofferBanner"])->name('getImeageofferBanner');
 Route::post("setImageFourthBanner", [HomeController::class, "setImageFourthBanner"])->name('setImageFourthBanner');
 Route::post("getImageFourthBanner", [HomeController::class, "getImageFourthBanner"])->name('getImageFourthBanner');
+Route::post("removeImageSlider", [HomeController::class, "removeImageSlider"])->name('removeImageSlider');
+
+Route::post('/conctus', [HomeController::class, 'ContactUsForm'])->name('ContactUsForm');
+Route::get("toastr-notification", [HomeController::class, "showToastrMessages"]);
