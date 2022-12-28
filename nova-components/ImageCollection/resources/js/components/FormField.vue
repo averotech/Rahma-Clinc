@@ -30,9 +30,9 @@
             class="block cursor-pointer p-4 bg-gray-50 dark:bg-gray-900 dark:hover:bg-gray-900 border-4 border-dashed hover:border-gray-300 dark:border-gray-700 dark:hover:border-gray-600 rounded-lg">
             <div class="flex items-center space-x-4 pointer-events-none">
               <p class="text-center pointer-events-none">
-              <div size="lg" align="center" class="shadow relative bg-primary-500 hover:bg-primary-400 text-white dark:text-gray-900 
+              <div size="lg" align="center" class="shadow relative bg-primary-500 hover:bg-primary-400 text-white dark:text-gray-900
               cursor-pointer rounded text-sm font-bold focus:outline-none focus:ring ring-primary-200
-               dark:ring-gray-600 inline-flex items-center justify-center h-9 px-3 shadow relative 
+               dark:ring-gray-600 inline-flex items-center justify-center h-9 px-3 shadow relative
                bg-primary-500 hover:bg-primary-400 text-white dark:text-gray-900">Choose File</div>
               </p>
               <p class="pointer-events-none text-center text-sm text-gray-500 dark:text-gray-400 font-semibold">Drop
@@ -42,7 +42,7 @@
           </div>
           <div class="flex flex-row items-center justify-start my-2">
             <input type="file" class=" w-full my-2 h-[36px] px-2 py-1 border-b border-2 hidden" :id="input.id"
-              @change="upload($event, input.id)" placeholder="الرجاء اختيار الصورة" />
+              @change="setImeageSlider($event, input.id)" placeholder="الرجاء اختيار الصورة" />
             <div class="removeIcon" v-if="inputs.length > 1" v-on:click="remove(input.id)">
               <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg"
                 xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -129,7 +129,7 @@
           :key="input.id">
           <!-- second Banner Add new List -->
           <div v-if="showSecondBannerData == true" class="layout-list__item layout-item">
-            <h4 class="layout-item__title">Add New Banner
+                <h4 class="layout-item__title">Add New Banner
             </h4>
             <div class="layout-item__fields">
               <div class="layout-item__fields__item">
@@ -142,6 +142,7 @@
                   </div>
                 </div>
               </div>
+
               <div class="layout-item__fields__item pt-3 ">
                 <div class="flexible-input-container">
                   <label for="2text_main_workplace" class="input-label pl-3"> Title </label>
@@ -182,16 +183,15 @@
               </div>
             </div>
           </div>
-
-          <div v-if="showSecondBannerData == true"
-            class="bg-primary-500 hover:bg-primary-400 text-white dark:text-gray-900 ml-auto cursor-pointer rounded text-sm font-bold focus:outline-none focus:ring ring-primary-200 dark:ring-gray-600 inline-flex items-center justify-center h-9 px-6 shadow relative bg-primary-500 hover:bg-primary-400 "
-            type="submit" @click="setImagesecondBanner()">
-            save
-          </div>
-
           <button class="button" v-if="key == inputs.length - 1" @click="addSecondBannerList">Add New Content</button>
         </div>
-
+        <div class="flex flex-row items-center justify-end">
+          <div v-if="showSecondBannerData == true"
+            class="bg-primary-500 hover:bg-primary-400 text-white dark:text-gray-900 ml-auto cursor-pointer rounded text-sm font-bold focus:outline-none focus:ring ring-primary-200 dark:ring-gray-600 inline-flex items-center justify-center h-9 px-6 shadow relative bg-primary-500 hover:bg-primary-400 "
+            type="submit" @click="setImagesecondBanner">
+            save
+          </div>
+          </div>
       </div>
       <div v-else-if="field.type == 3">
 
@@ -505,16 +505,16 @@
         <!-- Add Layout Button -->
         <div class="relative">
           <button size="lg" align="center" component="button" dusk="toggle-layouts-dropdown-or-add-default"
-            type="button" tabindex="0" @click="addOfferBannerList" class="shadow relative bg-primary-500 hover:bg-primary-400 text-white 
-          dark:text-gray-900 cursor-pointer rounded text-sm font-bold focus:outline-none 
-          focus:ring ring-primary-200 dark:ring-gray-600 inline-flex items-center justify-center h-9 px-3 
+            type="button" tabindex="0" @click="addOfferBannerList" class="shadow relative bg-primary-500 hover:bg-primary-400 text-white
+          dark:text-gray-900 cursor-pointer rounded text-sm font-bold focus:outline-none
+          focus:ring ring-primary-200 dark:ring-gray-600 inline-flex items-center justify-center h-9 px-3
           shadow relative bg-primary-500 hover:bg-primary-400 text-white dark:text-gray-900">
             <span>Add layout</span>
           </button>
           <!-- Save Button -->
           <div class="flex flex-row w-full items-center justify-end">
             <div v-if="showOfferBannerData == true"
-              class="bg-primary-500 hover:bg-primary-400 text-white dark:text-gray-900 ml-auto cursor-pointer rounded 
+              class="bg-primary-500 hover:bg-primary-400 text-white dark:text-gray-900 ml-auto cursor-pointer rounded
            text-sm font-bold focus:outline-none focus:ring ring-primary-200 dark:ring-gray-600 inline-flex items-center justify-center h-9 px-6 shadow relative bg-primary-500 hover:bg-primary-400 "
               type="submit" @click="setImeageofferBanner">
               save
@@ -616,8 +616,7 @@ export default {
           id: uuid(),
           value: "",
         },
-      ]
-
+      ],
     };
   },
   methods: {
@@ -626,24 +625,10 @@ export default {
     },
     UplodeOfferImage(key) {
       document.getElementById(key).click();
-
-    },
-    upload(event, key) {
-      console.log("name", event.target.files[0].name);
-      console.log("ref", event.target.files[0]);
-      let formData = new FormData();
-      formData.append("file", event.target.files[0]);
-      formData.append("key", key);
-      console.log("formDataa", formData);
-      axios.post("/setImeageSlider", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
     },
 
     removeImageSlider(key, type) {
-      console.log('remoooooove')
+      console.log("remoooooove");
       axios.post("/removeImageSlider", {
         key: key,
         type: type,
@@ -655,15 +640,19 @@ export default {
         if (!this.secondBannerArray[index]) {
           this.keyVal.push(key);
           this.secondBannerArray.push({ [key]: { [type]: e.target.files[0] } });
+          console.log("etarget" , e.target.id);
         } else {
           this.secondBannerArray[index][key][type] = e.target.files[0];
+          console.log("etarget" , e.target.id);
         }
       }
       if (type == "title") {
         if (!this.secondBannerArray[index]) {
+            console.log("etarget" , e.target.id);
           this.keyVal.push(key);
           this.secondBannerArray.push({ [key]: { [type]: e.target.value } });
         } else {
+            console.log("etarget" , e.target.id);
           this.secondBannerArray[index][key][type] = e.target.value;
         }
       } else if (type === "subtitle") {
@@ -763,34 +752,75 @@ export default {
     getImeageSlider() {
       axios.post("/getImeageSlider").then((response) => {
         this.ImageSlider = response.data;
-        console.log('this.ImageSlider', this.ImageSlider)
+        // console.log('this.ImageSlider', this.ImageSlider)
       });
     },
-    setImeageSlider() {
-      axios.post("/setImeageSlider", {
-        ImageSlider: this.ImageSlider,
-        inputs: this.inputs,
-      });
-      this.getImeageSlider();
-    },
-    setImagesecondBanner() {
+    setImeageSlider(event, key) {
+      console.log("name", event.target.files[0].name);
+      console.log("ref", event.target.files[0]);
       let formData = new FormData();
-      for (let index = 0; index < this.keyVal.length; index++) {
-        console.log('key', this.secondBannerArray[index][this.keyVal[index]])
-        formData.append("file", this.secondBannerArray[index][this.keyVal[index]]["photo"]);
-        formData.append("title", this.secondBannerArray[index][this.keyVal[index]]["title"]);
-        formData.append("subtitle", this.secondBannerArray[index][this.keyVal[index]]["subtitle"]);
-        formData.append("buttonText ", this.secondBannerArray[index][this.keyVal[index]]["buttonText"]);
-        formData.append("buttonLink", this.secondBannerArray[index][this.keyVal[index]]["buttonLink"]);
-        formData.append("key", this.keyVal[index]);
-        axios.post("/setImeagesecondBanner", formData, {
+      formData.append("file", event.target.files[0]);
+      formData.append("key", key);
+      console.log("formDataa", formData);
+      axios
+        .post("/setImeageSlider", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
+        })
+        .then((response) => {
+          console.log("on then");
+          this.getImeageSlider();
+          console.log("intime slider ", this.ImageSlider);
+        })
+        .catch((error) => {
+          this.errors = error.response.data.errors;
         });
+    },
+
+    setImagesecondBanner() {
+
+      let formData = new FormData();
+      for (let index = 0; index < this.keyVal.length; index++) {
+        console.log("key", this.secondBannerArray[index][this.keyVal[index]]);
+        formData.append(
+          "file",
+          this.secondBannerArray[index][this.keyVal[index]]["photo"]
+        );
+        formData.append(
+          "title",
+          this.secondBannerArray[index][this.keyVal[index]]["title"]
+        );
+        formData.append(
+          "subtitle",
+          this.secondBannerArray[index][this.keyVal[index]]["subtitle"]
+        );
+        formData.append(
+          "buttonText ",
+          this.secondBannerArray[index][this.keyVal[index]]["buttonText"]
+        );
+        formData.append(
+          "buttonLink",
+          this.secondBannerArray[index][this.keyVal[index]]["buttonLink"]
+        );
+        formData.append("key", this.keyVal[index]);
+        axios
+          .post("/setImeagesecondBanner", formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          })
+          .then((response) => {
+            console.log("on then");
+            this.getImagesecondBanner();
+          })
+          .catch((error) => {
+            this.errors = error.response.data.errors;
+          });
       }
     },
     getImagesecondBanner() {
+
       axios.post("/getImeagesecondBanner").then((response) => {
         this.ImagesecondBanner = response.data;
         console.log("ImagesecondBanner", this.ImagesecondBanner);
@@ -800,9 +830,20 @@ export default {
       let formData = new FormData();
       console.log("asd");
       for (let index = 0; index < this.keyValFourthBanner.length; index++) {
-        formData.append("file", this.FourthBannerArray[index][this.keyValFourthBanner[index]]["photo"]);
-        formData.append("title", this.FourthBannerArray[index][this.keyValFourthBanner[index]]["title"]);
-        formData.append("subtitle", this.FourthBannerArray[index][this.keyValFourthBanner[index]]["subtitle"]);
+        formData.append(
+          "file",
+          this.FourthBannerArray[index][this.keyValFourthBanner[index]]["photo"]
+        );
+        formData.append(
+          "title",
+          this.FourthBannerArray[index][this.keyValFourthBanner[index]]["title"]
+        );
+        formData.append(
+          "subtitle",
+          this.FourthBannerArray[index][this.keyValFourthBanner[index]][
+            "subtitle"
+          ]
+        );
         formData.append("key", this.keyValFourthBanner[index]);
         axios.post("/setImageFourthBanner", formData, {
           headers: {
@@ -872,13 +913,42 @@ export default {
     setImeageofferBanner() {
       let formData = new FormData();
       for (let index = 0; index < this.keyValofferBanner.length; index++) {
-        formData.append("file", this.offerBannerArray[index][this.keyValofferBanner[index]]["photo"]);
-        formData.append("videotitle", this.offerBannerArray[index][this.keyValofferBanner[index]]["videotitle"]);
-        formData.append("title", this.offerBannerArray[index][this.keyValofferBanner[index]]["title"]);
-        formData.append("price", this.offerBannerArray[index][this.keyValofferBanner[index]]["price"]);
-        formData.append("description", this.offerBannerArray[index][this.keyValofferBanner[index]]["description"]);
-        formData.append("buttonTitle", this.offerBannerArray[index][this.keyValofferBanner[index]]["buttonTitle"]);
-        formData.append("buttonLink", this.offerBannerArray[index][this.keyValofferBanner[index]]["buttonLink"]);
+        formData.append(
+          "file",
+          this.offerBannerArray[index][this.keyValofferBanner[index]]["photo"]
+        );
+        formData.append(
+          "videotitle",
+          this.offerBannerArray[index][this.keyValofferBanner[index]][
+            "videotitle"
+          ]
+        );
+        formData.append(
+          "title",
+          this.offerBannerArray[index][this.keyValofferBanner[index]]["title"]
+        );
+        formData.append(
+          "price",
+          this.offerBannerArray[index][this.keyValofferBanner[index]]["price"]
+        );
+        formData.append(
+          "description",
+          this.offerBannerArray[index][this.keyValofferBanner[index]][
+            "description"
+          ]
+        );
+        formData.append(
+          "buttonTitle",
+          this.offerBannerArray[index][this.keyValofferBanner[index]][
+            "buttonTitle"
+          ]
+        );
+        formData.append(
+          "buttonLink",
+          this.offerBannerArray[index][this.keyValofferBanner[index]][
+            "buttonLink"
+          ]
+        );
         formData.append("key", this.keyValofferBanner[index]);
         axios.post("/setImeageofferBanner", formData, {
           headers: {
