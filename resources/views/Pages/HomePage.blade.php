@@ -6,7 +6,7 @@
         $NavBar = json_decode($HeaderNav);
         $Header_WhatsAppLink = nova_get_setting('logo', '');
         $Header_Logo = 'storage/' . nova_get_setting('logo', '');
-        
+
         $Banner_TopTitle = nova_get_setting('title_Top-Banner', ' تألقي بثقة و جمال مع رحمة كلينك أفضل أجهزة إزالة الشعر بدون ألم و نتائج مضمونة .');
         $Banner_subTitle = nova_get_setting('subtitle_Top-Banner', 'لأننا نهتم بأن تكوني بأجمل طلة مع رحمة كلينك نوفر أفضل جهاز لازالة الشعر soprano titanium بدون ألم.');
         $Banner_Video_Url = nova_get_setting('video_Url_Top-Banner', 'http://media.w3.org/2010/05/sintel/trailer.mp4');
@@ -17,21 +17,21 @@
         $About_Us_subtitle_About_Us = nova_get_setting('subtitle_About_Us', 'بنقدم خدمة إزالة الشعر بالليزر باستخدام أفضل جهاز عالمية هو Soprano Titanium لرجال والنساء بإدارة الممرضة رحمة عودة لتحصلي على ملمس حريري و لمعان من أول جلسة و نتائج مبهرة .');
         $About_Us_bottom_text_About_Us = nova_get_setting('bottom_text_About_Us', 'رؤية المزيد');
         $About_Us_bottom_link_About_Us = nova_get_setting('bottom_link_About_Us', '#');
-        
+
         // Our Services
         $Our_Services_title = nova_get_setting('title_Our_Services', 'قولي وداعا لشفرات الحلاقة');
         $Our_Services_subtitle = nova_get_setting('subtitle_Our_Services', 'نقدم في رحمة كلينك خدمة إزالة الشعر بالليزر مع أفضل جهاز عالمي Soprano Titanium و خدمات تجميلية مثل العناية بالبشرة و علاج الحروق لرجال و النساء على أيدي مختصين محترفين بإدارة الممرضة المختصة رحمة محاميد عودة الناصرة');
-        
+
         // dd($NavBar[0]->attributes);
         $str_slider = nova_get_setting('slider', 'default_value');
         $json_slider = json_decode($str_slider);
         // dd($json_slider[0]->value);
-        
+
         $FirstImage = 'storage/' . nova_get_setting('First_Image_About_Us', '');
         $SecondImage = 'storage/' . nova_get_setting('Second_Image_About_Us', '');
         $ThirdImage_Logo = 'storage/' . nova_get_setting('third_Image_About_Us', '');
         // dd($FirstImage);
-        
+
         //second_Banner
         $str_secondBanner = nova_get_setting('second_Banner', 'default_value');
         $json_secondBanner = json_decode($str_secondBanner);
@@ -145,7 +145,7 @@
                         @if ($json_slider !== null)
                             @foreach ($json_slider as $slider)
                                 @php
-                                    
+
                                     $imgSlider = $slider->value;
                                 @endphp
                                 <div class="relative">
@@ -163,13 +163,16 @@
                 <div class="col-span-1 relative">
                     @php
                         $firstName = '';
+
                     @endphp
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
                                 @foreach ($errors->all() as $error)
                                     @php
+
                                         $firstName = $firstName . ' ' . $error . '<br>';
+
                                     @endphp
                                 @endforeach
                                 <script>
@@ -414,7 +417,7 @@
                                     </a>
                                 </div>
                                 <img class="max-w-full min-h-auto md:min-h-[500px] lg:min-h-[600px] object-cover"
-                                src="{{ $item->images }}"    
+                                src="{{ $item->images }}"
                                 {{-- src="{{ asset('assets/images/offer-img.png') }}"  --}}
                                     alt="">
                             </div>
