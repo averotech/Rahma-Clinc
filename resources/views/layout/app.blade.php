@@ -44,12 +44,12 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
         <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
         <!-- Start Header -->
-        @include('Layout.front-end.partials._header')
+        @include('layout.front-end.partials._header')
         <!-- End Header -->
         @yield('content')
        {{-- C:\Averotech\rahma-clinc\resources\views\Pages\HomePage.blade.php --}}
         <!-- Start footer -->
-        @include('Layout.front-end.partials._footer')
+        @include('layout.front-end.partials._footer')
         <!-- End footer -->
 
 
